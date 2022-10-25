@@ -16,9 +16,9 @@ public class CarOrderTest {
     @MethodSource("add_objects_to_test")
     public void car_exists(Car car){
         assertSame(car, car);
-        //bullshit
         assertEquals("Ola Nordmann", car.getOwner());
         assertNotEquals("Oliver", car.getOwner());
+        assertNotEquals("Peppa Pig", car.getOwner());
         //Approvals.verify(car.getOwner());
     }
 
