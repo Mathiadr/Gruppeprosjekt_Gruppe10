@@ -16,10 +16,12 @@ public class CarOrderTest {
     @MethodSource("add_objects_to_test")
     public void car_exists(Car car){
         assertSame(car, car);
+        //bullshit
         assertEquals("Ola Nordmann", car.getOwner());
         assertNotEquals("Oliver", car.getOwner());
         //Approvals.verify(car.getOwner());
     }
+
 
     // TODO: car does not exist more than once / no duplicates
     // TODO: User does not exist more than once / no duplicates
