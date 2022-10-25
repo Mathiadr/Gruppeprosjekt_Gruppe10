@@ -9,8 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserTest {
     @Test
     public void user_exists(){
-        User user = new User();
-        assertTrue(user == user);
+        User user = new User("Mathias Ratdal", 23, "12312313");
+        assertEquals("Mathias Ratdal", user.getName());
     }
+
+
 
 }
