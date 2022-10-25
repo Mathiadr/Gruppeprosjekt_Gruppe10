@@ -4,7 +4,14 @@ public class Car {
     private String registrationNumber;
     private String owner;
     private String model;
-    private String availableDate;
+    private String availableDate;   //TODO: IMPLEMENT
+    private boolean isAvailable = true; //Whether or not the car is occupied (Not to be confused with available date)
+                                        //TODO: IMPLEMENT
+    private String fuelType;        //TODO: IMPLEMENT
+    private String transmission;    //TODO: IMPLEMENT
+
+    private ArrayList<String> features;
+
 
     private static ArrayList<Car> carArrayList = new ArrayList<>();
 
