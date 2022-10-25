@@ -11,6 +11,7 @@ public class UserTest {
     public void user_exists(){
         User user = new User("Mathias Ratdal", 23, "12312313");
         assertEquals("Mathias Ratdal", user.getName());
+        // Test
     }
 
 
