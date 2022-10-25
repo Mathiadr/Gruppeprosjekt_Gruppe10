@@ -22,7 +22,7 @@ public class CarOrderTest {
     public void car_exists(Car car){
         assertSame(car, car);
         assertEquals("Ola Nordmann", car.getOwner());
-        assertNotEquals("Bitch", car.getOwner());
+        assertNotEquals("Jens", car.getOwner());
         //Approvals.verify(car.getOwner());
     }
 
