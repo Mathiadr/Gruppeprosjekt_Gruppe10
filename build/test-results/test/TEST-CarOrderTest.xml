@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CarOrderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-24T12:06:06" hostname="MSI" time="0.03">
-  <properties/>
-  <testcase name="[1] Car@2657d4dd" classname="CarOrderTest" time="0.03"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
