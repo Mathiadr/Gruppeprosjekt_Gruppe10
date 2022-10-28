@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CarOrderTest {
 
+
+
     public static Stream<Car> add_objects_to_test() {
 
         return Stream.of(new Car("11dd", "Ola Nordmann", "Nissan"));
