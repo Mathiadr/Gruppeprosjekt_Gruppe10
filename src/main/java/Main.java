@@ -1,8 +1,14 @@
 import car.Car;
 import car.CarRepository;
 
+import forms.CarRental;
+
+
 public class Main {
     public static void main(String[] args) {
+        CarRental carRental = new CarRental("Car rental");
+        carRental.setVisible(true);
+
         CarRepository carRepository = new CarRepository("carRepository.json");
         carRepository.AddNewCar(new Car("MXH10045", "Mathias Dale Ratdal", "E2"));
         carRepository.AddNewCar(new Car("EBX23365", "Sokrat Starynkiewicz", "A4"));
