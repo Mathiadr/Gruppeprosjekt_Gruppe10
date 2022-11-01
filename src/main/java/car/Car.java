@@ -1,4 +1,7 @@
+package car;
+
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Car {
     private String registrationNumber;
@@ -10,7 +13,7 @@ public class Car {
     private String fuelType;        //TODO: IMPLEMENT
     private String transmission;    //TODO: IMPLEMENT
 
-    private ArrayList<String> features;
+    private Collection<String> features; //TODO: IMPLEMENT
 
 
     private static ArrayList<Car> carArrayList = new ArrayList<>();
@@ -21,6 +24,37 @@ public class Car {
         this.model = model;
     }
 
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
+    public String getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public String getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(String transmission) {
+        this.transmission = transmission;
+    }
+
+    public Collection<String> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(Collection<String> features) {
+        this.features = features;
+    }
 
     public String getAvailableDate() {
         return availableDate;
