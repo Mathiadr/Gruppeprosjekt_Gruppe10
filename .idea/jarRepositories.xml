@@ -16,5 +16,15 @@
       <option name="name" value="MavenRepo" />
       <option name="url" value="https://repo.maven.apache.org/maven2/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="instrumentFormsRepository-third-party" />
+      <option name="name" value="instrumentFormsRepository-third-party" />
+      <option name="url" value="https://cache-redirector.jetbrains.com/intellij-dependencies" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="instrumentFormsRepository-jetbrains" />
+      <option name="name" value="instrumentFormsRepository-jetbrains" />
+      <option name="url" value="https://www.jetbrains.com/intellij-repository/releases" />
+    </remote-repository>
   </component>
 </project>

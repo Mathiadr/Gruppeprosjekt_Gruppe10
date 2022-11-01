@@ -9,7 +9,7 @@ public class Main {
         CarRental carRental = new CarRental("Car rental");
         carRental.setVisible(true);
 
-        CarRepository carRepository = new CarRepository("carRepository.json");
+        CarRepository carRepository = new CarRepository("testRepository.json");
         carRepository.AddNewCar(new Car("MXH10045", "Mathias Dale Ratdal", "E2"));
         carRepository.AddNewCar(new Car("EBX23365", "Sokrat Starynkiewicz", "A4"));
         carRepository.AddNewCar(new Car("E0B10045", "Joe Mama", "C2"));
