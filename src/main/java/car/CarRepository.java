@@ -8,13 +8,17 @@ import java.util.ArrayList;
 public class CarRepository {
     private String repositoryName;
 
-    private static ArrayList<Car> availableCarArrayList; // Holds cars not currently occupied
-    private static ArrayList<Car> allCarArrayList; // Holds ALL cars. Unsure if necessary
+    private ArrayList<Car> availableCarArrayList; // Holds cars not currently occupied
+    private ArrayList<Car> allCarArrayList; // Holds ALL cars. Unsure if necessary
 
-    CarRepository(String repositoryName) throws FileNotFoundException {
+    public CarRepository(String repositoryName) {
         this.repositoryName = repositoryName;
 
-        FileReader fileReader = new FileReader(this.repositoryName);
+        try {
+            FileReader fileReader = new FileReader(this.repositoryName);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     // Adds a new car to the repository file
@@ -24,11 +28,12 @@ public class CarRepository {
         jsonObject.put("registrationNumber", car.getRegistrationNumber());
         jsonObject.put("owner", car.getOwner());
         jsonObject.put("model", car.getModel());
+        /*
         jsonObject.put("availableDate", car.getAvailableDate());
         jsonObject.put("isAvailable", car.isAvailable());
         jsonObject.put("fuelType", car.getFuelType());
         jsonObject.put("transmission", car.getTransmission());
-        jsonObject.put("features", car.getFeatures()); //Maybe a nested JSONObject/JSONArray belongs here?
+        jsonObject.put("features", car.getFeatures()); */ //Maybe a nested JSONObject/JSONArray belongs here?
         try{
             FileWriter fileWriter = new FileWriter(this.repositoryName);
             fileWriter.append(jsonObject.toString());

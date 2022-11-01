@@ -7,16 +7,13 @@ public class Car {
     private String registrationNumber;
     private String owner;
     private String model;
-    private String availableDate;   //TODO: IMPLEMENT
-    private boolean isAvailable = true; //Whether or not the car is occupied (Not to be confused with available date)
+    //private String availableDate;   //TODO: IMPLEMENT
+    private boolean isAvailable = true; //Whether the car is occupied (Not to be confused with available date)
                                         //TODO: IMPLEMENT
-    private String fuelType;        //TODO: IMPLEMENT
-    private String transmission;    //TODO: IMPLEMENT
+    //private String fuelType;        //TODO: IMPLEMENT
+    //private String transmission;    //TODO: IMPLEMENT
 
-    private Collection<String> features; //TODO: IMPLEMENT
-
-
-    private static ArrayList<Car> carArrayList = new ArrayList<>();
+    //private Collection<String> features; //TODO: IMPLEMENT
 
     public Car(String registrationNumber, String owner, String model) {
         this.registrationNumber = registrationNumber;
@@ -32,45 +29,6 @@ public class Car {
         isAvailable = available;
     }
 
-    public String getFuelType() {
-        return fuelType;
-    }
-
-    public void setFuelType(String fuelType) {
-        this.fuelType = fuelType;
-    }
-
-    public String getTransmission() {
-        return transmission;
-    }
-
-    public void setTransmission(String transmission) {
-        this.transmission = transmission;
-    }
-
-    public Collection<String> getFeatures() {
-        return features;
-    }
-
-    public void setFeatures(Collection<String> features) {
-        this.features = features;
-    }
-
-    public String getAvailableDate() {
-        return availableDate;
-    }
-
-    public void setAvailableDate(String availableDate) {
-        this.availableDate = availableDate;
-    }
-
-    public static ArrayList<Car> getCarArrayList() {
-        return carArrayList;
-    }
-
-    public static void setCarArrayList(ArrayList<Car> carArrayList) {
-        Car.carArrayList = carArrayList;
-    }
 
     public String getRegistrationNumber() {
         return registrationNumber;
