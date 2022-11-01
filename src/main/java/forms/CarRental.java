@@ -1,6 +1,8 @@
 package forms;
 
 
+import car.Car;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,11 +24,15 @@ public class CarRental extends JFrame {
     private JButton createCar;
     private JButton backToMainPage2;
     private JButton selectCar;
-    private JFormattedTextField registrationNumberFormattedTextField;
-    private JFormattedTextField ownerFormattedTextField;
-    private JFormattedTextField modelFormattedTextField;
-    private JFormattedTextField fuelTypeFormattedTextField;
-    private JButton button1;
+    private JFormattedTextField owner;
+    private JFormattedTextField model;
+    private JFormattedTextField fuelType;
+    private JTextField regNumber;
+    private JPanel createCarInputs;
+    private JCheckBox available;
+    private JCheckBox unavailabe;
+
+    private DefaultListModel<Car> carArrayList = new DefaultListModel<>();
 
 
     public CarRental(String title) {
@@ -37,6 +43,9 @@ public class CarRental extends JFrame {
         this.pack();
 
         //Lister
+        Car dummyCar = new Car ("Eb 60770", "Jesper", "Nissan Leaf");
+        carList.setModel(carArrayList);
+        carArrayList.addElement(dummyCar);
 
         //Buttons
         rentCar.addActionListener(new ActionListener() {
@@ -45,17 +54,41 @@ public class CarRental extends JFrame {
                 cardLayout.removeAll();
                 cardLayout.add(rentACarPage);
                 cardLayout.revalidate();
+                cardLayout.repaint();
             }
         });
 
+        // Rent out car buttons
         rentOutCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.removeAll();
                 cardLayout.add(rentOutCarPage);
                 cardLayout.revalidate();
+                cardLayout.repaint();
             }
         });
+
+        createCar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String registrationNumber = regNumber.getText();
+                    String ownerName = owner.getText();
+                    String carModel = model.getText();
+
+
+                    Car createdCar = new Car(registrationNumber, ownerName, carModel);
+
+                    carArrayList.addElement(createdCar);
+                }
+                catch (NullPointerException nullPointerException) {
+                        System.out.println("Du har ikke valgt noe");
+                }
+            }
+        });
+
+        // Back Buttons
 
         backToMainPage2.addActionListener(new ActionListener() {
             @Override
@@ -63,6 +96,7 @@ public class CarRental extends JFrame {
                 cardLayout.removeAll();
                 cardLayout.add(mainPage);
                 cardLayout.revalidate();
+                cardLayout.repaint();
             }
         });
 
@@ -72,6 +106,7 @@ public class CarRental extends JFrame {
                 cardLayout.removeAll();
                 cardLayout.add(mainPage);
                 cardLayout.revalidate();
+                cardLayout.repaint();
             }
         });
 
