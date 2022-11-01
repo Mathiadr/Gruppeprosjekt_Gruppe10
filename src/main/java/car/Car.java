@@ -8,12 +8,16 @@ public class Car {
     private String owner;
     private String model;
     //private String availableDate;   //TODO: IMPLEMENT
-    private boolean isAvailable; //Whether the car is occupied (Not to be confused with available date)
+    private boolean isAvailable = true; //Whether the car is occupied (Not to be confused with available date)
                                         //TODO: IMPLEMENT
     //private String fuelType;        //TODO: IMPLEMENT
     //private String transmission;    //TODO: IMPLEMENT
 
     //private Collection<String> features; //TODO: IMPLEMENT
+
+    public Car(){
+
+    }
 
     public Car(String registrationNumber, String owner, String model) {
         this.registrationNumber = registrationNumber;
@@ -52,5 +56,11 @@ public class Car {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    @Override
+    public String toString(){
+        return "registrationNumber: " + registrationNumber + ", owner: " + owner + ", model: "
+            + model + ", isAvailable: " + isAvailable;
     }
 }
