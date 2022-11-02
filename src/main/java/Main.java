@@ -4,11 +4,13 @@ import car.CarRepository;
 import forms.CarRental;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 public class Main {
     public static void main(String[] args) {
         CarRental carRental = new CarRental("Car rental");
+        carRental.setSize(500, 350);
         carRental.setVisible(true);
 
         CarRepository carRepository = new CarRepository("testRepository.json");

@@ -21,6 +21,7 @@ public class Car {
         this.model = model;
     }
 
+
     public boolean isAvailable() {
         return isAvailable;
     }
@@ -29,6 +30,15 @@ public class Car {
         isAvailable = available;
     }
 
+
+    @Override
+    public String toString() {
+        return
+                "Registration Number: '" + registrationNumber + '\'' +
+                ", Owner: '" + owner + '\'' +
+                ", Model: '" + model + '\'' +
+                ", Available: " + isAvailable;
+    }
 
     public String getRegistrationNumber() {
         return registrationNumber;
