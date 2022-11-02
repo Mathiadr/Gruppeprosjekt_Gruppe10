@@ -21,6 +21,7 @@ dependencies {
     implementation('org.json:json:20220924')
     implementation 'com.github.cliftonlabs:json-simple:4.0.1'
     implementation 'com.intellij:forms_rt:7.0.3'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4'
 }
 
 test {

@@ -22,5 +22,7 @@ public class Main {
         carRepository.AddNewCar(new Car("P0043456", "John Doe", "A2"));
         carRepository.AddNewCar(new Car("BE240051", "Ola Nordmann", "A1"));
 
+
+
     }
 }

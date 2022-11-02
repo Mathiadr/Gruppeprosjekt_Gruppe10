@@ -1,31 +1,43 @@
 package car;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CarRepository {
     private String repositoryName;
 
-    private ArrayList<Car> CarArrayList; // Holds ALL cars. Unsure if necessary
+    private ArrayList<Car> carArrayList = new ArrayList<>(); // Holds ALL cars. Unsure if necessary
 
     public CarRepository(String repositoryName) {
         this.repositoryName = repositoryName;
 
+        readFromJSON();
+    }
 
-        try {
-            FileReader fileReader = new FileReader(this.repositoryName);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    public void readFromJSON(){
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File(this.repositoryName);
+
+        try{
+            carArrayList = objectMapper.readValue(file, new TypeReference<ArrayList<Car>>(){});
+            System.out.println(carArrayList.toString());
+        }
+        catch (IOException e){
+            System.err.println(e);
         }
     }
 
     // Adds a new car to the repository file
     public void AddNewCar(Car car){
         //TODO: implement
-        this.CarArrayList.add(car);
-        this.SaveAllCars();
+        this.carArrayList.add(car);
+        this.SaveCarsToJSON();
     }
 
     // It rents da car, dumbass
@@ -40,28 +52,16 @@ public class CarRepository {
     }
 
     // Unsure what to do here...
-    public void SaveAllCars(){
-        //TODO: implement
-        /*
-        JSONObject jsonObject = new JSONObject();
+    public void SaveCarsToJSON(){
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File(this.repositoryName);
 
-        jsonObject.put("registrationNumber", car.getRegistrationNumber());
-        jsonObject.put("owner", car.getOwner());
-        jsonObject.put("model", car.getModel());
 
-        jsonObject.put("availableDate", car.getAvailableDate());
-        jsonObject.put("isAvailable", car.isAvailable());
-        jsonObject.put("fuelType", car.getFuelType());
-        jsonObject.put("transmission", car.getTransmission());
-        jsonObject.put("features", car.getFeatures());//Maybe a nested JSONObject/JSONArray belongs here?
         try{
-            FileWriter fileWriter = new FileWriter(this.repositoryName);
-            fileWriter.append(jsonObject.toString());
-            System.out.println("Car " + car.getRegistrationNumber() + " has been written to file.");
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, carArrayList);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        */
     }
 
 
