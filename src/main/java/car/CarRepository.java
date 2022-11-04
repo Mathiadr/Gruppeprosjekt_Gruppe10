@@ -46,9 +46,9 @@ public class CarRepository {
     // Adds a new car to the repository file
     public void AddNewCar(Car car){
         //TODO: implement
-        for (Car carListObject : carArrayList){
+        for (Car i : carArrayList){
             //Checks if the car being added does not already exist within the list
-            if (!Objects.equals(carListObject.getRegistrationNumber(), car.getRegistrationNumber())){
+            if (!Objects.equals(i.getRegistrationNumber(), car.getRegistrationNumber())){
                 this.carArrayList.add(car);
                 this.SaveCarsToJSON();
             }
@@ -62,7 +62,13 @@ public class CarRepository {
 
     // Returns all cars that are not currently occupied
     public ArrayList<Car> GetAllAvailableCars(){
-
+        ArrayList<Car> allAvailableCars = new ArrayList<>();
+        for (Car i : carArrayList){
+            //Checks if the car being added does not already exist within the list
+            if (i.isAvailable()){
+                allAvailableCars.add(i);
+            }
+        }
         return null;
     }
 
@@ -74,6 +80,7 @@ public class CarRepository {
 
         try{
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, carArrayList);
+            readFromJSON();
         } catch (IOException e) {
             e.printStackTrace();
         }
