@@ -8,6 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class CarRepository {
     private String repositoryName;
@@ -45,8 +46,13 @@ public class CarRepository {
     // Adds a new car to the repository file
     public void AddNewCar(Car car){
         //TODO: implement
-        this.carArrayList.add(car);
-        this.SaveCarsToJSON();
+        for (Car carListObject : carArrayList){
+            //Checks if the car being added does not already exist within the list
+            if (!Objects.equals(carListObject.getRegistrationNumber(), car.getRegistrationNumber())){
+                this.carArrayList.add(car);
+                this.SaveCarsToJSON();
+            }
+        }
     }
 
     // It rents da car, dumbass
