@@ -2,10 +2,12 @@ package forms;
 
 
 import car.Car;
+import car.CarRepository;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class CarRental extends JFrame {
@@ -54,9 +56,16 @@ public class CarRental extends JFrame {
     private JPanel editInputs;
     private JComboBox fuelTypeBox;
 
-    private DefaultListModel<Car> carArrayList = new DefaultListModel<>();
+    CarRepository createdCarRepository = new CarRepository("testRepository.JSON");
+    private DefaultListModel<Car> guiCarArraYList  = new DefaultListModel<>();
+    private DefaultListModel<Car> guiCarsAvailableList  = new DefaultListModel<>();
 
-
+    private void update_GUIList() {
+        for (Car i : createdCarRepository.getCarArrayList()) {
+            guiCarArraYList.addElement(i);
+        }
+        createdCarRepository.GetAllAvailableCars();
+    }
 
 
     public CarRental(String title) {
@@ -67,8 +76,8 @@ public class CarRental extends JFrame {
         this.pack();
 
         //Lists
-        carsAvailable.setModel(carArrayList);
-        allCarsList.setModel(carArrayList);
+        carsAvailable.setModel(guiCarsAvailableList);
+        allCarsList.setModel(guiCarArraYList);
 
         //Edit cars
         allCarsButton.addActionListener(new ActionListener() {
@@ -78,7 +87,7 @@ public class CarRental extends JFrame {
                 cardLayout.add(allCarsEditPage);
                 cardLayout.revalidate();
                 cardLayout.repaint();
-
+                update_GUIList();
             }
         });
 
@@ -140,6 +149,8 @@ public class CarRental extends JFrame {
                 cardLayout.add(availableCarPage);
                 cardLayout.revalidate();
                 cardLayout.repaint();
+
+                update_GUIList();
             }
         });
 
@@ -187,7 +198,12 @@ public class CarRental extends JFrame {
 
 
                     Car createdCar = new Car(registrationNumber, ownerName, carModel);
-                    carArrayList.addElement(createdCar);
+                    CarRepository createdCarRepository = new CarRepository("testRepository.JSON");
+
+                    createdCarRepository.AddNewCar(createdCar);
+                    update_GUIList();
+
+
 
                     if (available.isSelected()) {
                         createdCar.setAvailable(true);
@@ -265,4 +281,7 @@ public class CarRental extends JFrame {
 
     }
 
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }

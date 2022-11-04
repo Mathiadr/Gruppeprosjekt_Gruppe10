@@ -69,10 +69,10 @@ public class CarRepository {
                 allAvailableCars.add(i);
             }
         }
-        return null;
+        return allAvailableCars;
     }
 
-    // Unsure what to do here...
+    // Unsure that to do here...
     public void SaveCarsToJSON(){
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File(this.repositoryName);

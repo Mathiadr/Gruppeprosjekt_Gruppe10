@@ -13,6 +13,7 @@ public class Main {
         carRental.setSize(500, 350);
         carRental.setVisible(true);
 
+
         CarRepository carRepository = new CarRepository("testRepository.json");
         carRepository.AddNewCar(new Car("MXH10045", "Mathias Dale Ratdal", "E2"));
         carRepository.AddNewCar(new Car("EBX23365", "Sokrat Starynkiewicz", "A4"));
