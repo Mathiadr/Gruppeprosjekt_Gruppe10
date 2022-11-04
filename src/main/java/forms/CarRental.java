@@ -52,6 +52,7 @@ public class CarRental extends JFrame {
     private JCheckBox unavailableEdit;
     private JButton deleteCar;
     private JPanel editInputs;
+    private JComboBox fuelTypeBox;
 
     private DefaultListModel<Car> carArrayList = new DefaultListModel<>();
 

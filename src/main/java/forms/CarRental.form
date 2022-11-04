@@ -157,16 +157,6 @@
                       <text value=""/>
                     </properties>
                   </component>
-                  <component id="78093" class="javax.swing.JFormattedTextField" binding="fuelType">
-                    <constraints>
-                      <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties>
-                      <text value=""/>
-                    </properties>
-                  </component>
                   <component id="744ea" class="javax.swing.JTextField" binding="regNumber">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -224,6 +214,12 @@
                     <properties>
                       <text value="Fuel Type"/>
                     </properties>
+                  </component>
+                  <component id="f027c" class="javax.swing.JComboBox" binding="fuelTypeBox">
+                    <constraints>
+                      <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
                   </component>
                 </children>
               </grid>

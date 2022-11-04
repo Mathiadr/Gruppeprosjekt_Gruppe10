@@ -35,15 +35,6 @@ public class Car {
     }
 
 
-    @Override
-    public String toString() {
-        return
-                "Registration Number: '" + registrationNumber + '\'' +
-                ", Owner: '" + owner + '\'' +
-                ", Model: '" + model + '\'' +
-                ", Available: " + isAvailable;
-    }
-
     public String getRegistrationNumber() {
         return registrationNumber;
     }
