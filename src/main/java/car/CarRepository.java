@@ -46,12 +46,21 @@ public class CarRepository {
     // Adds a new car to the repository file
     public void AddNewCar(Car car){
         //TODO: implement
+        boolean exists = false;
         for (Car i : carArrayList){
             //Checks if the car being added does not already exist within the list
-            if (!Objects.equals(i.getRegistrationNumber(), car.getRegistrationNumber())){
-                this.carArrayList.add(car);
-                this.SaveCarsToJSON();
+            if (car.getRegistrationNumber().equals(i.getRegistrationNumber())){
+                exists = true;
+                break;
             }
+        }
+        if (!exists){
+            System.out.println("Adding car " + car.getRegistrationNumber() + " with car owner " + car.getOwner() + "to carArrayList");
+            this.carArrayList.add(car);
+            this.SaveCarsToJSON();
+        }
+        else{
+            System.out.println("Car " + car.getRegistrationNumber() + " Already exists");
         }
     }
 
@@ -69,7 +78,7 @@ public class CarRepository {
                 allAvailableCars.add(i);
             }
         }
-        return null;
+        return allAvailableCars;
     }
 
     // Unsure what to do here...
