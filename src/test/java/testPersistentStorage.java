@@ -8,5 +8,12 @@ public class testPersistentStorage {
         //CarRepository carRepository = new CarRepository("testRepository.json");
     }
 
+    @Test
+    public void JSON_does_not_contain_duplicates(){
+        // TODO: IMPLEMENT
+    }
+
+    
+
 
 }

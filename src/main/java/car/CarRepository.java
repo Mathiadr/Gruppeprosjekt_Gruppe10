@@ -11,13 +11,22 @@ import java.util.List;
 
 public class CarRepository {
     private String repositoryName;
-
     private ArrayList<Car> carArrayList = new ArrayList<>(); // Holds ALL cars. Unsure if necessary
+
+
 
     public CarRepository(String repositoryName) {
         this.repositoryName = repositoryName;
 
         readFromJSON();
+    }
+
+    public ArrayList<Car> getCarArrayList() {
+        return carArrayList;
+    }
+
+    public void setCarArrayList(ArrayList<Car> carArrayList) {
+        this.carArrayList = carArrayList;
     }
 
     public void readFromJSON(){
@@ -47,7 +56,7 @@ public class CarRepository {
 
     // Returns all cars that are not currently occupied
     public ArrayList<Car> GetAllAvailableCars(){
-        //TODO: implement
+
         return null;
     }
 
