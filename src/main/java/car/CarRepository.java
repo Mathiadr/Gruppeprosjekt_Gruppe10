@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class CarRepository {
-    private String repositoryName;
-    private ArrayList<Car> carArrayList = new ArrayList<>(); // Holds ALL cars. Unsure if necessary
+    private String repositoryName; // This holds the name of the repository being accessed.
+    private ArrayList<Car> carArrayList = new ArrayList<>();
 
 
 
@@ -30,6 +30,7 @@ public class CarRepository {
         this.carArrayList = carArrayList;
     }
 
+    // Reads all objects from JSON file and maps it to the Car object
     public void readFromJSON(){
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File(this.repositoryName);
@@ -55,12 +56,25 @@ public class CarRepository {
             }
         }
         if (!exists){
-            System.out.println("Adding car " + car.getRegistrationNumber() + " with car owner " + car.getOwner() + "to carArrayList");
+            System.out.println("Adding car " + car.getRegistrationNumber() + " with car owner " + car.getOwner() + " to carArrayList");
             this.carArrayList.add(car);
             this.SaveCarsToJSON();
         }
         else{
             System.out.println("Car " + car.getRegistrationNumber() + " Already exists");
+        }
+    }
+
+    // Removes Car object from carArrayList
+    public void RemoveExistingCar(Car car){
+        if (carArrayList.contains(car)){
+            // TODO: Implement error message to GUI
+            System.out.println("Removed car " + car.getRegistrationNumber() + " with car owner " + car.getOwner() + " from carArrayList");
+            carArrayList.remove(car);
+            this.SaveCarsToJSON();
+        }
+        else{
+            System.out.println("Could not find car " + car.getRegistrationNumber() + " in CarArrayList");
         }
     }
 
@@ -73,7 +87,6 @@ public class CarRepository {
     public ArrayList<Car> GetAllAvailableCars(){
         ArrayList<Car> allAvailableCars = new ArrayList<>();
         for (Car i : carArrayList){
-            //Checks if the car being added does not already exist within the list
             if (i.isAvailable()){
                 allAvailableCars.add(i);
             }
@@ -81,7 +94,6 @@ public class CarRepository {
         return allAvailableCars;
     }
 
-    // Unsure what to do here...
     public void SaveCarsToJSON(){
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File(this.repositoryName);
@@ -94,6 +106,4 @@ public class CarRepository {
             e.printStackTrace();
         }
     }
-
-
 }

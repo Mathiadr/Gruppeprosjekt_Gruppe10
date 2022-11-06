@@ -1,0 +1,36 @@
+[ {
+  "registrationNumber" : "MXH10045",
+  "owner" : "Mathias Dale Ratdal",
+  "model" : "E2",
+  "available" : true
+}, {
+  "registrationNumber" : "EBX23365",
+  "owner" : "Sokrat Starynkiewicz",
+  "model" : "A4",
+  "available" : true
+}, {
+  "registrationNumber" : "E0B10045",
+  "owner" : "Joe Mama",
+  "model" : "C2",
+  "available" : true
+}, {
+  "registrationNumber" : "ADHD0O11",
+  "owner" : "Sander Kristiansen",
+  "model" : "C6",
+  "available" : true
+}, {
+  "registrationNumber" : "D1CK9864",
+  "owner" : "Djikstra Van Houven",
+  "model" : "BA1",
+  "available" : true
+}, {
+  "registrationNumber" : "P0043456",
+  "owner" : "John Doe",
+  "model" : "A2",
+  "available" : true
+}, {
+  "registrationNumber" : "BE240051",
+  "owner" : "Ola Nordmann",
+  "model" : "A1",
+  "available" : true
+} ]
