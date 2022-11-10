@@ -1,6 +1,5 @@
 package forms;
 
-
 import car.Car;
 import car.CarRepository;
 
@@ -11,63 +10,28 @@ import java.util.ArrayList;
 
 
 public class CarRental extends JFrame {
-    private JPanel main;
-    private JList carList;
-    private JPanel cardLayout;
-    private JPanel mainPage;
-    private JButton rentCar;
-    private JButton rentOutCar;
-    private JPanel buttons;
-    private JPanel availableCarPage;
-    private JButton backToMainPage;
-    private JPanel rentCarButtons;
-    private JList carsAvailable;
-    private JPanel rentOutCarPage;
-    private JButton createCar;
-    private JButton backToMainPage2;
-    private JButton selectCar;
-    private JFormattedTextField owner;
-    private JFormattedTextField model;
-    private JFormattedTextField fuelType;
-    private JTextField regNumber;
-    private JPanel createCarInputs;
-    private JCheckBox available;
-    private JCheckBox unavailabe;
-    private JPanel selectedCarPage;
-    private JButton rentCarButton;
-    private JButton backFromSelectedCarPage;
-    private JPanel selectedCarButtons;
+    private JPanel main, cardLayout, mainPage, availableCarPage, rentOutCarPage, selectedCarPage,allCarsEditPage,
+            editInputs, editCarPage, buttons, rentCarButtons, createCarInputs, selectedCarButtons,EditCarPage;
+    private JList carsAvailable,allCarsList;
+    private JButton createCar, selectCar, rentOutCar, rentCar, rentCarButton, allCarsButton,
+            toEditCarPageButton, backToAllCars, deleteCar, editCarButton,
+            backToMainPage2, backToMainPage, backFromSelectedCarPage, backFromAllCarsButton;
+    private JFormattedTextField owner, model, fuelType;
+    private JTextField regNumber, regNumberEdit, ownerEdit, modelEdit;
+    private JCheckBox available, unavailabe, availableEdit, unavailableEdit;
     private JTextArea showsSelectedCarInfo;
-    private JButton allCarsButton;
-    private JPanel allCarsEditPage;
-    private JList allCarsList;
-    private JButton toEditCarPageButton;
-    private JButton backFromAllCarsButton;
-    private JPanel editCarPage;
-    private JTextField regNumberEdit;
-    private JTextField ownerEdit;
-    private JTextField modelEdit;
-    private JButton backToAllCars;
-    private JButton editCarButton;
-    private JTextField fueltypeEdit;
-    private JCheckBox availableEdit;
-    private JCheckBox unavailableEdit;
-    private JButton deleteCar;
-    private JPanel editInputs;
-    private JComboBox fuelTypeBox;
+    private JComboBox fuelTypeBox, editCarFuelType;
 
     CarRepository createdCarRepository = new CarRepository("testRepository.JSON");
     private DefaultListModel<Car> guiCarArraYList  = new DefaultListModel<>();
     private DefaultListModel<Car> guiCarsAvailableList  = new DefaultListModel<>();
 
-    private void update_GUIList() {
-        for (Car i : createdCarRepository.getCarArrayList()) {
+    private void show_all_Cars_List(ArrayList<Car> carlist) {
+        guiCarArraYList.clear();
+        for (Car i : carlist) {
             guiCarArraYList.addElement(i);
         }
-        createdCarRepository.GetAllAvailableCars();
     }
-
-
     public CarRental(String title) {
         super(title);
 
@@ -76,8 +40,13 @@ public class CarRental extends JFrame {
         this.pack();
 
         //Lists
-        carsAvailable.setModel(guiCarsAvailableList);
+        carsAvailable.setModel(guiCarArraYList);
         allCarsList.setModel(guiCarArraYList);
+
+        //ComboBox
+        String fuelTypesForList[] = {"Electric", "Gasoline", "Diesel"};
+        editCarFuelType.setModel(new DefaultComboBoxModel<String >(fuelTypesForList));
+        fuelTypeBox.setModel(new DefaultComboBoxModel<String >(fuelTypesForList));
 
         //Edit cars
         allCarsButton.addActionListener(new ActionListener() {
@@ -87,7 +56,8 @@ public class CarRental extends JFrame {
                 cardLayout.add(allCarsEditPage);
                 cardLayout.revalidate();
                 cardLayout.repaint();
-                update_GUIList();
+
+                show_all_Cars_List(createdCarRepository.getCarArrayList());
             }
         });
 
@@ -99,6 +69,11 @@ public class CarRental extends JFrame {
                 cardLayout.revalidate();
                 cardLayout.repaint();
 
+                Car selectedCar = (Car) allCarsList.getSelectedValue();
+                modelEdit.setText(selectedCar.getModel());
+                ownerEdit.setText(selectedCar.getOwner());
+                regNumberEdit.setText(selectedCar.getRegistrationNumber());
+
             }
         });
 
@@ -107,19 +82,19 @@ public class CarRental extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Car selectedCar = (Car) allCarsList.getSelectedValue();
 
-                if (regNumberEdit.getText().isEmpty()) {
-                    regNumberEdit.setText(regNumber.getText());
-                }
-                if (ownerEdit.getText().isEmpty()) {
-                    ownerEdit.setText(owner.getText());
-                }
-                if (modelEdit.getText().isEmpty()){
-                    modelEdit.setText(model.getText());
-                }
-
                 String carModel = modelEdit.getText();
                 String ownerName = ownerEdit.getText();
                 String registrationNumber = regNumberEdit.getText();
+
+                if (regNumberEdit.getText().isEmpty()) {
+                    registrationNumber = selectedCar.getRegistrationNumber();
+                }
+                if (ownerEdit.getText().isEmpty()) {
+                    ownerName = selectedCar.getOwner();
+                }
+                if (modelEdit.getText().isEmpty()){
+                    carModel = selectedCar.getModel();
+                }
 
                 selectedCar.setRegistrationNumber(registrationNumber);
                 selectedCar.setOwner(ownerName);
@@ -131,12 +106,21 @@ public class CarRental extends JFrame {
                 else if (unavailableEdit.isSelected()) {
                     selectedCar.setAvailable(false);
                 }
+
+                JOptionPane.showMessageDialog(editCarPage, "Changes Approved");
+
             }
         });
 
         deleteCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Car selectedCar = (Car) allCarsList.getSelectedValue();
+                createdCarRepository.RemoveExistingCar(selectedCar);
+                JOptionPane.showMessageDialog(editCarPage, "Car with Registration Number " + selectedCar.getRegistrationNumber() +
+                        " was removed");
+                show_all_Cars_List(createdCarRepository.getCarArrayList());
+
             }
         });
 
@@ -150,7 +134,7 @@ public class CarRental extends JFrame {
                 cardLayout.revalidate();
                 cardLayout.repaint();
 
-                update_GUIList();
+                show_all_Cars_List(createdCarRepository.GetAllAvailableCars());
             }
         });
 
@@ -174,6 +158,9 @@ public class CarRental extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Car selectedCar = (Car) carsAvailable.getSelectedValue();
                 selectedCar.setAvailable(false);
+                show_all_Cars_List(createdCarRepository.GetAllAvailableCars());
+                JOptionPane.showMessageDialog(selectedCarPage, "You have just rented car " + selectedCar.getRegistrationNumber()
+                 + " from owner " + selectedCar.getOwner());
             }
         });
 
@@ -198,12 +185,6 @@ public class CarRental extends JFrame {
 
 
                     Car createdCar = new Car(registrationNumber, ownerName, carModel);
-                    CarRepository createdCarRepository = new CarRepository("testRepository.JSON");
-
-                    createdCarRepository.AddNewCar(createdCar);
-                    update_GUIList();
-
-
 
                     if (available.isSelected()) {
                         createdCar.setAvailable(true);
@@ -211,6 +192,8 @@ public class CarRental extends JFrame {
                     } else if (unavailabe.isSelected()) {
                         createdCar.setAvailable(false);
                     }
+
+                    createdCarRepository.AddNewCar(createdCar);
 
                     //Clears input fields
                     regNumber.setText("");
@@ -274,11 +257,6 @@ public class CarRental extends JFrame {
                 cardLayout.repaint();
             }
         });
-
-
-
-
-
     }
 
     private void createUIComponents() {

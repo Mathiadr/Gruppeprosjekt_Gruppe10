@@ -33,4 +33,44 @@
   "owner" : "Ola Nordmann",
   "model" : "A1",
   "available" : true
+}, {
+  "registrationNumber" : "EB60770",
+  "owner" : "Martin Demuth",
+  "model" : "Nissan Leaf",
+  "available" : true
+}, {
+  "registrationNumber" : "HY76637",
+  "owner" : "Jeppern",
+  "model" : "Båt",
+  "available" : true
+}, {
+  "registrationNumber" : "EB698234",
+  "owner" : "Martin ",
+  "model" : "Leaf",
+  "available" : true
+}, {
+  "registrationNumber" : "EB87324",
+  "owner" : "MartinHansen",
+  "model" : "Bil",
+  "available" : true
+}, {
+  "registrationNumber" : "EH72364",
+  "owner" : "Kake",
+  "model" : "Hest",
+  "available" : true
+}, {
+  "registrationNumber" : "HU97234",
+  "owner" : "Mathias",
+  "model" : "Bil",
+  "available" : true
+}, {
+  "registrationNumber" : "UJ9234",
+  "owner" : "Nils",
+  "model" : "Bil1",
+  "available" : true
+}, {
+  "registrationNumber" : "hHU8273",
+  "owner" : "Kåre",
+  "model" : "Båt",
+  "available" : true
 } ]

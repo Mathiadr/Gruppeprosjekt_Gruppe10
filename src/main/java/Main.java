@@ -10,7 +10,7 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
         CarRental carRental = new CarRental("Car rental");
-        carRental.setSize(500, 350);
+        carRental.setSize(700, 450);
         carRental.setVisible(true);
 
 
