@@ -59,7 +59,9 @@ public class Car {
 
     @Override
     public String toString(){
-        return "registrationNumber: " + registrationNumber + ", owner: " + owner + ", model: "
-            + model + ", is Available: " + isAvailable;
+        return "registrationNumber: " + registrationNumber +
+                "\nOwner: " + owner +
+                "\nModel: " + model +
+                "\nis Available: " + isAvailable;
     }
 }
