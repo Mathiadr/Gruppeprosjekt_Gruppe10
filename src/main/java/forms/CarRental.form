@@ -36,7 +36,7 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Rent car"/>
+                      <text value="Rent modules"/>
                     </properties>
                   </component>
                   <component id="48952" class="javax.swing.JButton" binding="rentOutCar">
@@ -46,7 +46,7 @@
                     <properties>
                       <horizontalAlignment value="0"/>
                       <horizontalTextPosition value="4"/>
-                      <text value="Rent out a car"/>
+                      <text value="Rent out a modules"/>
                     </properties>
                   </component>
                 </children>
@@ -123,7 +123,7 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Add car"/>
+                  <text value="Add modules"/>
                 </properties>
               </component>
               <component id="b4a3" class="javax.swing.JButton" binding="backToMainPage2">
@@ -259,7 +259,7 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Rent car"/>
+                      <text value="Rent modules"/>
                     </properties>
                   </component>
                   <component id="3d890" class="javax.swing.JButton" binding="backFromSelectedCarPage">
@@ -300,7 +300,7 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Edit car"/>
+                  <text value="Edit modules"/>
                 </properties>
               </component>
               <component id="bb5ed" class="javax.swing.JButton" binding="backFromAllCarsButton">

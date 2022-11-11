@@ -1,7 +1,4 @@
-package car;
-
-import java.util.ArrayList;
-import java.util.Collection;
+package modules;
 
 public class Car {
     private String registrationNumber;
