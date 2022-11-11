@@ -1,20 +1,15 @@
-package car;
+package modules;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONObject;
+import tools.CarRepositoryFileHandler;
 
-import java.io.*;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
 
 public class CarRepository {
     private String repositoryName; // This holds the name of the repository being accessed.
     private ArrayList<Car> carArrayList = new ArrayList<>();
 
-
+    private final CarRepositoryFileHandler carRepositoryFileHandler = new CarRepositoryFileHandler();
 
     public CarRepository(String repositoryName) {
         this.repositoryName = repositoryName;
@@ -22,26 +17,11 @@ public class CarRepository {
         readFromJSON();
     }
 
-    public ArrayList<Car> getCarArrayList() {
-        return carArrayList;
-    }
 
-    public void setCarArrayList(ArrayList<Car> carArrayList) {
-        this.carArrayList = carArrayList;
-    }
 
     // Reads all objects from JSON file and maps it to the Car object
     public void readFromJSON(){
-        ObjectMapper objectMapper = new ObjectMapper();
-        File file = new File(this.repositoryName);
-
-        try{
-            carArrayList = objectMapper.readValue(file, new TypeReference<ArrayList<Car>>(){});
-            System.out.println(carArrayList.toString());
-        }
-        catch (IOException e){
-            System.err.println(e);
-        }
+        carRepositoryFileHandler.readFromFile(repositoryName);
     }
 
     // Adds a new car to the repository file
@@ -58,7 +38,6 @@ public class CarRepository {
         if (!exists){
             System.out.println("Adding car " + car.getRegistrationNumber() + " with car owner " + car.getOwner() + " to carArrayList");
             this.carArrayList.add(car);
-            this.SaveCarsToJSON();
         }
         else{
             System.out.println("Car " + car.getRegistrationNumber() + " Already exists");
@@ -71,7 +50,6 @@ public class CarRepository {
             // TODO: Implement error message to GUI
             System.out.println("Removed car " + car.getRegistrationNumber() + " with car owner " + car.getOwner() + " from carArrayList");
             carArrayList.remove(car);
-            this.SaveCarsToJSON();
         }
         else{
             System.out.println("Could not find car " + car.getRegistrationNumber() + " in CarArrayList");
@@ -95,15 +73,22 @@ public class CarRepository {
     }
 
     public void SaveCarsToJSON(){
-        ObjectMapper objectMapper = new ObjectMapper();
-        File file = new File(this.repositoryName);
+        carRepositoryFileHandler.writeArrayListToFile(getCarArrayList(), repositoryName);
+    }
 
+    public String getRepositoryName() {
+        return repositoryName;
+    }
 
-        try{
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, carArrayList);
-            readFromJSON();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void setRepositoryName(String repositoryName) {
+        this.repositoryName = repositoryName;
+    }
+
+    public ArrayList<Car> getCarArrayList() {
+        return carArrayList;
+    }
+
+    public void setCarArrayList(ArrayList<Car> carArrayList) {
+        this.carArrayList = carArrayList;
     }
 }

@@ -1,7 +1,7 @@
 package forms;
 
-import car.Car;
-import car.CarRepository;
+import modules.Car;
+import modules.CarRepository;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

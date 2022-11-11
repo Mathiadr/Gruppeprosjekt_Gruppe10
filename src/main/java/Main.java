@@ -1,10 +1,7 @@
-import car.Car;
-import car.CarRepository;
+import modules.Car;
+import modules.CarRepository;
 
 import forms.CarRental;
-
-import javax.swing.*;
-import java.awt.*;
 
 
 public class Main {
