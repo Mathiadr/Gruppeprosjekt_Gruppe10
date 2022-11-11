@@ -14,14 +14,14 @@ public class CarRepository {
     public CarRepository(String repositoryName) {
         this.repositoryName = repositoryName;
 
-        readFromJSON();
+        carArrayList = readFromJSON();
     }
 
 
 
     // Reads all objects from JSON file and maps it to the Car object
-    public void readFromJSON(){
-        carRepositoryFileHandler.readFromFile(repositoryName);
+    public ArrayList<Car> readFromJSON(){
+        return carRepositoryFileHandler.readFromFile(repositoryName);
     }
 
     // Adds a new car to the repository file
@@ -58,7 +58,7 @@ public class CarRepository {
 
     // It rents da car, dumbass
     public void RentCar(Car car){
-        //TODO: implement
+        //TODO: REMOVE
     }
 
     // Returns all cars that are not currently occupied
