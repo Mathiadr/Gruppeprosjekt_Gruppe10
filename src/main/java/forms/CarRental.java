@@ -1,7 +1,8 @@
 package forms;
 
 import modules.Car;
-import modules.CarRepository;
+import modules.Listing;
+import modules.Repository;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -22,13 +23,13 @@ public class CarRental extends JFrame {
     private JTextArea showsSelectedCarInfo;
     private JComboBox fuelTypeBox, editCarFuelType;
 
-    CarRepository createdCarRepository = new CarRepository("testRepository.JSON");
+    Repository createdRepository = new Repository("testRepository.JSON");
     private DefaultListModel<Car> guiCarArraYList  = new DefaultListModel<>();
     private DefaultListModel<Car> guiCarsAvailableList  = new DefaultListModel<>();
 
-    private void show_all_Cars_List(ArrayList<Car> carlist) {
+    private void show_all_Cars_List(ArrayList<Listing> listingArrayList) {
         guiCarArraYList.clear();
-        for (Car i : carlist) {
+        for (Car i : listingArrayList) {
             guiCarArraYList.addElement(i);
         }
     }
@@ -57,7 +58,7 @@ public class CarRental extends JFrame {
                 cardLayout.revalidate();
                 cardLayout.repaint();
 
-                show_all_Cars_List(createdCarRepository.getCarArrayList());
+                show_all_Cars_List(createdRepository.getListingArrayList());
             }
         });
 
@@ -116,10 +117,10 @@ public class CarRental extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Car selectedCar = (Car) allCarsList.getSelectedValue();
-                createdCarRepository.RemoveExistingCar(selectedCar);
+                createdRepository.removeExistingListing(selectedCar);
                 JOptionPane.showMessageDialog(editCarPage, "Car with Registration Number " + selectedCar.getRegistrationNumber() +
                         " was removed");
-                show_all_Cars_List(createdCarRepository.getCarArrayList());
+                show_all_Cars_List(createdRepository.getListingArrayList());
 
             }
         });
@@ -134,7 +135,7 @@ public class CarRental extends JFrame {
                 cardLayout.revalidate();
                 cardLayout.repaint();
 
-                show_all_Cars_List(createdCarRepository.GetAllAvailableCars());
+                show_all_Cars_List(createdRepository.GetAllAvailableCars());
             }
         });
 
@@ -158,7 +159,7 @@ public class CarRental extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Car selectedCar = (Car) carsAvailable.getSelectedValue();
                 selectedCar.setAvailable(false);
-                show_all_Cars_List(createdCarRepository.GetAllAvailableCars());
+                show_all_Cars_List(createdRepository.GetAllAvailableCars());
                 JOptionPane.showMessageDialog(selectedCarPage, "You have just rented car " + selectedCar.getRegistrationNumber()
                  + " from owner " + selectedCar.getOwner());
             }
@@ -184,16 +185,16 @@ public class CarRental extends JFrame {
                     String carModel = model.getText();
 
 
-                    Car createdCar = new Car(registrationNumber, ownerName, carModel);
+                    Car createdListing = new Car(registrationNumber, ownerName, carModel);
 
                     if (available.isSelected()) {
-                        createdCar.setAvailable(true);
+                        createdListing.setAvailable(true);
 
                     } else if (unavailabe.isSelected()) {
-                        createdCar.setAvailable(false);
+                        createdListing.setAvailable(false);
                     }
 
-                    createdCarRepository.AddNewCar(createdCar);
+                    createdRepository.addNewListing(createdListing);
 
                     //Clears input fields
                     regNumber.setText("");
