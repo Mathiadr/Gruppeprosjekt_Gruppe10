@@ -1,14 +1,11 @@
-package car;
+package modules;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Car {
     private String registrationNumber;
     private String owner;
     private String model;
-    //private String availableDate;         //TODO: IMPLEMENT
-    private boolean isAvailable = true;     //Whether the car is occupied (Not to be confused with available date)
     //private String fuelType;              //TODO: IMPLEMENT
     //private String transmission;          //TODO: IMPLEMENT
     //private Collection<String> features;  //TODO: IMPLEMENT
@@ -24,17 +21,6 @@ public class Car {
         this.owner = owner;
         this.model = model;
 
-        
-
-    }
-
-
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
     }
 
 
@@ -62,11 +48,19 @@ public class Car {
         this.model = model;
     }
 
+    public Listing getListing() {
+        return listing;
+    }
+
+    public void setListing(Listing listing) {
+        this.listing = listing;
+    }
+
     @Override
     public String toString(){
-        return "registrationNumber: " + registrationNumber +
-                "\n, Owner: " + owner +
-                "\n, Model: " + model +
-                "\n, is Available: " + isAvailable;
+        return "\n\nregistrationNumber: " + registrationNumber + ",\n" +
+                "Owner: " + owner + ",\n" +
+                "Model: " + model + ",\n" +
+                "Listing: " + listing;
     }
 }
