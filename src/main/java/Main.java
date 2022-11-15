@@ -24,12 +24,14 @@ public class Main {
         carRepository.AddNewCar(new Car("BE240051", "Ola Nordmann", "A1"));
 
         Listing newListing = new Listing(
-                "MathiasDale", null, null, null, true, "d"
+                null, null, true, "d"
         );
 
         ArrayList<Car> carArrayList = carRepository.getCarArrayList();
-        carArrayList.get(0).setListing(newListing);
+        carRepository.updateListing(carArrayList.get(0), newListing);
         carRepository.SaveCarsToJSON();
+        carRepository.readFromJSON();
+        System.out.println(carRepository.getCarArrayList().get(0));
 
     }
 }

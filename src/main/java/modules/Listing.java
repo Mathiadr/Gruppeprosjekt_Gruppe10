@@ -7,7 +7,6 @@ public class Listing {
     // Contains information of every bid, each of which belongs to one car.
     // TODO: EVERY CAR BELONGS TO ONE LISTING
     // TODO: ur mum
-    private String publisherUsername;
     private Date startDate;
     private Date endDate;
     private boolean isAvailable;
@@ -16,12 +15,11 @@ public class Listing {
 
     public Listing(){}
 
-    public Listing(String publisherUsername, Date startDate, Date endDate, Car car, boolean isPublished, String description){
-        this.publisherUsername = publisherUsername;
+    public Listing(Date startDate, Date endDate, boolean isPublished, String description){
         this.startDate = startDate;
         this.endDate = endDate;
         this.isAvailable = true;
-        this.isPublished = isPublished;
+        this.isPublished = false;
         this.description = description;
     }
 
@@ -60,12 +58,11 @@ public class Listing {
 
     @Override
     public String toString(){
-        return "Username: " + publisherUsername +
-                "\n, Start date: " + startDate +
-                "\n, End date: " + endDate +
-                "\n, is Available: " + isAvailable +
-                "\n isPublished : " + isPublished() +
-                "\n Description : " + description;
+        return  "   Start date: " + startDate + ",\n" +
+                "   End date: " + endDate + ",\n" +
+                "   isAvailable: " + isAvailable + ",\n" +
+                "   isPublished : " + isPublished() + ",\n" +
+                "   Description : " + description;
     }
 
 

@@ -5,92 +5,37 @@
   "listing" : {
     "startDate" : null,
     "endDate" : null,
-    "published" : true,
-    "available" : true
-  },
-  "available" : true
+    "available" : true,
+    "published" : false
+  }
 }, {
   "registrationNumber" : "EBX23365",
   "owner" : "Sokrat Starynkiewicz",
   "model" : "A4",
-  "listing" : null,
-  "available" : true
+  "listing" : null
 }, {
   "registrationNumber" : "E0B10045",
   "owner" : "Joe Mama",
   "model" : "C2",
-  "listing" : null,
-  "available" : true
+  "listing" : null
 }, {
   "registrationNumber" : "ADHD0O11",
   "owner" : "Sander Kristiansen",
   "model" : "C6",
-  "listing" : null,
-  "available" : true
+  "listing" : null
 }, {
   "registrationNumber" : "D1CK9864",
   "owner" : "Djikstra Van Houven",
   "model" : "BA1",
-  "listing" : null,
-  "available" : true
+  "listing" : null
 }, {
   "registrationNumber" : "P0043456",
   "owner" : "John Doe",
   "model" : "A2",
-  "listing" : null,
-  "available" : true
+  "listing" : null
 }, {
   "registrationNumber" : "BE240051",
   "owner" : "Ola Nordmann",
   "model" : "A1",
-  "listing" : null,
-  "available" : true
-}, {
-  "registrationNumber" : "EB60770",
-  "owner" : "Martin Demuth",
-  "model" : "Nissan Leaf",
-  "listing" : null,
-  "available" : true
-}, {
-  "registrationNumber" : "HY76637",
-  "owner" : "Jeppern",
-  "model" : "Båt",
-  "listing" : null,
-  "available" : true
-}, {
-  "registrationNumber" : "EB698234",
-  "owner" : "Martin ",
-  "model" : "Leaf",
-  "listing" : null,
-  "available" : true
-}, {
-  "registrationNumber" : "EB87324",
-  "owner" : "MartinHansen",
-  "model" : "Bil",
-  "listing" : null,
-  "available" : true
-}, {
-  "registrationNumber" : "EH72364",
-  "owner" : "Kake",
-  "model" : "Hest",
-  "listing" : null,
-  "available" : true
-}, {
-  "registrationNumber" : "HU97234",
-  "owner" : "Mathias",
-  "model" : "Bil",
-  "listing" : null,
-  "available" : true
-}, {
-  "registrationNumber" : "UJ9234",
-  "owner" : "Nils",
-  "model" : "Bil1",
-  "listing" : null,
-  "available" : true
-}, {
-  "registrationNumber" : "hHU8273",
-  "owner" : "Kåre",
-  "model" : "Båt",
-  "listing" : null,
-  "available" : true
+  "listing" : null
 } ]

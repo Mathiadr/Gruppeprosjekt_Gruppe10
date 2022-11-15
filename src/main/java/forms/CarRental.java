@@ -101,10 +101,10 @@ public class CarRental extends JFrame {
                 selectedCar.setModel(carModel);
 
                 if (availableEdit.isSelected()) {
-                    selectedCar.setAvailable(true);
+                    selectedCar.getListing().setAvailable(true);
                 }
                 else if (unavailableEdit.isSelected()) {
-                    selectedCar.setAvailable(false);
+                    selectedCar.getListing().setAvailable(false);
                 }
 
                 JOptionPane.showMessageDialog(editCarPage, "Changes Approved");
@@ -157,7 +157,7 @@ public class CarRental extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Car selectedCar = (Car) carsAvailable.getSelectedValue();
-                selectedCar.setAvailable(false);
+                selectedCar.getListing().setAvailable(false);
                 show_all_Cars_List(createdCarRepository.GetAllAvailableCars());
                 JOptionPane.showMessageDialog(selectedCarPage, "You have just rented car " + selectedCar.getRegistrationNumber()
                  + " from owner " + selectedCar.getOwner());
@@ -187,10 +187,10 @@ public class CarRental extends JFrame {
                     Car createdCar = new Car(registrationNumber, ownerName, carModel);
 
                     if (available.isSelected()) {
-                        createdCar.setAvailable(true);
+                        createdCar.getListing().setAvailable(true);
 
                     } else if (unavailabe.isSelected()) {
-                        createdCar.setAvailable(false);
+                        createdCar.getListing().setAvailable(false);
                     }
 
                     createdCarRepository.AddNewCar(createdCar);
