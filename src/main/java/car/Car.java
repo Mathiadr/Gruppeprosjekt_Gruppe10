@@ -12,6 +12,8 @@ public class Car {
     //private String fuelType;              //TODO: IMPLEMENT
     //private String transmission;          //TODO: IMPLEMENT
     //private Collection<String> features;  //TODO: IMPLEMENT
+    private Listing listing;
+
 
     public Car(){
 
@@ -21,6 +23,9 @@ public class Car {
         this.registrationNumber = registrationNumber;
         this.owner = owner;
         this.model = model;
+
+        
+
     }
 
 
