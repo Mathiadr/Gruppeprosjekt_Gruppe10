@@ -67,7 +67,4 @@ public class Listing {
     public void setPublished(boolean published) {
         this.published = published;
     }
-
-
-
 }

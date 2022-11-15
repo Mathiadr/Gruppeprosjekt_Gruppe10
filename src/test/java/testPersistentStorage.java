@@ -1,17 +1,17 @@
-import modules.CarRepository;
+import modules.Repository;
 import org.junit.jupiter.api.Test;
 
 public class testPersistentStorage {
 
     @Test
     public void JSON_writes_to_ArrayList(){
-        //CarRepository carRepository = new CarRepository("testRepository.json");
+        //Repository carRepository = new Repository("testRepository.json");
     }
 
     @Test
     public void JSON_does_not_contain_duplicates(){
         // TODO: IMPLEMENT
-        CarRepository carRepository = new CarRepository("testRepository.json");
+        Repository repository = new Repository("testRepository.json");
 
     }
 

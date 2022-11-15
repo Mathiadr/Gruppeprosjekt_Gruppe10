@@ -1,5 +1,5 @@
 import modules.Car;
-import modules.CarRepository;
+import modules.Repository;
 
 import forms.CarRental;
 
@@ -12,16 +12,16 @@ public class Main {
         carRental.setSize(700, 450);
         carRental.setVisible(true);
 
-
-        CarRepository carRepository = new CarRepository("testRepository.json");
-        carRepository.AddNewCar(new Car("MXH10045", "Mathias Dale Ratdal", "E2"));
-        carRepository.AddNewCar(new Car("EBX23365", "Sokrat Starynkiewicz", "A4"));
-        carRepository.AddNewCar(new Car("E0B10045", "Joe Mama", "C2"));
-        carRepository.AddNewCar(new Car("ADHD0O11", "Sander Kristiansen", "C6"));
-        carRepository.AddNewCar(new Car("D1CK9864", "Djikstra Van Houven", "BA1"));
-        carRepository.AddNewCar(new Car("P0043456", "John Doe", "A2"));
-        carRepository.AddNewCar(new Car("BE240051", "Ola Nordmann", "A1"));
-
+        /*
+        Repository repository = new Repository("testRepository.json");
+        repository.addNewListing(new Car("MXH10045", "Mathias Dale Ratdal", "E2"));
+        repository.addNewListing(new Car("EBX23365", "Sokrat Starynkiewicz", "A4"));
+        repository.addNewListing(new Car("E0B10045", "Joe Mama", "C2"));
+        repository.addNewListing(new Car("ADHD0O11", "Sander Kristiansen", "C6"));
+        repository.addNewListing(new Car("D1CK9864", "Djikstra Van Houven", "BA1"));
+        repository.addNewListing(new Car("P0043456", "John Doe", "A2"));
+        repository.addNewListing(new Car("BE240051", "Ola Nordmann", "A1"));
+        */
 
 
     }
