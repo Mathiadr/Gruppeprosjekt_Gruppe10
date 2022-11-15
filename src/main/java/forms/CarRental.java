@@ -184,7 +184,7 @@ public class CarRental extends JFrame {
                 Integer monthForDelivery = (Integer) deliverMonthComboBox.getSelectedItem();
                 Integer dayForDelivery = (Integer) deliverDayComboBox.getSelectedItem();
 
-
+                //TODO:FIXME
                 Date startDate = new Date(122, monthForPickup-1, dayForPickup);
                 Date endDate = new Date(122, monthForDelivery-1, dayForDelivery);
                 System.out.println(startDate);
