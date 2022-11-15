@@ -1,17 +1,18 @@
-package modules;
+package car;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Car {
     private String registrationNumber;
     private String owner;
     private String model;
+    //private String availableDate;         //TODO: IMPLEMENT
     private boolean isAvailable = true;     //Whether the car is occupied (Not to be confused with available date)
     //private String fuelType;              //TODO: IMPLEMENT
     //private String transmission;          //TODO: IMPLEMENT
     //private Collection<String> features;  //TODO: IMPLEMENT
-
-    private static ArrayList<Car> carArrayList = new ArrayList<>();
+    private Listing listing;
 
 
     public Car(){
@@ -23,7 +24,8 @@ public class Car {
         this.owner = owner;
         this.model = model;
 
-        carArrayList.add(this);
+        
+
     }
 
 
