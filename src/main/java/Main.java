@@ -3,9 +3,11 @@ import modules.CarRepository;
 
 import forms.CarRental;
 
+import java.io.IOException;
+
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         CarRental carRental = new CarRental("Car rental");
         carRental.setSize(700, 450);
         carRental.setVisible(true);
