@@ -2,6 +2,9 @@ import modules.Car;
 import modules.CarRepository;
 
 import forms.CarRental;
+import modules.Listing;
+
+import java.util.ArrayList;
 
 
 public class Main {
@@ -20,7 +23,13 @@ public class Main {
         carRepository.AddNewCar(new Car("P0043456", "John Doe", "A2"));
         carRepository.AddNewCar(new Car("BE240051", "Ola Nordmann", "A1"));
 
+        Listing newListing = new Listing(
+                "MathiasDale", null, null, null, true, "d"
+        );
 
+        ArrayList<Car> carArrayList = carRepository.getCarArrayList();
+        carArrayList.get(0).setListing(newListing);
+        carRepository.SaveCarsToJSON();
 
     }
 }

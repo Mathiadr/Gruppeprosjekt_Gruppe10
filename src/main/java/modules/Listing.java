@@ -10,20 +10,18 @@ public class Listing {
     private String publisherUsername;
     private Date startDate;
     private Date endDate;
-    private Car car;
     private boolean isAvailable;
-    private boolean published;
+    private boolean isPublished;
     private String description;
 
     public Listing(){}
 
-    public Listing(String publisherUsername, Date startDate, Date endDate, Car car, boolean published, String description){
+    public Listing(String publisherUsername, Date startDate, Date endDate, Car car, boolean isPublished, String description){
         this.publisherUsername = publisherUsername;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.car    = car;
         this.isAvailable = true;
-        this.published = published;
+        this.isPublished = isPublished;
         this.description = description;
     }
 
@@ -44,14 +42,6 @@ public class Listing {
         this.endDate = endDate;
     }
 
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
-
     public boolean isAvailable() {
         return isAvailable;
     }
@@ -61,13 +51,22 @@ public class Listing {
     }
 
     public boolean isPublished() {
-        return published;
+        return isPublished;
     }
 
     public void setPublished(boolean published) {
-        this.published = published;
+        this.isPublished = published;
     }
 
+    @Override
+    public String toString(){
+        return "Username: " + publisherUsername +
+                "\n, Start date: " + startDate +
+                "\n, End date: " + endDate +
+                "\n, is Available: " + isAvailable +
+                "\n isPublished : " + isPublished() +
+                "\n Description : " + description;
+    }
 
 
 }

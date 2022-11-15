@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class CarRepository {
     private String repositoryName; // This holds the name of the repository being accessed.
     private ArrayList<Car> carArrayList = new ArrayList<>();
-
     private final CarRepositoryFileHandler carRepositoryFileHandler = new CarRepositoryFileHandler();
 
     public CarRepository(String repositoryName) {

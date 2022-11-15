@@ -10,8 +10,7 @@ public class Car {
     //private String fuelType;              //TODO: IMPLEMENT
     //private String transmission;          //TODO: IMPLEMENT
     //private Collection<String> features;  //TODO: IMPLEMENT
-
-    private static ArrayList<Car> carArrayList = new ArrayList<>();
+    private Listing listing;
 
 
     public Car(){
@@ -23,7 +22,6 @@ public class Car {
         this.owner = owner;
         this.model = model;
 
-        carArrayList.add(this);
     }
 
 
@@ -60,11 +58,20 @@ public class Car {
         this.model = model;
     }
 
+    public Listing getListing() {
+        return listing;
+    }
+
+    public void setListing(Listing listing) {
+        this.listing = listing;
+    }
+
     @Override
     public String toString(){
-        return "registrationNumber: " + registrationNumber +
+        return "\nregistrationNumber: " + registrationNumber +
                 "\n, Owner: " + owner +
                 "\n, Model: " + model +
-                "\n, is Available: " + isAvailable;
+                "\n, is Available: " + isAvailable +
+                "\n Listing : " + listing;
     }
 }
