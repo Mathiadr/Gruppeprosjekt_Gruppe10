@@ -12,30 +12,60 @@
   "registrationNumber" : "EBX23365",
   "owner" : "Sokrat Starynkiewicz",
   "model" : "A4",
-  "listing" : null
+  "listing" : {
+    "startDate" : null,
+    "endDate" : null,
+    "available" : true,
+    "published" : false
+  }
 }, {
   "registrationNumber" : "E0B10045",
   "owner" : "Joe Mama",
   "model" : "C2",
-  "listing" : null
+  "listing" : {
+    "startDate" : null,
+    "endDate" : null,
+    "available" : true,
+    "published" : false
+  }
 }, {
   "registrationNumber" : "ADHD0O11",
   "owner" : "Sander Kristiansen",
   "model" : "C6",
-  "listing" : null
+  "listing" : {
+    "startDate" : null,
+    "endDate" : null,
+    "available" : true,
+    "published" : false
+  }
 }, {
   "registrationNumber" : "D1CK9864",
   "owner" : "Djikstra Van Houven",
   "model" : "BA1",
-  "listing" : null
+  "listing" : {
+    "startDate" : null,
+    "endDate" : null,
+    "available" : true,
+    "published" : false
+  }
 }, {
   "registrationNumber" : "P0043456",
   "owner" : "John Doe",
   "model" : "A2",
-  "listing" : null
+  "listing" : {
+    "startDate" : null,
+    "endDate" : null,
+    "available" : true,
+    "published" : false
+  }
 }, {
   "registrationNumber" : "BE240051",
   "owner" : "Ola Nordmann",
   "model" : "A1",
-  "listing" : null
+  "listing" : {
+    "startDate" : null,
+    "endDate" : null,
+    "available" : true,
+    "published" : false
+  }
 } ]

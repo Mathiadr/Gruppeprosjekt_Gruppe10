@@ -30,23 +30,23 @@ public class CarRepository {
             }
         }
         if (!exists){
-            System.out.println("Adding car " + car.getRegistrationNumber() + " with car owner " + car.getOwner() + " to carArrayList");
+            //System.out.println("Adding car " + car.getRegistrationNumber() + " with car owner " + car.getOwner() + " to carArrayList");
             this.carArrayList.add(car);
         }
         else{
-            System.out.println("Car " + car.getRegistrationNumber() + " Already exists");
+            //System.out.println("Car " + car.getRegistrationNumber() + " Already exists");
         }
     }
 
     // Removes Car object from carArrayList
     public void RemoveExistingCar(Car car){
         if (carArrayList.contains(car)){
-            System.out.println("Removed car " + car.getRegistrationNumber() + " with car owner " + car.getOwner() + " from carArrayList");
+            //System.out.println("Removed car " + car.getRegistrationNumber() + " with car owner " + car.getOwner() + " from carArrayList");
             carArrayList.remove(car);
         }
         else{
             // TODO: Implement error message to GUI
-            System.out.println("Could not find car " + car.getRegistrationNumber() + " in CarArrayList");
+            //System.out.println("Could not find car " + car.getRegistrationNumber() + " in CarArrayList");
         }
     }
 
@@ -62,7 +62,7 @@ public class CarRepository {
             }
         }
         catch (RuntimeException couldNotRentCar){
-            System.out.println("\n\nCould not rent car " + car.getRegistrationNumber() + "\n\n");
+            //System.out.println("\n\nCould not rent car " + car.getRegistrationNumber() + "\n\n");
         }
 
     }
@@ -82,7 +82,7 @@ public class CarRepository {
         for (Car i : carArrayList){
             if (car.getRegistrationNumber().equals(i.getRegistrationNumber())){
                 i.setListing(listing);
-                System.out.println("Updated listing in Car " + i.getRegistrationNumber());
+                //System.out.println("Updated listing in Car " + i.getRegistrationNumber());
                 break;
             }
         }

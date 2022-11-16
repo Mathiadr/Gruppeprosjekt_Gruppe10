@@ -17,9 +17,7 @@ public class CarRepositoryFileHandler implements FileHandler<Car> {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File(filename);
         try {
-            ArrayList<Car> carArrayList = objectMapper.readValue(file, new TypeReference<ArrayList<Car>>() {});
-            System.out.println(carArrayList);
-            return carArrayList;
+            return objectMapper.readValue(file, new TypeReference<ArrayList<Car>>() {});
         } catch (IOException e) {
             System.err.println(e);
         }

@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -61,9 +62,11 @@ public class CarRental extends JFrame {
         allCarsList.setModel(guiCarArraYList);
 
         //ComboBox
-        String fuelTypesForList[] = {"Electric", "Gasoline", "Diesel"};
-        Integer monthsList [] = {1,2,3,4,5,6,7,8,9,10,11,12};
-        Integer dayList [] = {1,2,3,4,5,6,7,8,9,10,11,12,13,4,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
+        String[] fuelTypesForList = {"Electric", "Gasoline", "Diesel"};
+        Integer[] monthsList = {Calendar.JANUARY, Calendar.FEBRUARY, Calendar.MARCH, Calendar.APRIL, Calendar.MAY,
+                Calendar.JUNE, Calendar.JULY, Calendar.AUGUST, Calendar.SEPTEMBER, Calendar.OCTOBER, Calendar.NOVEMBER,
+                Calendar.DECEMBER};
+        Integer[] dayList = {1,2,3,4,5,6,7,8,9,10,11,12,13,4,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
 
         pickupMonthComboBox.setModel(new DefaultComboBoxModel<Integer>(monthsList));
         deliverMonthComboBox.setModel(new DefaultComboBoxModel<Integer>(monthsList));
@@ -184,7 +187,7 @@ public class CarRental extends JFrame {
                 Integer monthForDelivery = (Integer) deliverMonthComboBox.getSelectedItem();
                 Integer dayForDelivery = (Integer) deliverDayComboBox.getSelectedItem();
 
-                //TODO:FIXME
+                //FIXME
                 Date startDate = new Date(122, monthForPickup-1, dayForPickup);
                 Date endDate = new Date(122, monthForDelivery-1, dayForDelivery);
                 System.out.println(startDate);
