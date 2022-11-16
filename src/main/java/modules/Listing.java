@@ -10,16 +10,14 @@ public class Listing {
     private Date startDate;
     private Date endDate;
     private boolean isAvailable;
-    private boolean isPublished;
     private String description;
 
     public Listing(){}
 
-    public Listing(Date startDate, Date endDate, boolean isPublished, String description){
+    public Listing(Date startDate, Date endDate, boolean isAvailable, String description){
         this.startDate = startDate;
         this.endDate = endDate;
-        this.isAvailable = true;
-        this.isPublished = false;
+        this.isAvailable = isAvailable;
         this.description = description;
     }
 
@@ -48,12 +46,12 @@ public class Listing {
         isAvailable = available;
     }
 
-    public boolean isPublished() {
-        return isPublished;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPublished(boolean published) {
-        this.isPublished = published;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -61,7 +59,6 @@ public class Listing {
         return  "   Start date: " + startDate + ",\n" +
                 "   End date: " + endDate + ",\n" +
                 "   isAvailable: " + isAvailable + ",\n" +
-                "   isPublished : " + isPublished() + ",\n" +
                 "   Description : " + description;
     }
 

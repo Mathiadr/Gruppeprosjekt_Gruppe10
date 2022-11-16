@@ -9,6 +9,13 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CarRepositoryTest {
+    @Test
+    public void new_car_is_created_and_added_to_ArrayList(){
+        CarRepository carRepository = new CarRepository("testRepository.json");
+        Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
+        carRepository.AddNewCar(car1);
+        assertTrue(carRepository.getCarArrayList().contains(car1));
+    }
 
     @Test
     public void JSON_writes_to_ArrayList_and_is_of_class_Car(){
@@ -43,7 +50,7 @@ public class CarRepositoryTest {
     }
 
     @Test
-    public void getAllAvailableCarsArrayList_does_not_contain_unavailable_cars(){
+    public void available_cars_list_does_not_contain_unavailable_cars(){
         CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         Car car2 = new Car("AFGH13543", "Dummy two", "Toyota");
@@ -60,6 +67,26 @@ public class CarRepositoryTest {
         assertFalse(availableCarsArrayList.contains(car2), "Unavailable car returned as available");
     }
 
+    @Test
+    public void car_listing_is_updated(){
+        CarRepository carRepository = new CarRepository("testRepository.json");
+        Car car1 = new Car("DFG441563", "Dummy one", "Volvo",
+                new Listing(null, null, true, "This is the original listing"));
+        carRepository.AddNewCar(car1);
+        Listing updatedListing = new Listing(null, null, true, "This is the updated listing");
+        carRepository.updateListing(car1, updatedListing);
+        assertNotEquals("This is the original listing", car1.getListing().getDescription());
+        assertEquals("This is the updated listing", car1.getListing().getDescription());
+    }
 
 
+    @Test
+    public void car_becomes_unavailable_when_renting(){
+        CarRepository carRepository = new CarRepository("testRepository.json");
+        Car car1 = new Car("DFG441563", "Dummy one", "Volvo",
+                new Listing(null, null, true, "TEST DESCRIPTION"));
+        carRepository.AddNewCar(car1);
+        carRepository.RentCar(car1);
+        assertFalse(car1.getListing().isAvailable());
+    }
 }

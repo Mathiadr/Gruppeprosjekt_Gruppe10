@@ -12,11 +12,17 @@ public class CarRepository {
 
     public CarRepository(String repositoryName) {
         this.repositoryName = repositoryName;
-
-        carArrayList = readFromJSON();
     }
 
-
+    // Compares given car with car from the list.
+    public Car getSpecificCarFromRepository(Car car){
+        //TODO: Figure out tf i do with this
+        return null;
+    }
+    public Car getSpecificCarFromRepository(String string){
+        //TODO: Figure out tf i do with this
+        return null;
+    }
 
     // Adds a new car to the repository file
     public void AddNewCar(Car car){
@@ -81,7 +87,7 @@ public class CarRepository {
     public void updateListing(Car car, Listing listing){
         for (Car i : carArrayList){
             if (car.getRegistrationNumber().equals(i.getRegistrationNumber())){
-                i.setListing(listing);
+                car.setListing(listing);
                 //System.out.println("Updated listing in Car " + i.getRegistrationNumber());
                 break;
             }
@@ -93,8 +99,8 @@ public class CarRepository {
     }
 
     // Reads all objects from JSON file and maps it to the Car object
-    public ArrayList<Car> readFromJSON(){
-        return carRepositoryFileHandler.readFromFile(repositoryName);
+    public void readFromJSON(){
+        carArrayList = carRepositoryFileHandler.readFromFile(repositoryName);
     }
 
     public String getRepositoryName() {

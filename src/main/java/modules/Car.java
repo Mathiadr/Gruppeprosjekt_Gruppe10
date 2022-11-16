@@ -15,12 +15,17 @@ public class Car {
     public Car(){
 
     }
-
     public Car(String registrationNumber, String owner, String model) {
         this.registrationNumber = registrationNumber;
         this.owner = owner;
         this.model = model;
 
+    }
+    public Car(String registrationNumber, String owner, String model, Listing listing) {
+        this.registrationNumber = registrationNumber;
+        this.owner = owner;
+        this.model = model;
+        this.listing = listing;
     }
 
 

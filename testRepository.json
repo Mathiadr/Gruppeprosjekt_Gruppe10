@@ -5,8 +5,7 @@
   "listing" : {
     "startDate" : null,
     "endDate" : null,
-    "available" : true,
-    "published" : false
+    "available" : true
   }
 }, {
   "registrationNumber" : "EBX23365",
@@ -15,8 +14,7 @@
   "listing" : {
     "startDate" : null,
     "endDate" : null,
-    "available" : true,
-    "published" : false
+    "available" : true
   }
 }, {
   "registrationNumber" : "E0B10045",
@@ -25,8 +23,7 @@
   "listing" : {
     "startDate" : null,
     "endDate" : null,
-    "available" : true,
-    "published" : false
+    "available" : true
   }
 }, {
   "registrationNumber" : "ADHD0O11",
@@ -35,8 +32,7 @@
   "listing" : {
     "startDate" : null,
     "endDate" : null,
-    "available" : true,
-    "published" : false
+    "available" : true
   }
 }, {
   "registrationNumber" : "D1CK9864",
@@ -45,8 +41,7 @@
   "listing" : {
     "startDate" : null,
     "endDate" : null,
-    "available" : true,
-    "published" : false
+    "available" : true
   }
 }, {
   "registrationNumber" : "P0043456",
@@ -55,8 +50,7 @@
   "listing" : {
     "startDate" : null,
     "endDate" : null,
-    "available" : true,
-    "published" : false
+    "available" : true
   }
 }, {
   "registrationNumber" : "BE240051",
@@ -65,7 +59,6 @@
   "listing" : {
     "startDate" : null,
     "endDate" : null,
-    "available" : true,
-    "published" : false
+    "available" : true
   }
 } ]
