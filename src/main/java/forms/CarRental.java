@@ -93,8 +93,10 @@ public class CarRental extends JFrame {
                 cardLayout.add(allCarsEditPage);
                 cardLayout.revalidate();
                 cardLayout.repaint();
+
                 createdCarRepository.readFromJSON();
                 show_all_Cars_List(createdCarRepository.getCarArrayList());
+
 
             }
         });
@@ -261,6 +263,7 @@ public class CarRental extends JFrame {
                     }
 
                     createdCarRepository.AddNewCar(createdCar);
+                    createdCarRepository.SaveCarsToJSON();
 
                     //Clears input fields
                     regNumber.setText("");
@@ -275,6 +278,7 @@ public class CarRental extends JFrame {
                 cardLayout.add(listingInputPage);
                 cardLayout.revalidate();
                 cardLayout.repaint();
+                System.out.println(allCarsList);
             }
         });
 
@@ -299,18 +303,23 @@ public class CarRental extends JFrame {
 
                     Car lastCarObject = (Car) allCarsList.getModel().getElementAt(allCarsList.getLastVisibleIndex());
 
-                    Listing createdCarListing = (Listing) lastCarObject.getListing();
+                    Listing createdCarListing = (Listing) new Listing(startDate, endDate, true, "");
 
-                    createdCarListing.setStartDate(startDate);
-                    createdCarListing.setEndDate(endDate);
+                    System.out.println(lastCarObject.toString());
+                    System.out.println(createdCarListing);
 
-                    System.out.println(lastCarObject);
+                    createdCarRepository.updateListing(lastCarObject, createdCarListing);
+
                     JOptionPane.showMessageDialog(selectedCarPage, "Your car is now available to rent!");
+
                 }
                 catch (StringIndexOutOfBoundsException se){
                     System.out.println("OUt of Bounds");
                 }
-
+                cardLayout.removeAll();
+                cardLayout.add(mainPage);
+                cardLayout.revalidate();
+                cardLayout.repaint();
             }
         });
 

@@ -60,7 +60,6 @@ public class CarRepository {
         catch (RuntimeException couldNotRentCar){
             //System.out.println("\n\nCould not rent car " + car.getRegistrationNumber() + "\n\n");
         }
-
     }
 
     // TODO:
@@ -75,7 +74,6 @@ public class CarRepository {
         }
         return allAvailableCars;
     }
-
     public void updateListing(Car car, Listing listing){
         for (Car i : carArrayList){
             if (car.getRegistrationNumber().equals(i.getRegistrationNumber())){
@@ -85,7 +83,6 @@ public class CarRepository {
             }
         }
     }
-
 
     public void SaveCarsToJSON(){
         carRepositoryFileHandler.writeArrayListToFile(getCarArrayList(), repositoryName);

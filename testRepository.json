@@ -68,4 +68,14 @@
     "description" : "PLACEHOLDER DESCRIPTION",
     "available" : true
   }
+}, {
+  "registrationNumber" : "EH872346",
+  "owner" : "Martin",
+  "model" : "Lweaf",
+  "listing" : {
+    "startDate" : null,
+    "endDate" : null,
+    "description" : "",
+    "available" : true
+  }
 } ]
