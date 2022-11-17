@@ -1,20 +1,23 @@
 package modules;
 
 
+import kotlin.reflect.jvm.internal.impl.descriptors.Visibilities;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Listing {
     // Contains information of every bid, each of which belongs to one car.
     // TODO: EVERY CAR BELONGS TO ONE LISTING
     // TODO: ur mum
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private boolean isAvailable;
     private String description;
 
     public Listing(){}
 
-    public Listing(Date startDate, Date endDate, boolean isAvailable, String description){
+    public Listing(LocalDate startDate, LocalDate endDate, boolean isAvailable, String description){
         this.startDate = startDate;
         this.endDate = endDate;
         this.isAvailable = isAvailable;
@@ -22,19 +25,19 @@ public class Listing {
     }
 
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

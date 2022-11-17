@@ -100,7 +100,9 @@
             <constraints>
               <card name="Card1"/>
             </constraints>
-            <properties/>
+            <properties>
+              <font name="Tahoma" size="14" style="1"/>
+            </properties>
             <border type="none"/>
             <children>
               <scrollpane id="174af">

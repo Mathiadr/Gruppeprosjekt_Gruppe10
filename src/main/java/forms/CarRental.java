@@ -6,11 +6,13 @@ import modules.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 public class CarRental extends JFrame {
@@ -91,8 +93,9 @@ public class CarRental extends JFrame {
                 cardLayout.add(allCarsEditPage);
                 cardLayout.revalidate();
                 cardLayout.repaint();
-
+                createdCarRepository.readFromJSON();
                 show_all_Cars_List(createdCarRepository.getCarArrayList());
+
             }
         });
 
@@ -170,6 +173,7 @@ public class CarRental extends JFrame {
                 cardLayout.repaint();
 
                 show_all_Cars_List(createdCarRepository.GetAllAvailableCars());
+                createdCarRepository.readFromJSON();
             }
         });
 
@@ -188,9 +192,13 @@ public class CarRental extends JFrame {
                 Integer dayForDelivery = (Integer) deliverDayComboBox.getSelectedItem();
 
                 //FIXME
-                Date startDate = new Date(122, monthForPickup-1, dayForPickup);
-                Date endDate = new Date(122, monthForDelivery-1, dayForDelivery);
-                System.out.println(startDate);
+                DateTimeFormatter myformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+                LocalDate startDate = LocalDate.of(2022, monthForPickup, dayForPickup);
+                LocalDate endDate = LocalDate.of(2022, monthForDelivery, dayForDelivery);
+
+                System.out.println(startDate.format(myformat));
+                System.out.println(endDate.format(myformat));
 
 
             }
@@ -236,10 +244,7 @@ public class CarRental extends JFrame {
         createCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(listingInputPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                createdCarRepository.readFromJSON();
                 try {
                     String registrationNumber = regNumber.getText();
                     String ownerName = owner.getText();
@@ -261,37 +266,54 @@ public class CarRental extends JFrame {
                     regNumber.setText("");
                     owner.setText("");
                     model.setText("");
-                    fuelType.setText("");
 
                 } catch (NullPointerException nullPointerException) {
                     System.out.println("Du har ikke valgt noe");
                 }
+
+                cardLayout.removeAll();
+                cardLayout.add(listingInputPage);
+                cardLayout.revalidate();
+                cardLayout.repaint();
             }
         });
 
         listingInputButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                createdCarRepository.readFromJSON();
+                show_all_Cars_List(createdCarRepository.GetAllAvailableCars());
+
                 int monthForPickup = (int) rentOutCarFromMonth.getSelectedItem();
                 int dayForPickup = (int) rentOutCarFromDay.getSelectedItem();
 
                 Integer monthForDelivery = (Integer) rentOutCarToMonth.getSelectedItem();
                 Integer dayForDelivery = (Integer) rentOutCarToDay.getSelectedItem();
 
-                DateTimeFormatter myformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                DateTimeFormatter myformat = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
 
                 LocalDate startDate = LocalDate.of(2022, monthForPickup, dayForPickup);
                 LocalDate endDate = LocalDate.of(2022, monthForDelivery, dayForDelivery);
 
+                try {
 
+                    Car lastCarObject = (Car) allCarsList.getModel().getElementAt(allCarsList.getLastVisibleIndex());
 
-                System.out.println(startDate.format(myformat));
-                System.out.println(endDate.format(myformat));
+                    Listing createdCarListing = (Listing) lastCarObject.getListing();
 
-                JOptionPane.showMessageDialog(selectedCarPage, "Your car i now avaiable to rent!");
+                    createdCarListing.setStartDate(startDate);
+                    createdCarListing.setEndDate(endDate);
+
+                    System.out.println(lastCarObject);
+                    JOptionPane.showMessageDialog(selectedCarPage, "Your car is now available to rent!");
+                }
+                catch (StringIndexOutOfBoundsException se){
+                    System.out.println("OUt of Bounds");
+                }
 
             }
         });
+
 
         // Back Buttons
         backToMainPage2.addActionListener(new ActionListener() {
