@@ -14,16 +14,6 @@ public class CarRepository {
         this.repositoryName = repositoryName;
     }
 
-    // Compares given car with car from the list.
-    public Car getSpecificCarFromRepository(Car car){
-        //TODO: Figure out tf i do with this
-        return null;
-    }
-    public Car getSpecificCarFromRepository(String string){
-        //TODO: Figure out tf i do with this
-        return null;
-    }
-
     // Adds a new car to the repository file
     public void AddNewCar(Car car){
         //TODO: implement
@@ -73,6 +63,8 @@ public class CarRepository {
 
     }
 
+    // TODO:
+
     // Returns all cars that are not currently occupied
     public ArrayList<Car> GetAllAvailableCars(){
         ArrayList<Car> allAvailableCars = new ArrayList<>();
@@ -93,6 +85,7 @@ public class CarRepository {
             }
         }
     }
+
 
     public void SaveCarsToJSON(){
         carRepositoryFileHandler.writeArrayListToFile(getCarArrayList(), repositoryName);

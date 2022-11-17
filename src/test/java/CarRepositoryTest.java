@@ -10,24 +10,41 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CarRepositoryTest {
     @Test
-    public void new_car_is_created_and_added_to_ArrayList(){
+    /*
+    *
+    *
+    *
+    */
+    public void car_is_created(){
         CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
+        assertNotNull(car1);
+    }
+
+
+    @Test
+    public void car_is_added_to_repository(){ //TODO: Separate into two tests
+        CarRepository carRepository = new CarRepository("testRepository.json");
+        Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
+        assertNotNull(car1);
         carRepository.AddNewCar(car1);
         assertTrue(carRepository.getCarArrayList().contains(car1));
     }
 
     @Test
-    public void JSON_writes_to_ArrayList_and_is_of_class_Car(){
+    public void car_duplicate_is_NOT_added_repository(){
         CarRepository carRepository = new CarRepository("testRepository.json");
-        carRepository.readFromJSON();
-        ArrayList<Car> carArrayList = carRepository.getCarArrayList();
-        assertFalse(carArrayList.isEmpty());
-        assertSame(carArrayList.get(0).getClass(), Car.class);
+        Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
+        assertNotNull(car1);
+        carRepository.AddNewCar(car1);
+        assertTrue(carRepository.getCarArrayList().contains(car1));
     }
 
+
+
+
     @Test
-    public void JSON_does_not_contain_multiple_similar_registrationNumbers(){
+    public void cars_are_persistently_stored_in_repository(){ //TODO: check if not fucked up
         CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         Car car2 = new Car("DFG441563", "Dummy two", "Toyota");
@@ -39,7 +56,16 @@ public class CarRepositoryTest {
     }
 
     @Test
-    public void Car_is_removed_from_carArrayList(){
+    public void persistent_storage_is_read(){ //FIXME
+        CarRepository carRepository = new CarRepository("testRepository.json");
+        carRepository.readFromJSON();
+        ArrayList<Car> carArrayList = carRepository.getCarArrayList();
+        assertFalse(carArrayList.isEmpty());
+        assertSame(carArrayList.get(0).getClass(), Car.class);
+    }
+
+    @Test
+    public void Car_is_removed_from_repository(){ // TODO: save, Re-read and check
         CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         ArrayList<Car> carArrayList = carRepository.getCarArrayList();
@@ -49,6 +75,8 @@ public class CarRepositoryTest {
         assertFalse(carArrayList.contains(car1), "Specified car was not removed");
     }
 
+
+    // 200.
     @Test
     public void available_cars_list_does_not_contain_unavailable_cars(){
         CarRepository carRepository = new CarRepository("testRepository.json");

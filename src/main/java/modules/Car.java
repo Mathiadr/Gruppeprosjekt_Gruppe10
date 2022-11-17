@@ -20,6 +20,7 @@ public class Car {
         this.owner = owner;
         this.model = model;
 
+        this.listing = new Listing(null, null, true, "");
     }
     public Car(String registrationNumber, String owner, String model, Listing listing) {
         this.registrationNumber = registrationNumber;
