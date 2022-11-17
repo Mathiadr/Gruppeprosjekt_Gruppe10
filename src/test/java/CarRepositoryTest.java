@@ -42,7 +42,7 @@ public class CarRepositoryTest {
     }
 
     @Test
-    public void repository_is_persistently_stored(){ //TODO: check if not fucked up
+    public void repository_is_persistently_stored(){ //TODO: CHANGE
         CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         Car car2 = new Car("DFG441563", "Dummy two", "Toyota");
@@ -100,4 +100,9 @@ public class CarRepositoryTest {
         carRepository.RentCar(car1);
         assertFalse(car1.getListing().isAvailable());
     }
+
+    // TODO: tests for validation and invalidation
+    // TODO: create Search class & tests
+    // TODO:
+    // TODO: GUI tests
 }

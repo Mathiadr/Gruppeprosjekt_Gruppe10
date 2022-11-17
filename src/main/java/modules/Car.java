@@ -1,6 +1,8 @@
 package modules;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Car {
     private String registrationNumber;
@@ -9,18 +11,20 @@ public class Car {
     //private String fuelType;              //TODO: IMPLEMENT
     //private String transmission;          //TODO: IMPLEMENT
     //private Collection<String> features;  //TODO: IMPLEMENT
-    private Listing listing;
+    private Listing listing; // Mapping instead??
 
 
     public Car(){
 
     }
+
     public Car(String registrationNumber, String owner, String model) {
         this.registrationNumber = registrationNumber;
         this.owner = owner;
         this.model = model;
-
-        this.listing = new Listing(null, null, true, "");
+        LocalDate startDateplaceholder = LocalDate.of(2022, 1, 1);
+        LocalDate endDatePlaceholder = LocalDate.of(2022, 1, 1);
+        this.listing = new Listing(startDateplaceholder, endDatePlaceholder, true, "");
     }
     public Car(String registrationNumber, String owner, String model, Listing listing) {
         this.registrationNumber = registrationNumber;

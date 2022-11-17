@@ -9,9 +9,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        CarRental carRental = new CarRental("Car rental");
-        carRental.setSize(700, 450);
-        carRental.setVisible(true);
+
 
 
         CarRepository carRepository = new CarRepository("testRepository.json");
@@ -23,14 +21,11 @@ public class Main {
         carRepository.AddNewCar(new Car("P0043456", "John Doe", "A2"));
         carRepository.AddNewCar(new Car("BE240051", "Ola Nordmann", "A1"));
 
-        Listing newListing = new Listing(null, null, true, "PLACEHOLDER DESCRIPTION");
-        for (Car i : carRepository.getCarArrayList()) {
-            i.setListing(newListing);
-        }
-        ArrayList<Car> carArrayList = carRepository.getCarArrayList();
-        carRepository.updateListing(carArrayList.get(0), newListing);
         carRepository.SaveCarsToJSON();
         carRepository.readFromJSON();
 
+        CarRental carRental = new CarRental("Car rental");
+        carRental.setSize(700, 450);
+        carRental.setVisible(true);
     }
 }

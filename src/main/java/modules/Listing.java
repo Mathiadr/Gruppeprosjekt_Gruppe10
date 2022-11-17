@@ -1,16 +1,22 @@
 package modules;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import kotlin.reflect.jvm.internal.impl.descriptors.Visibilities;
 
+import javax.swing.text.DateFormatter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Listing {
     // Contains information of every bid, each of which belongs to one car.
     // TODO: EVERY CAR BELONGS TO ONE LISTING
     // TODO: ur mum
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private boolean isAvailable;
     private String description;

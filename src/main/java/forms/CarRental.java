@@ -303,12 +303,14 @@ public class CarRental extends JFrame {
 
                     Car lastCarObject = (Car) allCarsList.getModel().getElementAt(allCarsList.getLastVisibleIndex());
 
-                    Listing createdCarListing = (Listing) new Listing(startDate, endDate, true, "");
+                    Listing createdCarListing = new Listing(startDate, endDate, true, "");
 
                     System.out.println(lastCarObject.toString());
                     System.out.println(createdCarListing);
 
-                    createdCarRepository.updateListing(lastCarObject, createdCarListing);
+                    //createdCarRepository.updateListing(lastCarObject, createdCarListing);
+                    lastCarObject.setListing(createdCarListing);
+                    createdCarRepository.SaveCarsToJSON();
 
                     JOptionPane.showMessageDialog(selectedCarPage, "Your car is now available to rent!");
 
