@@ -1,6 +1,7 @@
 import modules.Car;
 import modules.CarRepository;
 import modules.Listing;
+import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +24,7 @@ public class CarRepositoryTest {
 
 
     @Test
-    public void car_is_added_to_repository(){ //TODO: Separate into two tests
+    public void car_is_added_to_repository(){
         CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         assertNotNull(car1);
@@ -32,7 +33,7 @@ public class CarRepositoryTest {
     }
 
     @Test
-    public void car_duplicate_is_NOT_added_repository(){
+    public void car_duplicate_is_NOT_added_to_repository(){
         CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         assertNotNull(car1);
@@ -40,11 +41,8 @@ public class CarRepositoryTest {
         assertTrue(carRepository.getCarArrayList().contains(car1));
     }
 
-
-
-
     @Test
-    public void cars_are_persistently_stored_in_repository(){ //TODO: check if not fucked up
+    public void repository_is_persistently_stored(){ //TODO: check if not fucked up
         CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         Car car2 = new Car("DFG441563", "Dummy two", "Toyota");
@@ -56,12 +54,10 @@ public class CarRepositoryTest {
     }
 
     @Test
-    public void persistent_storage_is_read(){ //FIXME
+    public void repository_reads_from_persistent_storage(){
         CarRepository carRepository = new CarRepository("testRepository.json");
         carRepository.readFromJSON();
-        ArrayList<Car> carArrayList = carRepository.getCarArrayList();
-        assertFalse(carArrayList.isEmpty());
-        assertSame(carArrayList.get(0).getClass(), Car.class);
+        Approvals.verify(carRepository.getCarArrayList());
     }
 
     @Test
@@ -73,26 +69,6 @@ public class CarRepositoryTest {
         assertTrue(carArrayList.contains(car1), "Specified car was not added");
         carRepository.RemoveExistingCar(car1);
         assertFalse(carArrayList.contains(car1), "Specified car was not removed");
-    }
-
-
-    // 200.
-    @Test
-    public void available_cars_list_does_not_contain_unavailable_cars(){
-        CarRepository carRepository = new CarRepository("testRepository.json");
-        Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
-        Car car2 = new Car("AFGH13543", "Dummy two", "Toyota");
-        Listing listing1 = new Listing(null, null, true, null);
-        Listing listing2 = new Listing(null, null, false, null);
-        listing1.setAvailable(true);
-        listing2.setAvailable(false);
-        car1.setListing(listing1);
-        car2.setListing(listing2);
-        carRepository.AddNewCar(car1);
-        carRepository.AddNewCar(car2);
-        ArrayList<Car> availableCarsArrayList = carRepository.GetAllAvailableCars();
-        assertTrue(availableCarsArrayList.contains(car1), "Available car returned as not available");
-        assertFalse(availableCarsArrayList.contains(car2), "Unavailable car returned as available");
     }
 
     @Test
@@ -107,6 +83,13 @@ public class CarRepositoryTest {
         assertEquals("This is the updated listing", car1.getListing().getDescription());
     }
 
+    @Test
+    public void can_get_list_of_available_cars(){
+        CarRepository carRepository = new CarRepository("testRepository.json");
+        assertEquals("","");
+        carRepository.readFromJSON();
+        Approvals.verify(carRepository.GetAllAvailableCars());
+    }
 
     @Test
     public void car_becomes_unavailable_when_renting(){
