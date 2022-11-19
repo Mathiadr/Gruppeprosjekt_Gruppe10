@@ -27,7 +27,7 @@ public class CarRental extends JFrame {
     private JTextField regNumber, regNumberEdit, ownerEdit, modelEdit;
     private JCheckBox available, unavailabe, availableEdit, unavailableEdit;
     private JTextArea showsSelectedCarInfo;
-    private JComboBox fuelTypeBox, editCarFuelType;
+    private JComboBox<String> fuelTypeBox, editCarFuelType;
     private JPanel chooseDatePanel;
     private JComboBox<String> pickupMonthComboBox;
     private JComboBox<Integer> pickupDayComboBox;
@@ -42,29 +42,27 @@ public class CarRental extends JFrame {
     private JButton listingInputButton;
     private JButton backFromListingButton;
 
-
     CarRepository createdCarRepository = new CarRepository("testRepository.JSON");
-    private DefaultListModel<Car> guiCarArraYList  = new DefaultListModel<>();
-    private DefaultListModel<Car> guiCarsAvailableList  = new DefaultListModel<>();
+    private DefaultListModel<Car> carArrayList  = new DefaultListModel<>();
 
     private void show_all_Cars_List(ArrayList<Car> carlist) {
-        guiCarArraYList.clear();
+        carArrayList.clear();
         for (Car i : carlist) {
-            guiCarArraYList.addElement(i);
+            carArrayList.addElement(i);
         }
     }
+
     public CarRental(String title) {
         super(title);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(main);
         this.pack();
+        // Initialisation of Lists and comboBoxes ----------------------
 
-        //Lists
-        carsAvailable.setModel(guiCarArraYList);
-        allCarsList.setModel(guiCarArraYList);
-        DefaultComboBoxModel<Integer> startDaysInMonthComboBoxModel = new DefaultComboBoxModel<>();
-        DefaultComboBoxModel<Integer> endDaysInMonthComboBoxModel = new DefaultComboBoxModel<>();
+        // Lists
+        carsAvailable.setModel(carArrayList);
+        allCarsList.setModel(carArrayList);
 
         // Maps the name of the months to their numeric type
         Map<String ,Integer> monthsMap = DateHandler.generateMonthsMapper();
@@ -74,23 +72,25 @@ public class CarRental extends JFrame {
             rentOutCarFromMonth.addItem(month.getKey());
             rentOutCarToMonth.addItem(month.getKey());
         }
-
-
+        // ComboBoxes
+        DefaultComboBoxModel<Integer> startDaysInMonthComboBoxModel = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<Integer> endDaysInMonthComboBoxModel = new DefaultComboBoxModel<>();
         pickupDayComboBox.setModel(startDaysInMonthComboBoxModel);
         deliverDayComboBox.setModel(endDaysInMonthComboBoxModel);
-
         rentOutCarToDay.setModel(endDaysInMonthComboBoxModel);
         rentOutCarFromDay.setModel(startDaysInMonthComboBoxModel);
-
         DateHandler.updateDaysInComboBox(pickupMonthComboBox.getSelectedItem(), startDaysInMonthComboBoxModel);
         DateHandler.updateDaysInComboBox(deliverMonthComboBox.getSelectedItem(), endDaysInMonthComboBoxModel);
-
         editCarFuelType.setModel(new DefaultComboBoxModel<String>(Car.fuelTypesList));
         fuelTypeBox.setModel(new DefaultComboBoxModel<String >(Car.fuelTypesList));
 
+        // ---------------------------------------------------------------
 
 
-        //Edit cars
+
+
+
+        // Edit cars
         allCarsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -166,6 +166,7 @@ public class CarRental extends JFrame {
 
             }
         });
+
 
 
         //Rent car buttons
@@ -297,14 +298,12 @@ public class CarRental extends JFrame {
                 int monthForDelivery = monthsMap.get((String) rentOutCarToMonth.getSelectedItem());
                 int dayForDelivery = (int) rentOutCarToDay.getSelectedItem();
 
-                DateTimeFormatter myformat = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
-
                 LocalDate startDate = LocalDate.of(2022, monthForPickup, dayForPickup);
                 LocalDate endDate = LocalDate.of(2022, monthForDelivery, dayForDelivery);
 
                 try {
 
-                    Car lastCarObject = (Car) allCarsList.getModel().getElementAt(allCarsList.getLastVisibleIndex());
+                    Car lastCarObject =  allCarsList.getModel().getElementAt(allCarsList.getLastVisibleIndex());
 
                     Listing createdCarListing = new Listing(startDate, endDate, true, "");
 
@@ -319,7 +318,7 @@ public class CarRental extends JFrame {
 
                 }
                 catch (StringIndexOutOfBoundsException se){
-                    System.out.println("OUt of Bounds");
+                    System.out.println("Out of Bounds");
                 }
                 cardLayout.removeAll();
                 cardLayout.add(mainPage);
@@ -328,47 +327,11 @@ public class CarRental extends JFrame {
             }
         });
 
-        pickupMonthComboBox.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
 
-            }
-        });
-
-
-        // Updates the amount of days in ComboBox appropriate to selected month when selecting delivery date
-        pickupMonthComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DateHandler.updateDaysInComboBox(pickupMonthComboBox.getSelectedItem(), startDaysInMonthComboBoxModel);
-            }
-        });
-
-        // Updates the amount of days in ComboBox appropriate to selected month when selecting delivery date
-        deliverMonthComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DateHandler.updateDaysInComboBox(deliverMonthComboBox.getSelectedItem(), endDaysInMonthComboBoxModel);
-            }
-        });
-
-        // Updates the amount of days in ComboBox appropriate to selected month when selecting end period
-        rentOutCarToMonth.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DateHandler.updateDaysInComboBox(rentOutCarToMonth.getSelectedItem(), endDaysInMonthComboBoxModel);
-            }
-        });
-        // Updates the amount of days in ComboBox appropriate to selected month when selecting start period
-        rentOutCarFromMonth.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DateHandler.updateDaysInComboBox(rentOutCarFromMonth.getSelectedItem(), startDaysInMonthComboBoxModel);
-            }
-        });
 
 
         // Back Buttons
+
         backToMainPage2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -428,10 +391,41 @@ public class CarRental extends JFrame {
                 cardLayout.repaint();
             }
         });
-    }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 
+        // ActionListeners --------------------------------------------------------------------------------------
+
+        // Updates the amount of days in ComboBox appropriate to selected month when selecting delivery date
+        pickupMonthComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DateHandler.updateDaysInComboBox(pickupMonthComboBox.getSelectedItem(), startDaysInMonthComboBoxModel);
+            }
+        });
+
+        // Updates the amount of days in ComboBox appropriate to selected month when selecting delivery date
+        deliverMonthComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DateHandler.updateDaysInComboBox(deliverMonthComboBox.getSelectedItem(), endDaysInMonthComboBoxModel);
+            }
+        });
+
+        // Updates the amount of days in ComboBox appropriate to selected month when selecting end period
+        rentOutCarToMonth.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DateHandler.updateDaysInComboBox(rentOutCarToMonth.getSelectedItem(), endDaysInMonthComboBoxModel);
+            }
+        });
+        // Updates the amount of days in ComboBox appropriate to selected month when selecting start period
+        rentOutCarFromMonth.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DateHandler.updateDaysInComboBox(rentOutCarFromMonth.getSelectedItem(), startDaysInMonthComboBoxModel);
+            }
+        });
+
+        // --------------------------------------------------------------------------------------------------------
+    }
 }
