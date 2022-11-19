@@ -3,4 +3,69 @@
   "owner" : "Mathias Dale Ratdal",
   "model" : "E2",
   "listing" : {
-    "startDate"
+    "startDate" : "2022-01-01",
+    "endDate" : "2022-01-01",
+    "description" : "",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "EBX23365",
+  "owner" : "Sokrat Starynkiewicz",
+  "model" : "A4",
+  "listing" : {
+    "startDate" : "2022-01-01",
+    "endDate" : "2022-01-01",
+    "description" : "",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "E0B10045",
+  "owner" : "Joe Mama",
+  "model" : "C2",
+  "listing" : {
+    "startDate" : "2022-01-01",
+    "endDate" : "2022-01-01",
+    "description" : "",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "ADHD0O11",
+  "owner" : "Sander Kristiansen",
+  "model" : "C6",
+  "listing" : {
+    "startDate" : "2022-01-01",
+    "endDate" : "2022-01-01",
+    "description" : "",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "D1CK9864",
+  "owner" : "Djikstra Van Houven",
+  "model" : "BA1",
+  "listing" : {
+    "startDate" : "2022-01-01",
+    "endDate" : "2022-01-01",
+    "description" : "",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "P0043456",
+  "owner" : "John Doe",
+  "model" : "A2",
+  "listing" : {
+    "startDate" : "2022-01-01",
+    "endDate" : "2022-01-01",
+    "description" : "",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "BE240051",
+  "owner" : "Ola Nordmann",
+  "model" : "A1",
+  "listing" : {
+    "startDate" : "2022-01-01",
+    "endDate" : "2022-01-01",
+    "description" : "",
+    "available" : true
+  }
+} ]

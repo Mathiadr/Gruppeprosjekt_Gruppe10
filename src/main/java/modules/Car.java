@@ -8,10 +8,16 @@ public class Car {
     private String registrationNumber;
     private String owner;
     private String model;
+    private String brand;                   //TODO: IMPLEMENT
     //private String fuelType;              //TODO: IMPLEMENT
     //private String transmission;          //TODO: IMPLEMENT
     //private Collection<String> features;  //TODO: IMPLEMENT
     private Listing listing; // Mapping instead??
+
+    public static final String[] fuelTypesList = {"Electric", "Gasoline", "Diesel"};
+    public static final String[] transmissionList = {"Manual", "Automatic"};
+    public static final String[] featureList = {};
+
 
 
     public Car(){
@@ -65,6 +71,8 @@ public class Car {
     public void setListing(Listing listing) {
         this.listing = listing;
     }
+
+
 
     @Override
     public String toString(){

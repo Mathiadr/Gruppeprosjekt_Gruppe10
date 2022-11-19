@@ -42,6 +42,7 @@ public class CarRepositoryFileHandler implements FileHandler<Car> {
     @Override
     public void writeArrayListToFile(ArrayList<Car> carArrayList, String filename) {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModules(new Jdk8Module(), new JavaTimeModule());
         File file = new File(filename);
 
         try {
