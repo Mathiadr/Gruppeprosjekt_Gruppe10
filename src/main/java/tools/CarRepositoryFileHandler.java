@@ -1,11 +1,8 @@
 package tools;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import interfaces.FileHandler;
@@ -14,15 +11,9 @@ import modules.Car;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-@JsonSerialize      (as = LocalDate.class)
-@JsonDeserialize    (as = LocalDate.class)
-public class CarRepositoryFileHandler implements FileHandler<Car> {
-    // https://stackoverflow.com/a/38731094 ???????? Mulig løsning....
-    // eller https://immutables.github.io/json.html
-    // Eller... https://stackabuse.com/definitive-guide-to-jackson-objectmapper-serialize-and-deserialize-java-objects/
 
+public class CarRepositoryFileHandler implements FileHandler<Car> {
 
     @Override
     public ArrayList<Car> readFromFile(String filename) {

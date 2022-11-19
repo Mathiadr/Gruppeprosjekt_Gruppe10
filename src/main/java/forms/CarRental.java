@@ -82,8 +82,8 @@ public class CarRental extends JFrame {
         rentOutCarToDay.setModel(endDaysInMonthComboBoxModel);
         rentOutCarFromDay.setModel(startDaysInMonthComboBoxModel);
 
-        updateElementToComboBox(pickupMonthComboBox.getSelectedItem(), startDaysInMonthComboBoxModel);
-        updateElementToComboBox(deliverMonthComboBox.getSelectedItem(), endDaysInMonthComboBoxModel);
+        DateHandler.updateDaysInComboBox(pickupMonthComboBox.getSelectedItem(), startDaysInMonthComboBoxModel);
+        DateHandler.updateDaysInComboBox(deliverMonthComboBox.getSelectedItem(), endDaysInMonthComboBoxModel);
 
         editCarFuelType.setModel(new DefaultComboBoxModel<String>(Car.fuelTypesList));
         fuelTypeBox.setModel(new DefaultComboBoxModel<String >(Car.fuelTypesList));
@@ -340,7 +340,7 @@ public class CarRental extends JFrame {
         pickupMonthComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateElementToComboBox(pickupMonthComboBox.getSelectedItem(), startDaysInMonthComboBoxModel);
+                DateHandler.updateDaysInComboBox(pickupMonthComboBox.getSelectedItem(), startDaysInMonthComboBoxModel);
             }
         });
 
@@ -348,7 +348,7 @@ public class CarRental extends JFrame {
         deliverMonthComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateElementToComboBox(deliverMonthComboBox.getSelectedItem(), endDaysInMonthComboBoxModel);
+                DateHandler.updateDaysInComboBox(deliverMonthComboBox.getSelectedItem(), endDaysInMonthComboBoxModel);
             }
         });
 
@@ -356,14 +356,14 @@ public class CarRental extends JFrame {
         rentOutCarToMonth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateElementToComboBox(rentOutCarToMonth.getSelectedItem(), endDaysInMonthComboBoxModel);
+                DateHandler.updateDaysInComboBox(rentOutCarToMonth.getSelectedItem(), endDaysInMonthComboBoxModel);
             }
         });
         // Updates the amount of days in ComboBox appropriate to selected month when selecting start period
         rentOutCarFromMonth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateElementToComboBox(rentOutCarFromMonth.getSelectedItem(), startDaysInMonthComboBoxModel);
+                DateHandler.updateDaysInComboBox(rentOutCarFromMonth.getSelectedItem(), startDaysInMonthComboBoxModel);
             }
         });
 
@@ -432,16 +432,6 @@ public class CarRental extends JFrame {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
-    }
-
-
-    public void updateElementToComboBox(Object o, DefaultComboBoxModel<Integer> defaultComboBoxModel){
-        defaultComboBoxModel.removeAllElements();
-        int monthInt = DateHandler.generateMonthsMapper().get((String)o);
-        int daysInMonth = DateHandler.getDaysOfMonth(monthInt);
-        for (int day = 1; day <= daysInMonth; day++){
-            defaultComboBoxModel.addElement(day);
-        }
     }
 
 }
