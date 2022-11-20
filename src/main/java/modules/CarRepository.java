@@ -50,15 +50,14 @@ public class CarRepository {
             return 1;
         }
         else{
-            System.out.println("here");
             return -1;} // TODO: Implement error message to GUI
     }
 
     // Returns all cars that are not currently occupied
-    public ArrayList<Car> getAllAvailableCars(){
+    public ArrayList<Car> getAllAvailableCars(LocalDate startOfRentPeriod, LocalDate endOfRentPeriod){
         ArrayList<Car> allAvailableCars = new ArrayList<>();
         for (Car i : carArrayList){
-            if (i.getListing().isAvailable()){
+            if (i.getListing().isAvailable() && DateHandler.rentPeriodIsValid(i, startOfRentPeriod, endOfRentPeriod)){
                 allAvailableCars.add(i);
             }
         }

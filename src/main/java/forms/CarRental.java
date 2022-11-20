@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
@@ -29,7 +28,7 @@ public class CarRental extends JFrame {
     private JComboBox<String> rentOutCarToMonth, rentOutCarFromMonth, deliverMonthComboBox, pickupMonthComboBox;
     private JComboBox<String> fuelTypeBox, editCarFuelType;
 
-    CarRepository createdCarRepository = new CarRepository("testRepository.JSON");
+    CarRepository carRepository = new CarRepository("testRepository.JSON");
     private DefaultListModel<Car> carArrayList  = new DefaultListModel<>();
 
     private void show_all_Cars_List(ArrayList<Car> carlist) {
@@ -50,8 +49,9 @@ public class CarRental extends JFrame {
         // Initialisation of Lists and comboBoxes ----------------------
 
         // Lists
-        carsAvailable.setModel(carArrayList);
-        allCarsList.setModel(carArrayList);
+        DefaultListModel<Car> carDefaultListModel = new DefaultListModel<>();
+        carsAvailable.setModel(carDefaultListModel);
+        allCarsList.setModel(carDefaultListModel);
 
         // Maps the name of the months to their numeric type
         Map<String ,Integer> monthsMap = DateHandler.generateMonthsMapper();
@@ -88,8 +88,8 @@ public class CarRental extends JFrame {
                 cardLayout.revalidate();
                 cardLayout.repaint();
 
-                createdCarRepository.readFromJSON();
-                show_all_Cars_List(createdCarRepository.getCarArrayList());
+                carRepository.readFromJSON();
+                show_all_Cars_List(carRepository.getCarArrayList());
             }
         });
 
@@ -148,14 +148,13 @@ public class CarRental extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Car selectedCar = allCarsList.getSelectedValue();
-                createdCarRepository.removeExistingCar(selectedCar);
+                carRepository.removeExistingCar(selectedCar);
                 JOptionPane.showMessageDialog(editCarPage, "Car with Registration Number " + selectedCar.getRegistrationNumber() +
                         " was removed");
-                show_all_Cars_List(createdCarRepository.getCarArrayList());
+                show_all_Cars_List(carRepository.getCarArrayList());
 
             }
         });
-
 
 
         //Rent car buttons
@@ -166,30 +165,33 @@ public class CarRental extends JFrame {
                 cardLayout.add(chooseDatePanel);
                 cardLayout.revalidate();
                 cardLayout.repaint();
-
-                show_all_Cars_List(createdCarRepository.getAllAvailableCars());
-                createdCarRepository.readFromJSON();
             }
         });
 
         selectDateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(availableCarPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
-
                 int monthForPickup = monthsMap.get((String) pickupMonthComboBox.getSelectedItem());
                 int dayForPickup = (int)pickupDayComboBox.getSelectedItem();
 
                 int monthForDelivery = monthsMap.get((String) deliverMonthComboBox.getSelectedItem());
                 int dayForDelivery = (int) deliverDayComboBox.getSelectedItem();
 
-                DateTimeFormatter myformat = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+                LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
+                LocalDate endOfRentPeriod = LocalDate.of(2022, monthForDelivery, dayForDelivery);
+                carRepository.readFromJSON();
 
-                LocalDate startDate = LocalDate.of(2022, monthForPickup, dayForPickup);
-                LocalDate endDate = LocalDate.of(2022, monthForDelivery, dayForDelivery);
+                ArrayList<Car> carArrayList = carRepository.getAllAvailableCars(startOfRentPeriod, endOfRentPeriod);
+                updateCarList(carArrayList, carDefaultListModel);
+
+
+                cardLayout.removeAll();
+                cardLayout.add(availableCarPage);
+                cardLayout.revalidate();
+                cardLayout.repaint();
+
+
+
 
                 // TODO: Figure out tf this does
 
@@ -217,7 +219,10 @@ public class CarRental extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Car selectedCar = carsAvailable.getSelectedValue();
                 selectedCar.getListing().setAvailable(false);
-                show_all_Cars_List(createdCarRepository.getAllAvailableCars());
+                cardLayout.removeAll();
+                cardLayout.add(mainPage);
+                cardLayout.revalidate();
+                cardLayout.repaint();
                 JOptionPane.showMessageDialog(selectedCarPage, "You have just rented car " + selectedCar.getRegistrationNumber()
                  + " from owner " + selectedCar.getOwner());
             }
@@ -237,7 +242,7 @@ public class CarRental extends JFrame {
         createCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                createdCarRepository.readFromJSON();
+                carRepository.readFromJSON();
                 try {
                     String registrationNumber = regNumber.getText();
                     String ownerName = owner.getText();
@@ -253,8 +258,8 @@ public class CarRental extends JFrame {
                         createdCar.getListing().setAvailable(false);
                     }
 
-                    createdCarRepository.addNewCar(createdCar);
-                    createdCarRepository.saveCarsToJSON();
+                    carRepository.addNewCar(createdCar);
+                    carRepository.saveCarsToJSON();
 
                     //Clears input fields
                     regNumber.setText("");
@@ -277,9 +282,8 @@ public class CarRental extends JFrame {
         listingInputButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                createdCarRepository.readFromJSON();
-                show_all_Cars_List(createdCarRepository.getAllAvailableCars());
-
+                carRepository.readFromJSON();
+                // show_all_Cars_List(carRepository.getAllAvailableCars()); TODO: Why is this here?
 
                 int monthForPickup = monthsMap.get((String) rentOutCarFromMonth.getSelectedItem());
                 int dayForPickup = (int)rentOutCarFromDay.getSelectedItem();
@@ -299,9 +303,9 @@ public class CarRental extends JFrame {
                     System.out.println(lastCarObject.toString());
                     System.out.println(createdCarListing);
 
-                    //createdCarRepository.updateListing(lastCarObject, createdCarListing);
+                    //carRepository.updateListing(lastCarObject, createdCarListing);
                     lastCarObject.setListing(createdCarListing);
-                    createdCarRepository.saveCarsToJSON();
+                    carRepository.saveCarsToJSON();
 
                     JOptionPane.showMessageDialog(selectedCarPage, "Your car is now available to rent!");
 
@@ -416,5 +420,12 @@ public class CarRental extends JFrame {
         });
 
         // --------------------------------------------------------------------------------------------------------
+    }
+
+    public void updateCarList(ArrayList<Car> carArrayList, DefaultListModel<Car> carDefaultListModel){
+        carDefaultListModel.removeAllElements();
+        for (int car = 0; car < carArrayList.size(); car++){
+            carDefaultListModel.addElement(carArrayList.get(car));
+        }
     }
 }
