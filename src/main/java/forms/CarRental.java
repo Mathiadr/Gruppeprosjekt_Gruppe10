@@ -7,40 +7,27 @@ import tools.DateHandler;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.sql.SQLOutput;
 import java.time.LocalDate;
-import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
 public class CarRental extends JFrame {
     private JPanel main, cardLayout, mainPage, availableCarPage, rentOutCarPage, selectedCarPage,allCarsEditPage,
-            editInputs, editCarPage, buttons, rentCarButtons, createCarInputs, selectedCarButtons,EditCarPage, calendarPage;
-    private JList<Car> carsAvailable,allCarsList;
+            editInputs, editCarPage, buttons, rentCarButtons, createCarInputs, selectedCarButtons,EditCarPage,
+            calendarPage, chooseDatePanel, listingInputPage;
     private JButton createCar, selectCar, rentOutCar, rentCar, rentCarButton, allCarsButton,
             toEditCarPageButton, backToAllCars, deleteCar, editCarButton,
-            backToMainPage2, backToMainPage, backFromSelectedCarPage, backFromAllCarsButton;
+            backToMainPage2, backToMainPage, backFromSelectedCarPage, backFromAllCarsButton, selectDateButton,
+            listingInputButton, backFromListingButton;
     private JFormattedTextField owner, model, fuelType;
     private JTextField regNumber, regNumberEdit, ownerEdit, modelEdit;
-    private JCheckBox available, unavailabe, availableEdit, unavailableEdit;
+    private JCheckBox available, unavailable, availableEdit, unavailableEdit;
     private JTextArea showsSelectedCarInfo;
+    private JList<Car> carsAvailable,allCarsList;
+    private JComboBox<Integer> pickupDayComboBox, deliverDayComboBox, rentOutCarToDay, rentOutCarFromDay;
+    private JComboBox<String> rentOutCarToMonth, rentOutCarFromMonth, deliverMonthComboBox, pickupMonthComboBox;
     private JComboBox<String> fuelTypeBox, editCarFuelType;
-    private JPanel chooseDatePanel;
-    private JComboBox<String> pickupMonthComboBox;
-    private JComboBox<Integer> pickupDayComboBox;
-    private JButton selectDateButton;
-    private JComboBox<String> deliverMonthComboBox;
-    private JComboBox<Integer> deliverDayComboBox;
-    private JPanel listingInputPage;
-    private JComboBox<Integer> rentOutCarToDay;
-    private JComboBox<String> rentOutCarToMonth;
-    private JComboBox<String> rentOutCarFromMonth;
-    private JComboBox<Integer> rentOutCarFromDay;
-    private JButton listingInputButton;
-    private JButton backFromListingButton;
 
     CarRepository createdCarRepository = new CarRepository("testRepository.JSON");
     private DefaultListModel<Car> carArrayList  = new DefaultListModel<>();
@@ -58,6 +45,8 @@ public class CarRental extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(main);
         this.pack();
+
+
         // Initialisation of Lists and comboBoxes ----------------------
 
         // Lists
@@ -159,7 +148,7 @@ public class CarRental extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Car selectedCar = allCarsList.getSelectedValue();
-                createdCarRepository.RemoveExistingCar(selectedCar);
+                createdCarRepository.removeExistingCar(selectedCar);
                 JOptionPane.showMessageDialog(editCarPage, "Car with Registration Number " + selectedCar.getRegistrationNumber() +
                         " was removed");
                 show_all_Cars_List(createdCarRepository.getCarArrayList());
@@ -178,7 +167,7 @@ public class CarRental extends JFrame {
                 cardLayout.revalidate();
                 cardLayout.repaint();
 
-                show_all_Cars_List(createdCarRepository.GetAllAvailableCars());
+                show_all_Cars_List(createdCarRepository.getAllAvailableCars());
                 createdCarRepository.readFromJSON();
             }
         });
@@ -228,7 +217,7 @@ public class CarRental extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Car selectedCar = carsAvailable.getSelectedValue();
                 selectedCar.getListing().setAvailable(false);
-                show_all_Cars_List(createdCarRepository.GetAllAvailableCars());
+                show_all_Cars_List(createdCarRepository.getAllAvailableCars());
                 JOptionPane.showMessageDialog(selectedCarPage, "You have just rented car " + selectedCar.getRegistrationNumber()
                  + " from owner " + selectedCar.getOwner());
             }
@@ -260,12 +249,12 @@ public class CarRental extends JFrame {
                     if (available.isSelected()) {
                         createdCar.getListing().setAvailable(true);
 
-                    } else if (unavailabe.isSelected()) {
+                    } else if (unavailable.isSelected()) {
                         createdCar.getListing().setAvailable(false);
                     }
 
-                    createdCarRepository.AddNewCar(createdCar);
-                    createdCarRepository.SaveCarsToJSON();
+                    createdCarRepository.addNewCar(createdCar);
+                    createdCarRepository.saveCarsToJSON();
 
                     //Clears input fields
                     regNumber.setText("");
@@ -289,7 +278,7 @@ public class CarRental extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 createdCarRepository.readFromJSON();
-                show_all_Cars_List(createdCarRepository.GetAllAvailableCars());
+                show_all_Cars_List(createdCarRepository.getAllAvailableCars());
 
 
                 int monthForPickup = monthsMap.get((String) rentOutCarFromMonth.getSelectedItem());
@@ -312,7 +301,7 @@ public class CarRental extends JFrame {
 
                     //createdCarRepository.updateListing(lastCarObject, createdCarListing);
                     lastCarObject.setListing(createdCarListing);
-                    createdCarRepository.SaveCarsToJSON();
+                    createdCarRepository.saveCarsToJSON();
 
                     JOptionPane.showMessageDialog(selectedCarPage, "Your car is now available to rent!");
 
@@ -395,7 +384,7 @@ public class CarRental extends JFrame {
 
         // ActionListeners --------------------------------------------------------------------------------------
 
-        // Updates the amount of days in ComboBox appropriate to selected month when selecting delivery date
+        // Updates the amount of days in ComboBox appropriate to selected month when selecting pickup date
         pickupMonthComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

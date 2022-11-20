@@ -2,6 +2,7 @@ package tools;
 
 import com.spun.util.velocity.ParserDateUtils;
 import modules.Car;
+import modules.Listing;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -48,13 +49,20 @@ public class DateHandler {
         }
     }
 
-    public static boolean dateIsValid(){
+    // Checks if the given startDate and endDate are valid (e.g endDate is not before startDate)
+    public static boolean dateIsValid(LocalDate startDate, LocalDate endDate){
         // TODO: IMPLEMENT
-        return true;
+        if (startDate.isBefore(endDate)) return true;
+        else return startDate.isEqual(endDate);
     }
 
-    public static boolean rentPeriodIsValid(Car car, Date startOfRentPeriod, Date endOfRentPeriod){
+    // Checks if the given rent period is within the date of the given car's listing
+    public static boolean rentPeriodIsValid(Car car, LocalDate startOfRentPeriod, LocalDate endOfRentPeriod){
         // TODO: IMPLEMENT
-        return true;
+        Listing listing = car.getListing();
+        if(!listing.isAvailable()) return false;
+        if(!dateIsValid(startOfRentPeriod, endOfRentPeriod)) return false;
+        else return dateIsValid(listing.getStartDate(), startOfRentPeriod)
+                && dateIsValid(endOfRentPeriod, listing.getEndDate());
     }
 }

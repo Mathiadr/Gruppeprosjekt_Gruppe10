@@ -4,7 +4,7 @@
   "model" : "E2",
   "listing" : {
     "startDate" : "2022-01-01",
-    "endDate" : "2022-01-01",
+    "endDate" : "2022-12-31",
     "description" : "",
     "available" : true
   }
@@ -14,7 +14,7 @@
   "model" : "A4",
   "listing" : {
     "startDate" : "2022-01-01",
-    "endDate" : "2022-01-01",
+    "endDate" : "2022-12-31",
     "description" : "",
     "available" : true
   }
@@ -24,7 +24,7 @@
   "model" : "C2",
   "listing" : {
     "startDate" : "2022-01-01",
-    "endDate" : "2022-01-01",
+    "endDate" : "2022-12-31",
     "description" : "",
     "available" : true
   }
@@ -34,7 +34,7 @@
   "model" : "C6",
   "listing" : {
     "startDate" : "2022-01-01",
-    "endDate" : "2022-01-01",
+    "endDate" : "2022-12-31",
     "description" : "",
     "available" : true
   }
@@ -44,7 +44,7 @@
   "model" : "BA1",
   "listing" : {
     "startDate" : "2022-01-01",
-    "endDate" : "2022-01-01",
+    "endDate" : "2022-12-31",
     "description" : "",
     "available" : true
   }
@@ -54,7 +54,7 @@
   "model" : "A2",
   "listing" : {
     "startDate" : "2022-01-01",
-    "endDate" : "2022-01-01",
+    "endDate" : "2022-12-31",
     "description" : "",
     "available" : true
   }
@@ -64,7 +64,7 @@
   "model" : "A1",
   "listing" : {
     "startDate" : "2022-01-01",
-    "endDate" : "2022-01-01",
+    "endDate" : "2022-12-31",
     "description" : "",
     "available" : true
   }

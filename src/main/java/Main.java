@@ -2,9 +2,6 @@ import modules.Car;
 import modules.CarRepository;
 
 import forms.CarRental;
-import modules.Listing;
-
-import java.util.ArrayList;
 
 
 public class Main {
@@ -13,15 +10,15 @@ public class Main {
 
 
         CarRepository carRepository = new CarRepository("testRepository.json");
-        carRepository.AddNewCar(new Car("MXH10045", "Mathias Dale Ratdal", "E2"));
-        carRepository.AddNewCar(new Car("EBX23365", "Sokrat Starynkiewicz", "A4"));
-        carRepository.AddNewCar(new Car("E0B10045", "Joe Mama", "C2"));
-        carRepository.AddNewCar(new Car("ADHD0O11", "Sander Kristiansen", "C6"));
-        carRepository.AddNewCar(new Car("D1CK9864", "Djikstra Van Houven", "BA1"));
-        carRepository.AddNewCar(new Car("P0043456", "John Doe", "A2"));
-        carRepository.AddNewCar(new Car("BE240051", "Ola Nordmann", "A1"));
+        carRepository.addNewCar(new Car("MXH10045", "Mathias Dale Ratdal", "E2"));
+        carRepository.addNewCar(new Car("EBX23365", "Sokrat Starynkiewicz", "A4"));
+        carRepository.addNewCar(new Car("E0B10045", "Joe Mama", "C2"));
+        carRepository.addNewCar(new Car("ADHD0O11", "Sander Kristiansen", "C6"));
+        carRepository.addNewCar(new Car("D1CK9864", "Djikstra Van Houven", "BA1"));
+        carRepository.addNewCar(new Car("P0043456", "John Doe", "A2"));
+        carRepository.addNewCar(new Car("BE240051", "Ola Nordmann", "A1"));
 
-        carRepository.SaveCarsToJSON();
+        carRepository.saveCarsToJSON();
         carRepository.readFromJSON();
 
         CarRental carRental = new CarRental("Car rental");

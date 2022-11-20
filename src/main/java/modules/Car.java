@@ -29,7 +29,7 @@ public class Car {
         this.owner = owner;
         this.model = model;
         LocalDate startDateplaceholder = LocalDate.of(2022, 1, 1);
-        LocalDate endDatePlaceholder = LocalDate.of(2022, 1, 1);
+        LocalDate endDatePlaceholder = LocalDate.of(2022, 12, 31);
         this.listing = new Listing(startDateplaceholder, endDatePlaceholder, true, "");
     }
     public Car(String registrationNumber, String owner, String model, Listing listing) {
