@@ -5,6 +5,7 @@ import tools.DateHandler;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -27,6 +28,8 @@ public class CarRental extends JFrame {
     private JComboBox<Integer> pickupDayComboBox, deliverDayComboBox, rentOutCarToDay, rentOutCarFromDay;
     private JComboBox<String> rentOutCarToMonth, rentOutCarFromMonth, deliverMonthComboBox, pickupMonthComboBox;
     private JComboBox<String> fuelTypeBox, editCarFuelType;
+    private JLabel logoLabel;
+
 
     CarRepository carRepository = new CarRepository("testRepository.JSON");
     private DefaultListModel<Car> carArrayList  = new DefaultListModel<>();
@@ -73,6 +76,15 @@ public class CarRental extends JFrame {
         editCarFuelType.setModel(new DefaultComboBoxModel<String>(Car.fuelTypesList));
         fuelTypeBox.setModel(new DefaultComboBoxModel<String >(Car.fuelTypesList));
 
+        //Logo
+        try {
+            ImageIcon logo = new ImageIcon("C:\\Users\\marti\\IdeaProjects\\Gruppeprosjekt_Gruppe10\\" +
+                    "src\\main\\java\\carRentalLogo.png");
+            logoLabel.setIcon(logo);
+            logoLabel.setSize(40, 40);
+        }
+        catch (NullPointerException ty) {
+        }
         // ---------------------------------------------------------------
 
 
@@ -427,5 +439,9 @@ public class CarRental extends JFrame {
         for (int car = 0; car < carArrayList.size(); car++){
             carDefaultListModel.addElement(carArrayList.get(car));
         }
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
