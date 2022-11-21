@@ -77,17 +77,11 @@ public class CarRental extends JFrame {
         fuelTypeBox.setModel(new DefaultComboBoxModel<String >(Car.fuelTypesList));
 
         //Logo
-        try {
-            ImageIcon logo = new ImageIcon("C:\\Users\\marti\\IdeaProjects\\Gruppeprosjekt_Gruppe10\\" +
-                    "src\\main\\java\\carRentalLogo.png");
-            logoLabel.setIcon(logo);
-            logoLabel.setSize(40, 40);
-        }
-        catch (NullPointerException ty) {
-        }
+        ImageIcon logo = new ImageIcon("C:\\Users\\marti\\IdeaProjects\\" +
+                "Gruppeprosjekt_Gruppe10\\src\\main\\java\\logo2.png");
+        logoLabel.setIcon(logo);
+
         // ---------------------------------------------------------------
-
-
 
 
 
