@@ -31,9 +31,9 @@ public class CarRental extends JFrame {
     CarRepository carRepository = new CarRepository("testRepository.JSON");
     private DefaultListModel<Car> carArrayList  = new DefaultListModel<>();
 
-    private void show_all_Cars_List(ArrayList<Car> carlist) {
+    private void show_all_Cars_List(ArrayList<Car> newCarArrayList) {
         carArrayList.clear();
-        for (Car i : carlist) {
+        for (Car i : newCarArrayList) {
             carArrayList.addElement(i);
         }
     }
@@ -53,7 +53,7 @@ public class CarRental extends JFrame {
         carsAvailable.setModel(carDefaultListModel);
         allCarsList.setModel(carDefaultListModel);
 
-        // Maps the name of the months to their numeric type
+        // Maps the name of the months to their numerical version
         Map<String ,Integer> monthsMap = DateHandler.generateMonthsMapper();
         for (Map.Entry<String, Integer> month : monthsMap.entrySet()){
             pickupMonthComboBox.addItem(month.getKey());
@@ -303,7 +303,7 @@ public class CarRental extends JFrame {
                     System.out.println(lastCarObject.toString());
                     System.out.println(createdCarListing);
 
-                    //carRepository.updateListing(lastCarObject, createdCarListing);
+                    //carRepository.updateListing(lastCarObject, createdCarListing); FIXME
                     lastCarObject.setListing(createdCarListing);
                     carRepository.saveCarsToJSON();
 
@@ -386,7 +386,7 @@ public class CarRental extends JFrame {
         });
 
 
-        // ActionListeners --------------------------------------------------------------------------------------
+        // ComboBox ActionListeners --------------------------------------------------------------------------------------
 
         // Updates the amount of days in ComboBox appropriate to selected month when selecting pickup date
         pickupMonthComboBox.addActionListener(new ActionListener() {
@@ -422,6 +422,7 @@ public class CarRental extends JFrame {
         // --------------------------------------------------------------------------------------------------------
     }
 
+    // Updates the given DefaultListModel with the contents of a given ArrayList containing cars
     public void updateCarList(ArrayList<Car> carArrayList, DefaultListModel<Car> carDefaultListModel){
         carDefaultListModel.removeAllElements();
         for (int car = 0; car < carArrayList.size(); car++){

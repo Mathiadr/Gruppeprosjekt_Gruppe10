@@ -4,8 +4,8 @@
   "model" : "E2",
   "listing" : {
     "startDate" : "2022-01-01",
-    "endDate" : "2022-12-31",
-    "description" : "",
+    "endDate" : "2022-03-07",
+    "description" : "PLACEHOLDER DESCRIPTION",
     "available" : true
   }
 }, {
@@ -13,9 +13,9 @@
   "owner" : "Sokrat Starynkiewicz",
   "model" : "A4",
   "listing" : {
-    "startDate" : "2022-01-01",
-    "endDate" : "2022-12-31",
-    "description" : "",
+    "startDate" : "2022-02-25",
+    "endDate" : "2022-06-07",
+    "description" : "PLACEHOLDER DESCRIPTION",
     "available" : true
   }
 }, {
@@ -23,9 +23,9 @@
   "owner" : "Joe Mama",
   "model" : "C2",
   "listing" : {
-    "startDate" : "2022-01-01",
-    "endDate" : "2022-12-31",
-    "description" : "",
+    "startDate" : "2022-02-01",
+    "endDate" : "2022-02-10",
+    "description" : "PLACEHOLDER DESCRIPTION",
     "available" : true
   }
 }, {
@@ -33,9 +33,9 @@
   "owner" : "Sander Kristiansen",
   "model" : "C6",
   "listing" : {
-    "startDate" : "2022-01-01",
-    "endDate" : "2022-12-31",
-    "description" : "",
+    "startDate" : "2022-07-15",
+    "endDate" : "2022-08-15",
+    "description" : "PLACEHOLDER DESCRIPTION",
     "available" : true
   }
 }, {
@@ -43,9 +43,9 @@
   "owner" : "Djikstra Van Houven",
   "model" : "BA1",
   "listing" : {
-    "startDate" : "2022-01-01",
-    "endDate" : "2022-12-31",
-    "description" : "",
+    "startDate" : "2022-10-14",
+    "endDate" : "2022-11-04",
+    "description" : "PLACEHOLDER DESCRIPTION",
     "available" : true
   }
 }, {
@@ -53,15 +53,25 @@
   "owner" : "John Doe",
   "model" : "A2",
   "listing" : {
-    "startDate" : "2022-01-01",
+    "startDate" : "2022-12-01",
     "endDate" : "2022-12-31",
-    "description" : "",
+    "description" : "PLACEHOLDER DESCRIPTION",
     "available" : true
   }
 }, {
   "registrationNumber" : "BE240051",
   "owner" : "Ola Nordmann",
   "model" : "A1",
+  "listing" : {
+    "startDate" : "2022-02-07",
+    "endDate" : "2022-12-23",
+    "description" : "PLACEHOLDER DESCRIPTION",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "",
+  "owner" : "",
+  "model" : "",
   "listing" : {
     "startDate" : "2022-01-01",
     "endDate" : "2022-12-31",
