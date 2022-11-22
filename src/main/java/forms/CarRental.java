@@ -1,6 +1,7 @@
 package forms;
 
 import modules.*;
+import tools.CarContract;
 import tools.DateHandler;
 
 
@@ -29,6 +30,11 @@ public class CarRental extends JFrame {
     private JComboBox<String> rentOutCarToMonth, rentOutCarFromMonth, deliverMonthComboBox, pickupMonthComboBox;
     private JComboBox<String> fuelTypeBox, editCarFuelType;
     private JLabel logoLabel;
+    private JTextArea contractArea;
+    private JScrollPane scrollPane;
+    private JPanel contractPanel;
+    private JButton agreeButton;
+    private JButton cancelContractButton;
 
 
     CarRepository carRepository = new CarRepository("testRepository.JSON");
@@ -196,9 +202,6 @@ public class CarRental extends JFrame {
                 cardLayout.revalidate();
                 cardLayout.repaint();
 
-
-
-
                 // TODO: Figure out tf this does
 
 
@@ -226,13 +229,29 @@ public class CarRental extends JFrame {
                 Car selectedCar = carsAvailable.getSelectedValue();
                 selectedCar.getListing().setAvailable(false);
                 cardLayout.removeAll();
+                cardLayout.add(contractPanel);
+                cardLayout.revalidate();
+                cardLayout.repaint();
+
+                contractArea.setText(CarContract.getCarContract(selectedCar.getOwner(), selectedCar.getModel(),
+                        selectedCar.getListing().getStartDate(), selectedCar.getListing().getEndDate()));
+                scrollPane.getViewport().setViewPosition(new Point(0, 0));
+            }
+        });
+
+        agreeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.removeAll();
                 cardLayout.add(mainPage);
                 cardLayout.revalidate();
                 cardLayout.repaint();
-                JOptionPane.showMessageDialog(selectedCarPage, "You have just rented car " + selectedCar.getRegistrationNumber()
-                 + " from owner " + selectedCar.getOwner());
+
+                JOptionPane.showMessageDialog(contractPanel, "You car is now for your disposal");
             }
         });
+
+
 
         // Rent out car buttons
         rentOutCar.addActionListener(new ActionListener() {
@@ -326,10 +345,17 @@ public class CarRental extends JFrame {
             }
         });
 
-
-
-
         // Back Buttons
+
+        cancelContractButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.removeAll();
+                cardLayout.add(selectedCarPage);
+                cardLayout.revalidate();
+                cardLayout.repaint();
+            }
+        });
 
         backToMainPage2.addActionListener(new ActionListener() {
             @Override
