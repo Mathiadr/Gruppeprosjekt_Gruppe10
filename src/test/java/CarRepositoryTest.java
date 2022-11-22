@@ -2,7 +2,9 @@ import modules.Car;
 import modules.CarRepository;
 import modules.Listing;
 import org.approvaltests.Approvals;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,6 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CarRepositoryTest {
 
+    CarRepository carRepository;
+
+    @BeforeEach
+    void initializeCarRepository(){
+        carRepository = new CarRepository("testRepository.json");
+    }
 
     @Test
     /*
@@ -19,7 +27,6 @@ public class CarRepositoryTest {
     *
     */
     public void new_car_is_creatable(){
-        CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         assertNotNull(car1);
     }
@@ -27,7 +34,6 @@ public class CarRepositoryTest {
 
     @Test
     public void car_is_added_to_repository(){
-        CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         assertNotNull(car1);
         carRepository.addNewCar(car1);
@@ -36,7 +42,6 @@ public class CarRepositoryTest {
 
     @Test
     public void car_duplicate_is_NOT_added_to_repository(){
-        CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         assertNotNull(car1);
         carRepository.addNewCar(car1);
@@ -45,7 +50,6 @@ public class CarRepositoryTest {
 
     @Test
     public void repository_is_persistently_stored(){ //TODO: CHANGE
-        CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         Car car2 = new Car("DFG441563", "Dummy two", "Toyota");
         carRepository.addNewCar(car1);
@@ -57,14 +61,12 @@ public class CarRepositoryTest {
 
     @Test
     public void repository_reads_from_persistent_storage(){
-        CarRepository carRepository = new CarRepository("testRepository.json");
         carRepository.readFromJSON();
         Approvals.verify(carRepository.getCarArrayList());
     }
 
     @Test
     public void car_is_removed_from_repository(){ // TODO: save, Re-read and check
-        CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         ArrayList<Car> carArrayList = carRepository.getCarArrayList();
         carRepository.addNewCar(car1);
@@ -75,7 +77,6 @@ public class CarRepositoryTest {
 
     @Test
     public void car_listing_is_updated(){
-        CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo",
                 new Listing(null, null, true, "This is the original listing"));
         carRepository.addNewCar(car1);
@@ -92,7 +93,6 @@ public class CarRepositoryTest {
 
     @Test
     public void list_of_available_cars_contains_available_cars(){
-        CarRepository carRepository = new CarRepository("testRepository.json");
         carRepository.readFromJSON();
         //Approvals.verify(carRepository.getAllAvailableCars()); // TODO : FIXME
     }
@@ -104,7 +104,6 @@ public class CarRepositoryTest {
 
     @Test
     public void car_becomes_unavailable_when_renting(){
-        CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo",
                 new Listing(null, null, true, "TEST DESCRIPTION"));
         carRepository.addNewCar(car1);
@@ -119,42 +118,39 @@ public class CarRepositoryTest {
 
     @Test
     public void can_rent_car_if_within_rentable_period(){
-        CarRepository carRepository = new CarRepository("testRepository.json");
-        LocalDate listingStartDate = LocalDate.of(2022, 4, 5);
-        LocalDate listingEndDate = LocalDate.of(2022, 9, 29);
+        LocalDate listingStartDate = LocalDate.of(2022, 1, 1);
+        LocalDate listingEndDate = LocalDate.of(2022, 6, 6);
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo",
                 new Listing(listingStartDate, listingEndDate, true, "TEST DESCRIPTION"));
         carRepository.addNewCar(car1);
-        LocalDate startOfRentPeriod = LocalDate.of(2022, 6, 8);
-        LocalDate endOfRentPeriod = LocalDate.of(2022, 6, 16);
+        LocalDate startOfRentPeriod = LocalDate.of(2022, 3, 3);
+        LocalDate endOfRentPeriod = LocalDate.of(2022, 4, 4);
 
         assertEquals(1 , carRepository.initiateRentProcess(car1, startOfRentPeriod, endOfRentPeriod));
     }
 
     @Test
     public void cannot_rent_car_if_outside_of_rentable_period(){
-        CarRepository carRepository = new CarRepository("testRepository.json");
-        LocalDate listingStartDate = LocalDate.of(2022, 4, 5);
-        LocalDate listingEndDate = LocalDate.of(2022, 9, 29);
+        LocalDate listingStartDate = LocalDate.of(2022, 1, 1);
+        LocalDate listingEndDate = LocalDate.of(2022, 6, 6);
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo",
                 new Listing(listingStartDate, listingEndDate, true, "TEST DESCRIPTION"));
         carRepository.addNewCar(car1);
-        LocalDate startOfRentPeriod = LocalDate.of(2022, 12, 8);
-        LocalDate endOfRentPeriod = LocalDate.of(2022, 1, 16);
+        LocalDate startOfRentPeriod = LocalDate.of(2022, 4, 4);
+        LocalDate endOfRentPeriod = LocalDate.of(2022, 7, 7);
 
         assertEquals(-1 , carRepository.initiateRentProcess(car1, startOfRentPeriod, endOfRentPeriod));
     }
 
     @Test
     public void cannot_rent_car_if_illogical_date(){
-        CarRepository carRepository = new CarRepository("testRepository.json");
-        LocalDate listingStartDate = LocalDate.of(2022, 4, 5);
-        LocalDate listingEndDate = LocalDate.of(2022, 9, 29);
+        LocalDate listingStartDate = LocalDate.of(2022, 1, 1);
+        LocalDate listingEndDate = LocalDate.of(2022, 6, 6);
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo",
                 new Listing(listingStartDate, listingEndDate, true, "TEST DESCRIPTION"));
         carRepository.addNewCar(car1);
-        LocalDate startOfRentPeriod = LocalDate.of(2022, 12, 8);
-        LocalDate endOfRentPeriod = LocalDate.of(2022, 1, 16);
+        LocalDate startOfRentPeriod = LocalDate.of(2022, 5, 5);
+        LocalDate endOfRentPeriod = LocalDate.of(2022, 4, 4);
 
         assertEquals(-1 , carRepository.initiateRentProcess(car1, startOfRentPeriod, endOfRentPeriod));
     }

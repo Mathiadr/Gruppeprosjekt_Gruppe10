@@ -406,8 +406,4 @@ public class CarRental extends JFrame {
         cardLayout.revalidate();
         cardLayout.repaint();
     }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }
