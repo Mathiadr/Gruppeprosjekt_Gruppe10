@@ -18,7 +18,7 @@ public class CarRepositoryTest {
     *
     *
     */
-    public void car_is_created(){
+    public void new_car_is_creatable(){
         CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         assertNotNull(car1);
@@ -63,7 +63,7 @@ public class CarRepositoryTest {
     }
 
     @Test
-    public void Car_is_removed_from_repository(){ // TODO: save, Re-read and check
+    public void car_is_removed_from_repository(){ // TODO: save, Re-read and check
         CarRepository carRepository = new CarRepository("testRepository.json");
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         ArrayList<Car> carArrayList = carRepository.getCarArrayList();
@@ -86,10 +86,20 @@ public class CarRepositoryTest {
     }
 
     @Test
-    public void can_get_list_of_available_cars(){
+    public void new_listing_date_replaces_old_listing_date(){
+
+    }
+
+    @Test
+    public void list_of_available_cars_contains_available_cars(){
         CarRepository carRepository = new CarRepository("testRepository.json");
         carRepository.readFromJSON();
         //Approvals.verify(carRepository.getAllAvailableCars()); // TODO : FIXME
+    }
+
+    @Test
+    public void list_of_available_cars_does_not_contain_unavailable_cars(){
+
     }
 
     @Test
@@ -103,7 +113,12 @@ public class CarRepositoryTest {
     }
 
     @Test
-    public void can_rent_car_if_within_logical_date(){
+    public void car_is_not_available_when_renting(){
+
+    }
+
+    @Test
+    public void can_rent_car_if_within_rentable_period(){
         CarRepository carRepository = new CarRepository("testRepository.json");
         LocalDate listingStartDate = LocalDate.of(2022, 4, 5);
         LocalDate listingEndDate = LocalDate.of(2022, 9, 29);
@@ -115,6 +130,35 @@ public class CarRepositoryTest {
 
         assertEquals(1 , carRepository.initiateRentProcess(car1, startOfRentPeriod, endOfRentPeriod));
     }
+
+    @Test
+    public void cannot_rent_car_if_outside_of_rentable_period(){
+        CarRepository carRepository = new CarRepository("testRepository.json");
+        LocalDate listingStartDate = LocalDate.of(2022, 4, 5);
+        LocalDate listingEndDate = LocalDate.of(2022, 9, 29);
+        Car car1 = new Car("DFG441563", "Dummy one", "Volvo",
+                new Listing(listingStartDate, listingEndDate, true, "TEST DESCRIPTION"));
+        carRepository.addNewCar(car1);
+        LocalDate startOfRentPeriod = LocalDate.of(2022, 12, 8);
+        LocalDate endOfRentPeriod = LocalDate.of(2022, 1, 16);
+
+        assertEquals(-1 , carRepository.initiateRentProcess(car1, startOfRentPeriod, endOfRentPeriod));
+    }
+
+    @Test
+    public void cannot_rent_car_if_illogical_date(){
+        CarRepository carRepository = new CarRepository("testRepository.json");
+        LocalDate listingStartDate = LocalDate.of(2022, 4, 5);
+        LocalDate listingEndDate = LocalDate.of(2022, 9, 29);
+        Car car1 = new Car("DFG441563", "Dummy one", "Volvo",
+                new Listing(listingStartDate, listingEndDate, true, "TEST DESCRIPTION"));
+        carRepository.addNewCar(car1);
+        LocalDate startOfRentPeriod = LocalDate.of(2022, 12, 8);
+        LocalDate endOfRentPeriod = LocalDate.of(2022, 1, 16);
+
+        assertEquals(-1 , carRepository.initiateRentProcess(car1, startOfRentPeriod, endOfRentPeriod));
+    }
+
 
     // TODO: tests for validation and invalidation
     // TODO: create Search class & tests
