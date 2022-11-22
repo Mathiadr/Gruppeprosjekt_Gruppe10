@@ -235,7 +235,6 @@ public class CarRental extends JFrame {
 
                 contractArea.setText(CarContract.getCarContract(selectedCar.getOwner(), selectedCar.getModel(),
                         selectedCar.getListing().getStartDate(), selectedCar.getListing().getEndDate()));
-                scrollPane.getViewport().setViewPosition(new Point(0, 0));
             }
         });
 
