@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.*;
 
 
@@ -27,14 +28,16 @@ public class CarRental extends JFrame {
     private JComboBox<Integer> pickupDayComboBox, deliverDayComboBox, rentOutCarToDay, rentOutCarFromDay;
     private JComboBox<String> rentOutCarToMonth, rentOutCarFromMonth, deliverMonthComboBox, pickupMonthComboBox;
     private JComboBox<String> fuelTypeBox, editCarFuelType;
+    private JLabel logoLabel;
+
 
     CarRepository carRepository = new CarRepository("testRepository.JSON");
-    private DefaultListModel<Car> carArrayList  = new DefaultListModel<>();
+    private final DefaultListModel<Car> carDefaultListModel = new DefaultListModel<>();
 
     private void show_all_Cars_List(ArrayList<Car> newCarArrayList) {
-        carArrayList.clear();
+        carDefaultListModel.clear();
         for (Car i : newCarArrayList) {
-            carArrayList.addElement(i);
+            carDefaultListModel.addElement(i);
         }
     }
 
@@ -46,7 +49,7 @@ public class CarRental extends JFrame {
         this.pack();
 
 
-        // Initialisation of Lists and comboBoxes ----------------------
+        // Initialisation of visual elements, Lists and ComboBoxes ----------------------
 
         // Lists
         DefaultListModel<Car> carDefaultListModel = new DefaultListModel<>();
@@ -70,12 +73,25 @@ public class CarRental extends JFrame {
         rentOutCarFromDay.setModel(startDaysInMonthComboBoxModel);
         DateHandler.updateDaysInComboBox(pickupMonthComboBox.getSelectedItem(), startDaysInMonthComboBoxModel);
         DateHandler.updateDaysInComboBox(deliverMonthComboBox.getSelectedItem(), endDaysInMonthComboBoxModel);
-        editCarFuelType.setModel(new DefaultComboBoxModel<String>(Car.fuelTypesList));
-        fuelTypeBox.setModel(new DefaultComboBoxModel<String >(Car.fuelTypesList));
+        editCarFuelType.setModel(new DefaultComboBoxModel<>(Car.fuelTypesList));
+        fuelTypeBox.setModel(new DefaultComboBoxModel<>(Car.fuelTypesList));
 
-        // ---------------------------------------------------------------
+        // Set selected items to comboBox to current date by default
+        LocalDate currentDate = LocalDate.now();
+        pickupMonthComboBox.setSelectedItem(pickupMonthComboBox.getItemAt(currentDate.getMonthValue()-1));
+        pickupDayComboBox.setSelectedItem(pickupDayComboBox.getItemAt(currentDate.getDayOfMonth()-1));
+        deliverMonthComboBox.setSelectedItem(deliverMonthComboBox.getItemAt(currentDate.getMonthValue()-1));
+        deliverDayComboBox.setSelectedItem(deliverDayComboBox.getItemAt(currentDate.getDayOfMonth()-1));
+        rentOutCarFromMonth.setSelectedItem(rentOutCarFromMonth.getItemAt(currentDate.getMonthValue()-1));
+        rentOutCarFromDay.setSelectedItem(rentOutCarFromDay.getItemAt(currentDate.getDayOfMonth()-1));
+        rentOutCarToMonth.setSelectedItem(rentOutCarToMonth.getItemAt(currentDate.getMonthValue()-1));
+        rentOutCarToDay.setSelectedItem(rentOutCarToDay.getItemAt(currentDate.getDayOfMonth()-1));
 
+        //Logo
+        ImageIcon logo = new ImageIcon("src/logo2.png");
+        logoLabel.setIcon(logo);
 
+        // ------------------------------------------------------------------------------
 
 
 
@@ -83,25 +99,19 @@ public class CarRental extends JFrame {
         allCarsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(allCarsEditPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(allCarsEditPage);
 
                 carRepository.readFromJSON();
-                show_all_Cars_List(carRepository.getCarArrayList());
+                updateCarList(carRepository.getCarArrayList(), carDefaultListModel);
             }
         });
 
         toEditCarPageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(editCarPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(editCarPage);
 
-                Car selectedCar = (Car) allCarsList.getSelectedValue();
+                Car selectedCar = allCarsList.getSelectedValue();
                 modelEdit.setText(selectedCar.getModel());
                 ownerEdit.setText(selectedCar.getOwner());
                 regNumberEdit.setText(selectedCar.getRegistrationNumber());
@@ -161,10 +171,7 @@ public class CarRental extends JFrame {
         rentCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(chooseDatePanel);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(chooseDatePanel);
             }
         });
 
@@ -185,10 +192,7 @@ public class CarRental extends JFrame {
                 updateCarList(carArrayList, carDefaultListModel);
 
 
-                cardLayout.removeAll();
-                cardLayout.add(availableCarPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(availableCarPage);
 
 
 
@@ -202,10 +206,7 @@ public class CarRental extends JFrame {
         selectCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(selectedCarPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(selectedCarPage);
 
                 showsSelectedCarInfo.selectAll();
                 showsSelectedCarInfo.replaceSelection("");
@@ -219,10 +220,7 @@ public class CarRental extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Car selectedCar = carsAvailable.getSelectedValue();
                 selectedCar.getListing().setAvailable(false);
-                cardLayout.removeAll();
-                cardLayout.add(mainPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(mainPage);
                 JOptionPane.showMessageDialog(selectedCarPage, "You have just rented car " + selectedCar.getRegistrationNumber()
                  + " from owner " + selectedCar.getOwner());
             }
@@ -232,10 +230,7 @@ public class CarRental extends JFrame {
         rentOutCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(rentOutCarPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(rentOutCarPage);
             }
         });
 
@@ -270,11 +265,7 @@ public class CarRental extends JFrame {
                     System.out.println("Du har ikke valgt noe");
                 }
 
-                cardLayout.removeAll();
-                cardLayout.add(listingInputPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
-                System.out.println(allCarsList);
+                switchPage(mainPage);
             }
         });
 
@@ -283,7 +274,6 @@ public class CarRental extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 carRepository.readFromJSON();
-                // show_all_Cars_List(carRepository.getAllAvailableCars()); TODO: Why is this here?
 
                 int monthForPickup = monthsMap.get((String) rentOutCarFromMonth.getSelectedItem());
                 int dayForPickup = (int)rentOutCarFromDay.getSelectedItem();
@@ -313,10 +303,7 @@ public class CarRental extends JFrame {
                 catch (StringIndexOutOfBoundsException se){
                     System.out.println("Out of Bounds");
                 }
-                cardLayout.removeAll();
-                cardLayout.add(mainPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(mainPage);
             }
         });
 
@@ -328,60 +315,42 @@ public class CarRental extends JFrame {
         backToMainPage2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(mainPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(mainPage);
             }
         });
 
         backToMainPage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(mainPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(mainPage);
             }
         });
 
         backFromSelectedCarPage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(availableCarPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(availableCarPage);
             }
         });
 
         backToAllCars.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(allCarsEditPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(allCarsEditPage);
             }
         });
 
         backFromAllCarsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(mainPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(mainPage);
             }
         });
 
         backFromListingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(rentOutCarPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(rentOutCarPage);
             }
         });
 
@@ -404,14 +373,14 @@ public class CarRental extends JFrame {
             }
         });
 
-        // Updates the amount of days in ComboBox appropriate to selected month when selecting end period
+        // Updates the amount of days in ComboBox appropriate to selected month when selecting end of rent period
         rentOutCarToMonth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DateHandler.updateDaysInComboBox(rentOutCarToMonth.getSelectedItem(), endDaysInMonthComboBoxModel);
             }
         });
-        // Updates the amount of days in ComboBox appropriate to selected month when selecting start period
+        // Updates the amount of days in ComboBox appropriate to selected month when selecting start of rent period
         rentOutCarFromMonth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -425,8 +394,20 @@ public class CarRental extends JFrame {
     // Updates the given DefaultListModel with the contents of a given ArrayList containing cars
     public void updateCarList(ArrayList<Car> carArrayList, DefaultListModel<Car> carDefaultListModel){
         carDefaultListModel.removeAllElements();
+        // Foreach loops DO NOT work with DefaultListModels. Avoid using them.
         for (int car = 0; car < carArrayList.size(); car++){
             carDefaultListModel.addElement(carArrayList.get(car));
         }
+    }
+    // Updates the GUI to show specified page
+    private void switchPage(JPanel page) {
+        cardLayout.removeAll();
+        cardLayout.add(page);
+        cardLayout.revalidate();
+        cardLayout.repaint();
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
