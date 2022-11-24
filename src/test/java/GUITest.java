@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@Disabled
 public class GUITest {
 
     /*
@@ -21,27 +21,25 @@ public class GUITest {
     /*
     static CarRental carRental = new CarRental("TestFrame");
 
-
-    @Disabled
     @BeforeAll
     static void initGUI(){
         CarRental carRental = new CarRental("TestFrame");
         carRental.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    @Disabled
+
     @BeforeEach
     void resetVisibility(){
         carRental.setVisible(true);
     }
 
-    @Disabled
+
     @Test
     public void application_is_running() {
         assertTrue(carRental.isShowing());
     }
 
-    @Disabled
+
     @Test
     public void application_closes_with_Exit_button() {
         JButton jButton = new JButton();
@@ -56,7 +54,7 @@ public class GUITest {
         assertFalse(carRental.isShowing());
     }
 
-    @Disabled
+
     @Test
     public void check_if_button_pressed_work_with_SwitchPage() {
         JButton jButton = new JButton();
@@ -72,7 +70,7 @@ public class GUITest {
         assertTrue(jPanel.isShowing());
     }
 
-    @Disabled
+
     @Test
     public void button_pressed_creates_and_adds_car(){
         JButton jButton = new JButton();
@@ -81,10 +79,11 @@ public class GUITest {
             action.actionPerformed(actionEvent);
         }
     }
-    @Disabled
+
     @AfterAll
     static void closeGUI(){
         carRental.dispose();
     }
     */
+
 }

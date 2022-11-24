@@ -336,7 +336,6 @@ public class CarRental extends JFrame {
                     String ownerName = owner.getText();
                     String carModel = model.getText();
 
-
                     Car createdCar = new Car(registrationNumber, ownerName, carModel);
 
                     if (available.isSelected()) {
@@ -367,6 +366,7 @@ public class CarRental extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 carRepository.readFromJSON();
+                updateCarList(carRepository.getCarArrayList(), carDefaultListModel);
 
                 int monthForPickup = monthsMap.get((String) rentOutCarFromMonth.getSelectedItem());
                 int dayForPickup = (int)rentOutCarFromDay.getSelectedItem();
@@ -379,7 +379,7 @@ public class CarRental extends JFrame {
 
                 try {
 
-                    Car lastCarObject =  allCarsList.getModel().getElementAt(allCarsList.getLastVisibleIndex());
+                    Car lastCarObject = carDefaultListModel.lastElement();
 
                     Listing createdCarListing = new Listing(startDate, endDate, true, "");
 
@@ -403,10 +403,8 @@ public class CarRental extends JFrame {
         cancelContractButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(selectedCarPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(selectedCarPage);
+
             }
         });
 
