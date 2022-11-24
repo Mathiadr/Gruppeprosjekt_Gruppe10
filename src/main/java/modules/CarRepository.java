@@ -53,11 +53,21 @@ public class CarRepository {
             return -1;} // TODO: Implement error message to GUI
     }
 
-    // Returns all cars that are not currently occupied
+    // Returns cars that are within given rent period and not currently occupied
     public ArrayList<Car> getAllAvailableCars(LocalDate startOfRentPeriod, LocalDate endOfRentPeriod){
         ArrayList<Car> allAvailableCars = new ArrayList<>();
         for (Car i : carArrayList){
             if (i.getListing().isAvailable() && DateHandler.rentPeriodIsValid(i, startOfRentPeriod, endOfRentPeriod)){
+                allAvailableCars.add(i);
+            }
+        }
+        return allAvailableCars;
+    }
+    // Returns all cars that are not currently occupied
+    public ArrayList<Car> getAllAvailableCars(){
+        ArrayList<Car> allAvailableCars = new ArrayList<>();
+        for (Car i : carArrayList){
+            if (i.getListing().isAvailable()){
                 allAvailableCars.add(i);
             }
         }
@@ -96,5 +106,9 @@ public class CarRepository {
 
     public void setCarArrayList(ArrayList<Car> carArrayList) {
         this.carArrayList = carArrayList;
+    }
+
+    public CarRepositoryFileHandler getCarRepositoryFileHandler() {
+        return carRepositoryFileHandler;
     }
 }

@@ -20,6 +20,12 @@ public class DateHandler {
         return yearMonth.lengthOfMonth();
     }
 
+    public static int getDaysOfMonth(int yearInt, int monthInt){
+        Month month = Month.of(monthInt);
+        YearMonth yearMonth = YearMonth.of(yearInt, month);
+        return yearMonth.lengthOfMonth();
+    }
+
     // Generated a map which links the name of the months with their numeral version
     public static Map<String, Integer> generateMonthsMapper(){
         Map<String ,Integer> monthsMap = new LinkedHashMap<String, Integer>();
@@ -51,14 +57,12 @@ public class DateHandler {
 
     // Checks if the given startDate and endDate are valid (e.g endDate is not before startDate)
     public static boolean dateIsValid(LocalDate startDate, LocalDate endDate){
-        // TODO: IMPLEMENT
         if (startDate.isBefore(endDate)) return true;
         else return startDate.isEqual(endDate);
     }
 
     // Checks if the given rent period is within the date of the given car's listing
     public static boolean rentPeriodIsValid(Car car, LocalDate startOfRentPeriod, LocalDate endOfRentPeriod){
-        // TODO: IMPLEMENT
         Listing listing = car.getListing();
         if(!listing.isAvailable()) return false;
         if(!dateIsValid(startOfRentPeriod, endOfRentPeriod)) return false;
