@@ -68,4 +68,14 @@
     "description" : "PLACEHOLDER DESCRIPTION",
     "available" : true
   }
+}, {
+  "registrationNumber" : "",
+  "owner" : "",
+  "model" : "",
+  "listing" : {
+    "startDate" : "2022-01-01",
+    "endDate" : "2022-12-31",
+    "description" : "",
+    "available" : true
+  }
 } ]

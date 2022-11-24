@@ -314,7 +314,6 @@ public class CarRental extends JFrame {
                     System.out.println(createdCarListing);
 
                     //carRepository.updateListing(lastCarObject, createdCarListing); FIXME
-                    lastCarObject.setListing(createdCarListing);
                     carRepository.saveCarsToJSON();
 
                     JOptionPane.showMessageDialog(selectedCarPage, "Your car is now available to rent!");
