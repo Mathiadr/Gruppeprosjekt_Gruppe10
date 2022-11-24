@@ -49,16 +49,6 @@
     "available" : true
   }
 }, {
-  "registrationNumber" : "P0043456",
-  "owner" : "John Doe",
-  "model" : "A2",
-  "listing" : {
-    "startDate" : "2022-12-01",
-    "endDate" : "2022-12-31",
-    "description" : "PLACEHOLDER DESCRIPTION",
-    "available" : true
-  }
-}, {
   "registrationNumber" : "BE240051",
   "owner" : "Ola Nordmann",
   "model" : "A1",

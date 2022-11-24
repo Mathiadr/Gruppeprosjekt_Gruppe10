@@ -47,13 +47,6 @@ public class CarRental extends JFrame {
     CarRepository carRepository = new CarRepository("testRepository.JSON");
     private final DefaultListModel<Car> carDefaultListModel = new DefaultListModel<>();
 
-    private void show_all_Cars_List(ArrayList<Car> newCarArrayList) {
-        carDefaultListModel.clear();
-        for (Car i : newCarArrayList) {
-            carDefaultListModel.addElement(i);
-        }
-    }
-
     public CarRental(String title) {
         super(title);
 
@@ -130,8 +123,8 @@ public class CarRental extends JFrame {
             regNumberEdit.setText(selectedCar.getRegistrationNumber());
             editCarDescription.setText(selectedCarListing.getDescription());
             if (selectedCarListing.isAvailable()){
-                availableRadioButton.isSelected();
-            } else unavailableRadioButton.isSelected();
+                availableRadioButton.setSelected(true);
+            } else unavailableRadioButton.setSelected(true);
             startMonthComboBoxModel.setSelectedItem(selectedCarListing.getStartDate().getMonth().toString());
             endMonthComboBoxModel.setSelectedItem(selectedCarListing.getEndDate().getMonth().toString());
             startDaysInMonthComboBoxModel.setSelectedItem(selectedCarListing.getStartDate().getDayOfMonth());
@@ -142,10 +135,10 @@ public class CarRental extends JFrame {
         approveEdit.addActionListener(e -> {
             Car selectedCar = allCarsList.getSelectedValue();
             Listing selectedCarListing = selectedCar.getListing();
-            int monthForPickup = monthsMap.get((String) editFromMonth.getSelectedItem());
+            int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());
             int dayForPickup = (int)startDaysInMonthComboBoxModel.getSelectedItem();
 
-            int monthForDelivery = monthsMap.get((String) editToMonth.getSelectedItem());
+            int monthForDelivery = monthsMap.get(endMonthComboBoxModel.getSelectedItem().toString());
             int dayForDelivery = (int)endDaysInMonthComboBoxModel.getSelectedItem();
 
             LocalDate startDate = LocalDate.of(2022, monthForPickup, dayForPickup);
@@ -163,24 +156,13 @@ public class CarRental extends JFrame {
                 String ownerName = ownerEdit.getText();
                 String registrationNumber = regNumberEdit.getText();
 
-
-                if (regNumberEdit.getText().isEmpty()) {
-                    registrationNumber = selectedCar.getRegistrationNumber();
-                }
-                if (ownerEdit.getText().isEmpty()) {
-                    ownerName = selectedCar.getOwner();
-                }
-                if (modelEdit.getText().isEmpty()){
-                    carModel = selectedCar.getModel();
-                }
-
                 selectedCar.setRegistrationNumber(registrationNumber);
                 selectedCar.setOwner(ownerName);
                 selectedCar.setModel(carModel);
 
-                selectedCar.getListing().setAvailable(availableRadioButton.isSelected());
 
-                Listing createdCarListing = new Listing(startDate, endDate, true, "");
+                Listing createdCarListing = new Listing(startDate, endDate,
+                        availableRadioButton.isSelected(), editCarDescription.getText());
 
 
                 carRepository.updateListing(selectedCar, createdCarListing);
@@ -195,11 +177,20 @@ public class CarRental extends JFrame {
                 endMonthComboBoxModel.setSelectedItem(selectedCarListing.getEndDate().getMonth());
                 startDaysInMonthComboBoxModel.setSelectedItem(selectedCarListing.getStartDate().getDayOfMonth());
                 endDaysInMonthComboBoxModel.setSelectedItem(selectedCarListing.getStartDate().getDayOfMonth());
-
             }
             else if (!validInformation){
                 JOptionPane.showMessageDialog(editCarPage, "None of the fields in " +
-                        "car information can be empty");
+                        "car information can be empty. Please fill out each field with information.");
+
+                if (regNumberEdit.getText().isEmpty()) {
+                    regNumberEdit.setText(selectedCar.getRegistrationNumber());
+                }
+                if (ownerEdit.getText().isEmpty()) {
+                    ownerEdit.setText(selectedCar.getOwner());
+                }
+                if (modelEdit.getText().isEmpty()){
+                    modelEdit.setText(selectedCar.getModel());
+                }
             }
         });
 
@@ -210,7 +201,7 @@ public class CarRental extends JFrame {
                     " was removed");
             updateCarList(carRepository.getCarArrayList(), carDefaultListModel);
             carRepository.saveCarsToJSON();
-
+            switchPage(mainPage);
         });
 
 
@@ -220,48 +211,40 @@ public class CarRental extends JFrame {
 
 
         selectDateButton.addActionListener(e -> {
-            int monthForPickup = monthsMap.get((String) pickupMonthComboBox.getSelectedItem());
+            int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());
             int dayForPickup = (int) startDaysInMonthComboBoxModel.getSelectedItem();
 
-            int monthForDelivery = monthsMap.get((String) deliverMonthComboBox.getSelectedItem());
+            int monthForDelivery = monthsMap.get(endMonthComboBoxModel.getSelectedItem().toString());
             int dayForDelivery = (int) endDaysInMonthComboBoxModel.getSelectedItem();
 
             LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
             LocalDate endOfRentPeriod = LocalDate.of(2022, monthForDelivery, dayForDelivery);
-            carRepository.readFromJSON();
 
-            ArrayList<Car> carArrayList = carRepository.getAllAvailableCars(startOfRentPeriod, endOfRentPeriod);
-            updateCarList(carArrayList, carDefaultListModel);
+            boolean validDate = DateHandler.dateIsValid(startOfRentPeriod, endOfRentPeriod);
+            if (validDate) {
+                carRepository.readFromJSON();
 
+                ArrayList<Car> carArrayList = carRepository.getAllAvailableCars(startOfRentPeriod, endOfRentPeriod);
+                updateCarList(carArrayList, carDefaultListModel);
 
-            switchPage(availableCarPage);
+                switchPage(availableCarPage);
+            } else {
+                JOptionPane.showMessageDialog(chooseDatePanel, "Invalid date");
+            }
 
         });
 
         selectCar.addActionListener(e -> {
             switchPage(selectedCarPage);
-            Car selectedCar = carsAvailable.getSelectedValue();
-            int monthForPickup = monthsMap.get((String) pickupMonthComboBox.getSelectedItem());
-            int dayForPickup = (int) startDaysInMonthComboBoxModel.getSelectedItem();
-
-            int monthForDelivery = monthsMap.get((String) deliverMonthComboBox.getSelectedItem());
-            int dayForDelivery = (int) endDaysInMonthComboBoxModel.getSelectedItem();
-
-            LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
-            LocalDate endOfRentPeriod = LocalDate.of(2022, monthForDelivery, dayForDelivery);
-
-            showsSelectedCarInfo.selectAll();
-            showsSelectedCarInfo.replaceSelection("");
-
             showsSelectedCarInfo.append(carsAvailable.getSelectedValue().toString());
         });
 
         rentCarButton.addActionListener(e -> {
             Car selectedCar = carsAvailable.getSelectedValue();
-            int monthForPickup = monthsMap.get((String) pickupMonthComboBox.getSelectedItem());
+            int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());
             int dayForPickup = (int)startDaysInMonthComboBoxModel.getSelectedItem();
 
-            int monthForDelivery = monthsMap.get((String) deliverMonthComboBox.getSelectedItem());
+            int monthForDelivery = monthsMap.get(endMonthComboBoxModel.getSelectedItem().toString());
             int dayForDelivery = (int) endDaysInMonthComboBoxModel.getSelectedItem();
 
             LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
@@ -277,10 +260,10 @@ public class CarRental extends JFrame {
 
         agreeButton.addActionListener(e -> {
             Car selectedCar = carsAvailable.getSelectedValue();
-            int monthForPickup = monthsMap.get((String) pickupMonthComboBox.getSelectedItem());
+            int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());
             int dayForPickup = (int) startDaysInMonthComboBoxModel.getSelectedItem();
 
-            int monthForDelivery = monthsMap.get((String) deliverMonthComboBox.getSelectedItem());
+            int monthForDelivery = monthsMap.get(endMonthComboBoxModel.getSelectedItem().toString());
             int dayForDelivery = (int) endDaysInMonthComboBoxModel.getSelectedItem();
 
             LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
@@ -305,25 +288,29 @@ public class CarRental extends JFrame {
 
         createCar.addActionListener(e -> {
             carRepository.readFromJSON();
-            try {
-                String registrationNumber = regNumber.getText();
-                String ownerName = owner.getText();
-                String carModel = model.getText();
+            boolean validInformation = !regNumberEdit.getText().isEmpty() &&
+                    !ownerEdit.getText().isEmpty() &&
+                    !modelEdit.getText().isEmpty();
+            if (validInformation){
+                try {
+                    String registrationNumber = regNumber.getText();
+                    String ownerName = owner.getText();
+                    String carModel = model.getText();
 
-                Car createdCar = new Car(registrationNumber, ownerName, carModel);
-                carRepository.addNewCar(createdCar);
-                carRepository.saveCarsToJSON();
+                    Car createdCar = new Car(registrationNumber, ownerName, carModel);
+                    carRepository.addNewCar(createdCar);
+                    carRepository.saveCarsToJSON();
 
-                //Clears input fields
-                regNumber.setText("");
-                owner.setText("");
-                model.setText("");
+                    //Clears input fields
+                    regNumber.setText("");
+                    owner.setText("");
+                    model.setText("");
 
-            } catch (NullPointerException nullPointerException) {
-                System.out.println("Du har ikke valgt noe");
-            }
-
-            switchPage(listingInputPage);
+                } catch (NullPointerException nullPointerException) {
+                    System.out.println("You have not chosen anything");
+                }
+                switchPage(listingInputPage);
+            } else JOptionPane.showMessageDialog(chooseDatePanel, "Invalid fields. Please fill out the form.");
         });
 
 
@@ -333,36 +320,38 @@ public class CarRental extends JFrame {
 
             String carDescription = carDescriptionTextArea.getText();
 
-            int monthForPickup = monthsMap.get((String) rentOutCarFromMonth.getSelectedItem());
+            int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());
             int dayForPickup = (int) startDaysInMonthComboBoxModel.getSelectedItem();
 
-            int monthForDelivery = monthsMap.get((String) rentOutCarToMonth.getSelectedItem());
+            int monthForDelivery = monthsMap.get(endMonthComboBoxModel.getSelectedItem().toString());
             int dayForDelivery = (int) endDaysInMonthComboBoxModel.getSelectedItem();
 
             LocalDate startDate = LocalDate.of(2022, monthForPickup, dayForPickup);
             LocalDate endDate = LocalDate.of(2022, monthForDelivery, dayForDelivery);
 
-            boolean isAvailable = availableYesRadioButton.isSelected();
+            boolean validDate = DateHandler.dateIsValid(startDate, endDate);
+            if (validDate) {
+                boolean isAvailable = availableYesRadioButton.isSelected();
+
+                try {
+
+                    Car lastCarObject = carDefaultListModel.lastElement();
+
+                    Listing createdCarListing = new Listing(startDate, endDate, isAvailable, carDescription);
 
 
+                    carRepository.updateListing(lastCarObject, createdCarListing);
+                    carRepository.saveCarsToJSON();
 
-            try {
+                    JOptionPane.showMessageDialog(selectedCarPage, "Your listing is now published!");
 
-                Car lastCarObject = carDefaultListModel.lastElement();
+                }
+                catch (StringIndexOutOfBoundsException se){
+                    System.out.println("Out of Bounds");
+                }
+                switchPage(mainPage);
+            } else JOptionPane.showMessageDialog(chooseDatePanel, "Invalid date");
 
-                Listing createdCarListing = new Listing(startDate, endDate, isAvailable, carDescription);
-
-
-                carRepository.updateListing(lastCarObject, createdCarListing);
-                carRepository.saveCarsToJSON();
-
-                JOptionPane.showMessageDialog(selectedCarPage, "Your listing is now published!");
-
-            }
-            catch (StringIndexOutOfBoundsException se){
-                System.out.println("Out of Bounds");
-            }
-            switchPage(mainPage);
         });
 
 
@@ -389,18 +378,18 @@ public class CarRental extends JFrame {
 
         // Updates the amount of days in ComboBox appropriate to selected month when selecting pickup date
         pickupMonthComboBox.addActionListener(e ->
-                DateHandler.updateDaysInComboBox(pickupMonthComboBox.getSelectedItem(), startDaysInMonthComboBoxModel));
+                DateHandler.updateDaysInComboBox(startMonthComboBoxModel.getSelectedItem(), startDaysInMonthComboBoxModel));
 
         // Updates the amount of days in ComboBox appropriate to selected month when selecting delivery date
         deliverMonthComboBox.addActionListener(e ->
-                DateHandler.updateDaysInComboBox(deliverMonthComboBox.getSelectedItem(), endDaysInMonthComboBoxModel));
+                DateHandler.updateDaysInComboBox(endMonthComboBoxModel.getSelectedItem(), endDaysInMonthComboBoxModel));
 
         // Updates the amount of days in ComboBox appropriate to selected month when selecting end of rent period
         rentOutCarToMonth.addActionListener(e ->
-                DateHandler.updateDaysInComboBox(rentOutCarToMonth.getSelectedItem(), endDaysInMonthComboBoxModel));
+                DateHandler.updateDaysInComboBox(endMonthComboBoxModel.getSelectedItem(), endDaysInMonthComboBoxModel));
         // Updates the amount of days in ComboBox appropriate to selected month when selecting start of rent period
         rentOutCarFromMonth.addActionListener(e ->
-                DateHandler.updateDaysInComboBox(rentOutCarFromMonth.getSelectedItem(), startDaysInMonthComboBoxModel));
+                DateHandler.updateDaysInComboBox(startMonthComboBoxModel.getSelectedItem(), startDaysInMonthComboBoxModel));
 
         // --------------------------------------------------------------------------------------------------------
     }
@@ -419,10 +408,5 @@ public class CarRental extends JFrame {
         cardLayout.add(page);
         cardLayout.revalidate();
         cardLayout.repaint();
-    }
-
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }
