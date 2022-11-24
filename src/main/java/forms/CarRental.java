@@ -15,10 +15,25 @@ public class CarRental extends JFrame {
     private JPanel main, cardLayout, mainPage, availableCarPage, rentOutCarPage, selectedCarPage,allCarsEditPage,
             editInputs, editCarPage, buttons, rentCarButtons, createCarInputs, selectedCarButtons,EditCarPage,
             calendarPage, chooseDatePanel, listingInputPage, contractPanel;
-    private JButton createCar, selectCar, rentOutCar, rentCar, rentCarButton, allCarsButton,
-            toEditCarPageButton, backToAllCars, deleteCar, editCarButton,
-            backToMainPage2, backToMainPage, backFromSelectedCarPage, backFromAllCarsButton, selectDateButton,
-            listingInputButton, backFromListingButton, agreeButton, cancelContractButton;
+    public JButton createCar;
+    private JButton selectCar;
+    private JButton rentOutCar;
+    private JButton rentCar;
+    private JButton rentCarButton;
+    private JButton allCarsButton;
+    private JButton toEditCarPageButton;
+    private JButton backToAllCars;
+    private JButton deleteCar;
+    private JButton editCarButton;
+    private JButton backToMainPage2;
+    private JButton backToMainPage;
+    private JButton backFromSelectedCarPage;
+    private JButton backFromAllCarsButton;
+    private JButton selectDateButton;
+    private JButton listingInputButton;
+    private JButton backFromListingButton;
+    private JButton agreeButton;
+    private JButton cancelContractButton;
     private JFormattedTextField owner, model, fuelType;
     private JTextField regNumber, regNumberEdit, ownerEdit, modelEdit;
     private JCheckBox available, unavailable, availableEdit, unavailableEdit;
@@ -28,6 +43,7 @@ public class CarRental extends JFrame {
     private JComboBox<String> rentOutCarToMonth, rentOutCarFromMonth, deliverMonthComboBox, pickupMonthComboBox;
     private JComboBox<String> fuelTypeBox, editCarFuelType;
     private JLabel logoLabel;
+    private JButton backFromSelectDateButton;
     private JScrollPane scrollPane;
 
 
@@ -201,6 +217,15 @@ public class CarRental extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 switchPage(selectedCarPage);
+                Car selectedCar = carsAvailable.getSelectedValue();
+                int monthForPickup = monthsMap.get((String) pickupMonthComboBox.getSelectedItem());
+                int dayForPickup = (int)pickupDayComboBox.getSelectedItem();
+
+                int monthForDelivery = monthsMap.get((String) deliverMonthComboBox.getSelectedItem());
+                int dayForDelivery = (int) deliverDayComboBox.getSelectedItem();
+
+                LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
+                LocalDate endOfRentPeriod = LocalDate.of(2022, monthForDelivery, dayForDelivery);
 
                 showsSelectedCarInfo.selectAll();
                 showsSelectedCarInfo.replaceSelection("");
@@ -213,12 +238,19 @@ public class CarRental extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Car selectedCar = carsAvailable.getSelectedValue();
+                int monthForPickup = monthsMap.get((String) pickupMonthComboBox.getSelectedItem());
+                int dayForPickup = (int)pickupDayComboBox.getSelectedItem();
 
+                int monthForDelivery = monthsMap.get((String) deliverMonthComboBox.getSelectedItem());
+                int dayForDelivery = (int) deliverDayComboBox.getSelectedItem();
+
+                LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
+                LocalDate endOfRentPeriod = LocalDate.of(2022, monthForDelivery, dayForDelivery);
 
                 switchPage(contractPanel);
 
                 contractArea.setText(CarContract.getCarContract(selectedCar.getOwner(), selectedCar.getModel(),
-                        selectedCar.getListing().getStartDate(), selectedCar.getListing().getEndDate()));
+                        startOfRentPeriod, endOfRentPeriod));
                 contractArea.setCaretPosition(0);
 
             }
@@ -285,7 +317,7 @@ public class CarRental extends JFrame {
                     System.out.println("Du har ikke valgt noe");
                 }
 
-                switchPage(mainPage);
+                switchPage(listingInputPage);
             }
         });
 
@@ -310,11 +342,8 @@ public class CarRental extends JFrame {
 
                     Listing createdCarListing = new Listing(startDate, endDate, true, "");
 
-                    System.out.println(lastCarObject.toString());
-                    System.out.println(createdCarListing);
 
-                    //carRepository.updateListing(lastCarObject, createdCarListing); FIXME
-                    lastCarObject.setListing(createdCarListing);
+                    carRepository.updateListing(lastCarObject, createdCarListing);
                     carRepository.saveCarsToJSON();
 
                     JOptionPane.showMessageDialog(selectedCarPage, "Your car is now available to rent!");
@@ -350,7 +379,7 @@ public class CarRental extends JFrame {
         backToMainPage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switchPage(mainPage);
+                switchPage(chooseDatePanel);
             }
         });
 
@@ -379,6 +408,13 @@ public class CarRental extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 switchPage(rentOutCarPage);
+            }
+        });
+
+        backFromSelectDateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switchPage(mainPage);
             }
         });
 
@@ -434,4 +470,6 @@ public class CarRental extends JFrame {
         cardLayout.revalidate();
         cardLayout.repaint();
     }
+
+
 }

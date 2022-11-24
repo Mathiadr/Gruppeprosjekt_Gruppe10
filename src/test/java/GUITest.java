@@ -20,12 +20,6 @@ public class GUITest {
     CarRental carRental1 = new CarRental("TestFrame");
     JButton jButton = new JButton();
 
-
-    //void initialize_button_actionListeneres (ActionEvent event) {
-        //for (jButton.getActionCommand() i : ) {
-
-        //}
-    //}
     @Test
     public void application_is_running() {
         carRental1.setVisible(true);
@@ -68,12 +62,7 @@ public class GUITest {
 
     @Test
     public void button_pressed_creates_and_adds_car(){
-        carRental1.setVisible(true);
-
-        ActionEvent actionEvent = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "createCar");
-        for (ActionListener action : jButton.getActionListeners()) {
-            action.actionPerformed(actionEvent);
-        }
+      jButton.addActionListener(carRental1.createCar.getAction());
 
 
     }
