@@ -4,6 +4,8 @@ import modules.CarRepository;
 import forms.CarRental;
 import modules.Listing;
 
+import javax.swing.*;
+import java.awt.*;
 import java.time.LocalDate;
 
 
@@ -62,5 +64,7 @@ public class Main {
         CarRental carRental = new CarRental("Car rental");
         carRental.setSize(700, 450);
         carRental.setVisible(true);
+        ImageIcon logo = new ImageIcon("src/windowLogo.png");
+        carRental.setIconImage(logo.getImage());
     }
 }

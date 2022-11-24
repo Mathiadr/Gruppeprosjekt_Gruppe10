@@ -24,8 +24,8 @@ public class CarRepositoryFileHandler implements FileHandler<Car> {
         File file = new File(filename);
         try {
             return objectMapper.readValue(file, new TypeReference<ArrayList<Car>>() {});
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException | NullPointerException e) {
+            e.printStackTrace();
         }
         return null;
     }
@@ -35,10 +35,10 @@ public class CarRepositoryFileHandler implements FileHandler<Car> {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModules(new Jdk8Module(), new JavaTimeModule());
         File file = new File(filename);
-
+        if (carArrayList.isEmpty()) throw new NullPointerException("Repository is empty");
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, carArrayList);
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
     }

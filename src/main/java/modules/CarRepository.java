@@ -107,4 +107,8 @@ public class CarRepository {
     public void setCarArrayList(ArrayList<Car> carArrayList) {
         this.carArrayList = carArrayList;
     }
+
+    public CarRepositoryFileHandler getCarRepositoryFileHandler() {
+        return carRepositoryFileHandler;
+    }
 }

@@ -4,16 +4,24 @@ import modules.Listing;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import tools.CarRepositoryFileHandler;
 
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CarRepositoryFileHandlerTest {
     CarRepository carRepository;
+    CarRepositoryFileHandler carRepositoryFileHandler;
 
     @BeforeAll
     static void initializeCarRepository(){
         CarRepository carRepository = new CarRepository("testRepository.json");
+        CarRepositoryFileHandler carRepositoryFileHandler = new CarRepositoryFileHandler();
         carRepository.addNewCar(
                 new Car("MXH10045", "Mathias Dale Ratdal", "E2",
                         new Listing(
@@ -68,12 +76,31 @@ public class CarRepositoryFileHandlerTest {
     }
 
     @Test
-    public void repository_is_persistently_stored_in_file(){ //TODO: CHANGE
+    public void repository_is_persistently_stored_in_file(){
         Car newCar = new Car("DFG441563", "Dummy one", "Volvo");
         carRepository.addNewCar(newCar);
         carRepository.saveCarsToJSON();
         carRepository.readFromJSON();
         Approvals.verify(carRepository.getCarArrayList());
+    }
+
+    @Disabled("Could not manage to get test to work. Kept to document attempt.")
+    @Test
+    public void writing_to_file_throws_exception_if_invalid(){
+        String filename = "WrongFilename.txt";
+        IOException ioException = assertThrows(IOException.class,
+                () -> carRepositoryFileHandler.writeArrayListToFile(carRepository.getCarArrayList(), filename));
+        assertEquals("", ioException.getMessage());
+    }
+
+    @Disabled("Could not manage to get test to work. Kept to document attempt.")
+    @Test
+    public void writing_to_file_throws_exception_if_arrayList_is_empty(){
+        ArrayList<Car> carArrayList = new ArrayList<>(); // Empty
+        NullPointerException nullPointerException =
+                assertThrows(NullPointerException.class,
+                () -> carRepositoryFileHandler.writeArrayListToFile(carArrayList, carRepository.getRepositoryName()));
+        assertEquals("", nullPointerException.getMessage());
     }
 
     @Test

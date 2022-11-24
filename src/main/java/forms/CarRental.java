@@ -14,25 +14,21 @@ import java.util.*;
 public class CarRental extends JFrame {
     private JPanel main, cardLayout, mainPage, availableCarPage, rentOutCarPage, selectedCarPage,allCarsEditPage,
             editInputs, editCarPage, buttons, rentCarButtons, createCarInputs, selectedCarButtons,EditCarPage,
-            calendarPage, chooseDatePanel, listingInputPage;
+            calendarPage, chooseDatePanel, listingInputPage, contractPanel;
     private JButton createCar, selectCar, rentOutCar, rentCar, rentCarButton, allCarsButton,
             toEditCarPageButton, backToAllCars, deleteCar, editCarButton,
             backToMainPage2, backToMainPage, backFromSelectedCarPage, backFromAllCarsButton, selectDateButton,
-            listingInputButton, backFromListingButton;
+            listingInputButton, backFromListingButton, agreeButton, cancelContractButton;
     private JFormattedTextField owner, model, fuelType;
     private JTextField regNumber, regNumberEdit, ownerEdit, modelEdit;
     private JCheckBox available, unavailable, availableEdit, unavailableEdit;
-    private JTextArea showsSelectedCarInfo;
+    private JTextArea showsSelectedCarInfo, contractArea;
     private JList<Car> carsAvailable,allCarsList;
     private JComboBox<Integer> pickupDayComboBox, deliverDayComboBox, rentOutCarToDay, rentOutCarFromDay;
     private JComboBox<String> rentOutCarToMonth, rentOutCarFromMonth, deliverMonthComboBox, pickupMonthComboBox;
     private JComboBox<String> fuelTypeBox, editCarFuelType;
     private JLabel logoLabel;
-    private JTextArea contractArea;
     private JScrollPane scrollPane;
-    private JPanel contractPanel;
-    private JButton agreeButton;
-    private JButton cancelContractButton;
 
 
     CarRepository carRepository = new CarRepository("testRepository.JSON");
@@ -223,6 +219,8 @@ public class CarRental extends JFrame {
 
                 contractArea.setText(CarContract.getCarContract(selectedCar.getOwner(), selectedCar.getModel(),
                         selectedCar.getListing().getStartDate(), selectedCar.getListing().getEndDate()));
+                contractArea.setCaretPosition(0);
+
             }
         });
 
@@ -244,7 +242,7 @@ public class CarRental extends JFrame {
                 switchPage(mainPage);
 
 
-                JOptionPane.showMessageDialog(contractPanel, "You car is now for your disposal");
+                JOptionPane.showMessageDialog(contractPanel, "The car is now available, drive safe!");
             }
         });
 
@@ -328,8 +326,6 @@ public class CarRental extends JFrame {
                 switchPage(mainPage);
             }
         });
-
-
 
 
         // Back Buttons
@@ -432,7 +428,7 @@ public class CarRental extends JFrame {
         }
     }
     // Updates the GUI to show specified page
-    private void switchPage(JPanel page) {
+    public void switchPage(JPanel page) {
         cardLayout.removeAll();
         cardLayout.add(page);
         cardLayout.revalidate();

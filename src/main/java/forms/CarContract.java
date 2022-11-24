@@ -28,19 +28,19 @@ public class CarContract {
                     "The Parties agrees that this Agreement terminates upon the End Date specified above. Notwithstanding " +
                     "anything to the contrary in this Agreement or any Exhibits, either Party may terminate this Agreement " +
                     "prior to the End Date with at least one (1) day notice. If this Agreement is terminated prior to the " +
-                    "End Date, the Parties will work together to determine whether a refund of Rental Fees is necessary.\\\n" +
-                    "Mileage Limit\\n" +
+                    "End Date, the Parties will work together to determine whether a refund of Rental Fees is necessary.\n" +
+                    "Mileage Limit\n" +
                     "Renter will obey the following mileage limit for the Vehicle:\n" +
                     "[   ] No mileage limit[   ]\n" +
                     "Rental Fees\n" +
-                    "The Renter hereby agrees to pay the Owner for use of the Vehicle as follows:\\\n" +
-                    "Fuel: Renter shall pay / is not required to pay for the use of fuel. Excess Mileage: ______ per mile\\n" +
+                    "The Renter hereby agrees to pay the Owner for use of the Vehicle as follows:\n" +
+                    "Fuel: Renter shall pay / is not required to pay for the use of fuel. Excess Mileage: ______ per mile\n" +
                     "Deposit: _______. Owner shall retain this deposit to be used, in the event of loss of or damage " +
                     "to the Vehicle during the term of this Agreement, to defray fully or partially the cost of " +
                     "necessary repairs or replacement. In the absence of damage or loss, said deposit shall be credited " +
                     "toward payment of the rental fee and any excess shall be returned to the Renter.\\n" +
                     "Existing Damage to Vehicle\n" +
-                    "The Parties acknowledge the existing damage to the Vehicle as notated below:\\n" +
+                    "The Parties acknowledge the existing damage to the Vehicle as notated below:\n" +
                     "____________________________________________\n" +
                     "____________________________________________\n" +
                     "____________________________________________\n" +
@@ -50,7 +50,7 @@ public class CarContract {
                     "____________________________________________\n" +
                     "Insurance\n" +
                     "The Renter hereby warrants to Owner that Renter possess car insurance that covers personal injury to" +
-                    " Renter or  other persons as well as the Vehicle and the property of others.\\\n" +
+                    " Renter or  other persons as well as the Vehicle and the property of others.\n" +
                     "Indemnity\n" +
                     "Regardless of insurance coverage, Renter shall fully indemnify the Owner for any loss, damage, and " +
                     "legal actions, including reasonable attorneys fees that Owner suffers due to Renter’s use of Vehicle " +
