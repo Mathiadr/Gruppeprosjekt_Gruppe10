@@ -29,18 +29,18 @@ public class DateHandler {
     // Generated a map which links the name of the months with their numeral version
     public static Map<String, Integer> generateMonthsMapper(){
         Map<String ,Integer> monthsMap = new LinkedHashMap<String, Integer>();
-        monthsMap.put("January",    Calendar.JANUARY+1);
-        monthsMap.put("February",   Calendar.FEBRUARY+1);
-        monthsMap.put("March",      Calendar.MARCH+1);
-        monthsMap.put("April",      Calendar.APRIL+1);
-        monthsMap.put("May",        Calendar.MAY+1);
-        monthsMap.put("June",       Calendar.JUNE+1);
-        monthsMap.put("July",       Calendar.JULY+1);
-        monthsMap.put("August",     Calendar.AUGUST+1);
-        monthsMap.put("September",  Calendar.SEPTEMBER+1);
-        monthsMap.put("October"  ,  Calendar.OCTOBER+1);
-        monthsMap.put("November",   Calendar.NOVEMBER+1);
-        monthsMap.put("December",   Calendar.DECEMBER+1);
+        monthsMap.put( "JANUARY",  Calendar.JANUARY+1);
+        monthsMap.put( "FEBRUARY",  Calendar.FEBRUARY+1);
+        monthsMap.put( "MARCH",  Calendar.MARCH+1);
+        monthsMap.put( "APRIL",  Calendar.APRIL+1);
+        monthsMap.put( "MAY",  Calendar.MAY+1);
+        monthsMap.put( "JUNE",  Calendar.JUNE+1);
+        monthsMap.put( "JULY",  Calendar.JULY+1);
+        monthsMap.put( "AUGUST",  Calendar.AUGUST+1);
+        monthsMap.put( "SEPTEMBER",  Calendar.SEPTEMBER+1);
+        monthsMap.put( "OCTOBER",  Calendar.OCTOBER+1);
+        monthsMap.put( "NOVEMBER",  Calendar.NOVEMBER+1);
+        monthsMap.put( "DECEMBER",  Calendar.DECEMBER+1);
 
         return monthsMap;
     }

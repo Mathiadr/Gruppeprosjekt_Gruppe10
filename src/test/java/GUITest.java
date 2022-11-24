@@ -5,16 +5,16 @@ import javax.swing.*;
 import java.awt.event.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-@Disabled
 public class GUITest {
 
     /*
-    * Due to an exception occuring with Gradle/Intellij somehow interacting with multiple Swing instances,
-    * the GUI tests are unstable as attempts interchangeably pass and fail to initialize.
+    * Due to an exception occuring with Gradle/Intellij somehow interacting with Swing,
+    * the GUI tests are disabled as the tests interchangeably either pass or fail to initialize, making them unstable.
     * We've looked into the issue and see that it's very recent, having only been fixed week(s) ago.
     * This requires migrating Gradle and Intellij to the newest version, but as we're not sure how to do this
-    * we decided that we disable the tests completely. We leave them here for posterity sake, as this bug is
-    * outside our control and not due to our own code.
+    * within the limited time left we decided that we disable the tests completely.
+    * We leave them here to document our test, as this bug is outside our control and not due to our own code.
+    * Feel free to remove the comment and try to run it.
     */
 
 
@@ -84,6 +84,8 @@ public class GUITest {
     static void closeGUI(){
         carRental.dispose();
     }
-    */
+
+     */
+
 
 }
