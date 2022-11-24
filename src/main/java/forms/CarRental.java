@@ -206,7 +206,6 @@ public class CarRental extends JFrame {
 
                 JOptionPane.showMessageDialog(editCarPage, "Changes Approved");
                 switchPage(allCarsEditPage);
-
             }
         });
 
