@@ -1,5 +1,7 @@
 package modules;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,7 +26,7 @@ public class Car {
 
     }
 
-    public Car(String registrationNumber, String owner, String model) {
+    public Car(@NotNull String registrationNumber,@NotNull String owner,@NotNull String model) {
         this.registrationNumber = registrationNumber;
         this.owner = owner;
         this.model = model;
@@ -32,7 +34,7 @@ public class Car {
         LocalDate endDatePlaceholder = LocalDate.of(2022, 12, 31);
         this.listing = new Listing(startDateplaceholder, endDatePlaceholder, true, "");
     }
-    public Car(String registrationNumber, String owner, String model, Listing listing) {
+    public Car(@NotNull String registrationNumber,@NotNull String owner,@NotNull String model, Listing listing) {
         this.registrationNumber = registrationNumber;
         this.owner = owner;
         this.model = model;
