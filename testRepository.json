@@ -69,29 +69,9 @@
     "available" : true
   }
 }, {
-  "registrationNumber" : "Eb87234",
-  "owner" : "Martin",
-  "model" : "Hello",
-  "listing" : {
-    "startDate" : "2022-01-01",
-    "endDate" : "2022-12-31",
-    "description" : "",
-    "available" : true
-  }
-}, {
-  "registrationNumber" : "Kake",
-  "owner" : "Muffins",
-  "model" : "Hewst",
-  "listing" : {
-    "startDate" : "2022-01-01",
-    "endDate" : "2022-12-31",
-    "description" : "",
-    "available" : true
-  }
-}, {
-  "registrationNumber" : "Mamma",
-  "owner" : "Pappa",
-  "model" : "Hest",
+  "registrationNumber" : "",
+  "owner" : "",
+  "model" : "",
   "listing" : {
     "startDate" : "2022-01-01",
     "endDate" : "2022-12-31",

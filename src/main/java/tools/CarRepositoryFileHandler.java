@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class CarRepositoryFileHandler implements FileHandler<Car> {
 
     @Override
-    public ArrayList<Car> readFromFile(String filename) {
+    public ArrayList<Car> readFromFile(String filename){
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModules(new Jdk8Module(), new JavaTimeModule());
 
@@ -31,7 +31,7 @@ public class CarRepositoryFileHandler implements FileHandler<Car> {
     }
 
     @Override
-    public void writeArrayListToFile(ArrayList<Car> carArrayList, String filename) {
+    public void writeArrayListToFile(ArrayList<Car> carArrayList, String filename)  {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModules(new Jdk8Module(), new JavaTimeModule());
         File file = new File(filename);
