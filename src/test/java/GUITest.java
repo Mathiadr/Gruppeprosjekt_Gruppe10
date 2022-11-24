@@ -5,6 +5,7 @@ import modules.Listing;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -16,27 +17,40 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GUITest {
 
-    void initialize_CarRental () {
-    }
+    CarRental carRental1 = new CarRental("TestFrame");
+    JButton jButton = new JButton();
 
+
+    //void initialize_button_actionListeneres (ActionEvent event) {
+        //for (jButton.getActionCommand() i : ) {
+
+        //}
+    //}
     @Test
     public void application_is_running() {
-        CarRental carRental1 = new CarRental("TestFrame");
         carRental1.setVisible(true);
         assertTrue(carRental1.isShowing());
     }
 
     @Test
     public void application_closes_with_Exit_button() {
-        CarRental carRental1 = new CarRental("TestFrame");
         carRental1.setVisible(true);
+        carRental1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        jButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carRental1.dispose();
+            }
+        });
+
+        jButton.doClick();
 
         assertFalse(carRental1.isShowing());
     }
 
     @Test
     public void check_if_button_pressed_work_with_SwitchPage() {
-        CarRental carRental1 = new CarRental("TestFrame");
         carRental1.setVisible(true);
         JButton jButton = new JButton();
         JPanel jPanel = new JPanel();
@@ -54,9 +68,7 @@ public class GUITest {
 
     @Test
     public void button_pressed_creates_and_adds_car(){
-        CarRental carRental1 = new CarRental("TestFrame");
         carRental1.setVisible(true);
-        JButton jButton = new JButton();
 
         ActionEvent actionEvent = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "createCar");
         for (ActionListener action : jButton.getActionListeners()) {
