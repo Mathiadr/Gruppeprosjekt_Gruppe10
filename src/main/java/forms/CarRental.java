@@ -24,7 +24,7 @@ public class CarRental extends JFrame {
     private JButton toEditCarPageButton;
     private JButton backToAllCars;
     private JButton deleteCar;
-    private JButton editCarButton;
+    private JButton toEditDatePanel;
     private JButton backToMainPage2;
     private JButton backToMainPage;
     private JButton backFromSelectedCarPage;
@@ -44,6 +44,13 @@ public class CarRental extends JFrame {
     private JComboBox<String> fuelTypeBox, editCarFuelType;
     private JLabel logoLabel;
     private JButton backFromSelectDateButton;
+    private JPanel editListingPanel;
+    private JComboBox editToMonth;
+    private JComboBox editFromDay;
+    private JComboBox editToDay;
+    private JComboBox editFromMonth;
+    private JButton applyChangesButton;
+    private JButton backFromEditDatesPanel;
     private JScrollPane scrollPane;
 
 
@@ -79,6 +86,8 @@ public class CarRental extends JFrame {
             deliverMonthComboBox.addItem(month.getKey());
             rentOutCarFromMonth.addItem(month.getKey());
             rentOutCarToMonth.addItem(month.getKey());
+            editFromMonth.addItem(month.getKey());
+            editToMonth.addItem(month.getKey());
         }
         // ComboBoxes
         DefaultComboBoxModel<Integer> startDaysInMonthComboBoxModel = new DefaultComboBoxModel<>();
@@ -91,6 +100,8 @@ public class CarRental extends JFrame {
         DateHandler.updateDaysInComboBox(deliverMonthComboBox.getSelectedItem(), endDaysInMonthComboBoxModel);
         editCarFuelType.setModel(new DefaultComboBoxModel<>(Car.fuelTypesList));
         fuelTypeBox.setModel(new DefaultComboBoxModel<>(Car.fuelTypesList));
+        editFromDay.setModel(startDaysInMonthComboBoxModel);
+        editToDay.setModel(endDaysInMonthComboBoxModel);
 
         // Set selected items to comboBox to current date by default
         LocalDate currentDate = LocalDate.now();
@@ -135,7 +146,7 @@ public class CarRental extends JFrame {
             }
         });
 
-        editCarButton.addActionListener(new ActionListener() {
+        toEditDatePanel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Car selectedCar = allCarsList.getSelectedValue();
@@ -165,7 +176,36 @@ public class CarRental extends JFrame {
                     selectedCar.getListing().setAvailable(false);
                 }
 
+                switchPage(editListingPanel);
+
+            }
+        });
+
+        applyChangesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carRepository.readFromJSON();
+
+                int monthForPickup = monthsMap.get((String) editFromMonth.getSelectedItem());
+                int dayForPickup = (int)editFromDay.getSelectedItem();
+
+                int monthForDelivery = monthsMap.get((String) editToMonth.getSelectedItem());
+                int dayForDelivery = (int) editToDay.getSelectedItem();
+
+                LocalDate startDate = LocalDate.of(2022, monthForPickup, dayForPickup);
+                LocalDate endDate = LocalDate.of(2022, monthForDelivery, dayForDelivery);
+
+
+                Car editObject = carsAvailable.getSelectedValue();
+
+                Listing createdCarListing = new Listing(startDate, endDate, true, "");
+
+
+                carRepository.updateListing(editObject, createdCarListing);
+                carRepository.saveCarsToJSON();
+
                 JOptionPane.showMessageDialog(editCarPage, "Changes Approved");
+                switchPage(allCarsEditPage);
 
             }
         });
@@ -177,7 +217,8 @@ public class CarRental extends JFrame {
                 carRepository.removeExistingCar(selectedCar);
                 JOptionPane.showMessageDialog(editCarPage, "Car with Registration Number " + selectedCar.getRegistrationNumber() +
                         " was removed");
-                show_all_Cars_List(carRepository.getCarArrayList());
+                updateCarList(carRepository.getCarArrayList(), carDefaultListModel);
+                carRepository.saveCarsToJSON();
 
             }
         });
@@ -415,6 +456,13 @@ public class CarRental extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 switchPage(mainPage);
+            }
+        });
+
+        backFromEditDatesPanel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switchPage(editCarPage);
             }
         });
 
