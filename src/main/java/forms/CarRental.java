@@ -1,16 +1,13 @@
 package forms;
 
 import modules.*;
-import tools.CarContract;
 import tools.DateHandler;
 
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.*;
 
 
@@ -201,22 +198,13 @@ public class CarRental extends JFrame {
 
                 switchPage(availableCarPage);
 
-
-
-
-                // TODO: Figure out tf this does
-
-
             }
         });
 
         selectCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(selectedCarPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                switchPage(selectedCarPage);
 
                 showsSelectedCarInfo.selectAll();
                 showsSelectedCarInfo.replaceSelection("");
@@ -229,11 +217,9 @@ public class CarRental extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Car selectedCar = carsAvailable.getSelectedValue();
-                selectedCar.getListing().setAvailable(false);
-                cardLayout.removeAll();
-                cardLayout.add(contractPanel);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+
+
+                switchPage(contractPanel);
 
                 contractArea.setText(CarContract.getCarContract(selectedCar.getOwner(), selectedCar.getModel(),
                         selectedCar.getListing().getStartDate(), selectedCar.getListing().getEndDate()));
@@ -243,10 +229,20 @@ public class CarRental extends JFrame {
         agreeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.removeAll();
-                cardLayout.add(mainPage);
-                cardLayout.revalidate();
-                cardLayout.repaint();
+                Car selectedCar = carsAvailable.getSelectedValue();
+                int monthForPickup = monthsMap.get((String) pickupMonthComboBox.getSelectedItem());
+                int dayForPickup = (int)pickupDayComboBox.getSelectedItem();
+
+                int monthForDelivery = monthsMap.get((String) deliverMonthComboBox.getSelectedItem());
+                int dayForDelivery = (int) deliverDayComboBox.getSelectedItem();
+
+                LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
+                LocalDate endOfRentPeriod = LocalDate.of(2022, monthForDelivery, dayForDelivery);
+                carRepository.initiateRentProcess(selectedCar, startOfRentPeriod, endOfRentPeriod);
+                carRepository.saveCarsToJSON();
+                carRepository.readFromJSON();
+                switchPage(mainPage);
+
 
                 JOptionPane.showMessageDialog(contractPanel, "You car is now for your disposal");
             }

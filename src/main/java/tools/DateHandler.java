@@ -20,6 +20,12 @@ public class DateHandler {
         return yearMonth.lengthOfMonth();
     }
 
+    public static int getDaysOfMonth(int yearInt, int monthInt){
+        Month month = Month.of(monthInt);
+        YearMonth yearMonth = YearMonth.of(yearInt, month);
+        return yearMonth.lengthOfMonth();
+    }
+
     // Generated a map which links the name of the months with their numeral version
     public static Map<String, Integer> generateMonthsMapper(){
         Map<String ,Integer> monthsMap = new LinkedHashMap<String, Integer>();
