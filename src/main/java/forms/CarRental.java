@@ -5,14 +5,15 @@ import tools.DateHandler;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.*;
 
 
 public class CarRental extends JFrame {
     private JPanel main, cardLayout, mainPage, availableCarPage, rentOutCarPage, selectedCarPage,allCarsEditPage,
-            editInputs, editCarPage, buttons, rentCarButtons, createCarInputs, selectedCarButtons,EditCarPage,
-            calendarPage, chooseDatePanel, listingInputPage, contractPanel, editListingPanel;
+            editInputs, editCarPage, rentCarButtons, createCarInputs, selectedCarButtons,EditCarPage,
+            calendarPage, listingInputPage, contractPanel, editListingPanel;
     private JButton createCar, selectCar, rentOutCar, rentCar, rentCarButton, allCarsButton,
             toEditCarPageButton, backToAllCars, deleteCar, approveEdit, FromCreateCarPageToMain, backToMainPage,
             backFromSelectedCarPage, backFromAllCarsButton, selectDateButton,
@@ -39,6 +40,7 @@ public class CarRental extends JFrame {
     private JPanel editRentPeriod;
     private JRadioButton unavailableRadioButton;
     private JRadioButton availableRadioButton;
+    private JPanel dateBoxMainPage;
     private JScrollPane scrollPane;
 
 
@@ -52,9 +54,14 @@ public class CarRental extends JFrame {
         this.setContentPane(main);
         this.pack();
 
-        //Logo
-        ImageIcon logo = new ImageIcon("src/logo2.png");
+
+        //Logo and background
+        ImageIcon logo = new ImageIcon("src/carlogoresized.png");
         logoLabel.setIcon(logo);
+
+
+
+
 
 
         // Initialisation of visual elements, Lists and ComboBoxes ----------------------
@@ -204,9 +211,6 @@ public class CarRental extends JFrame {
 
 
         //Rent car buttons
-        rentCar.addActionListener(e -> switchPage(chooseDatePanel));
-
-
 
         selectDateButton.addActionListener(e -> {
             int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());
@@ -227,7 +231,7 @@ public class CarRental extends JFrame {
 
                 switchPage(availableCarPage);
             } else {
-                JOptionPane.showMessageDialog(chooseDatePanel, "Invalid date");
+                JOptionPane.showMessageDialog(mainPage, "Invalid date");
             }
 
         });
@@ -309,7 +313,7 @@ public class CarRental extends JFrame {
                     System.out.println("You have not chosen anything");
                 }
                 switchPage(listingInputPage);
-            } else JOptionPane.showMessageDialog(chooseDatePanel, "Invalid fields. Please fill out the form.");
+            } else JOptionPane.showMessageDialog(listingInputPage, "Invalid fields. Please fill out the form.");
         });
 
 
@@ -348,7 +352,7 @@ public class CarRental extends JFrame {
                     System.out.println("Out of Bounds");
                 }
                 switchPage(mainPage);
-            } else JOptionPane.showMessageDialog(chooseDatePanel, "Invalid date");
+            } else JOptionPane.showMessageDialog(createCarInputs, "Invalid date");
 
         });
 
@@ -366,8 +370,6 @@ public class CarRental extends JFrame {
 
         });
 
-        backToMainPage.addActionListener(e -> switchPage(chooseDatePanel));
-
         backFromSelectedCarPage.addActionListener(e -> switchPage(availableCarPage));
 
         backToAllCars.addActionListener(e -> switchPage(allCarsEditPage));
@@ -376,7 +378,8 @@ public class CarRental extends JFrame {
 
         backFromListingButton.addActionListener(e -> switchPage(rentOutCarPage));
 
-        backFromSelectDateButton.addActionListener(e -> switchPage(mainPage));
+        backToMainPage.addActionListener(e -> switchPage(mainPage));
+
 
 
         // ComboBox ActionListeners --------------------------------------------------------------------------------------
