@@ -5,8 +5,6 @@ import tools.DateHandler;
 
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -16,7 +14,7 @@ public class CarRental extends JFrame {
             editInputs, editCarPage, buttons, rentCarButtons, createCarInputs, selectedCarButtons,EditCarPage,
             calendarPage, chooseDatePanel, listingInputPage, contractPanel, editListingPanel;
     private JButton createCar, selectCar, rentOutCar, rentCar, rentCarButton, allCarsButton,
-            toEditCarPageButton, backToAllCars, deleteCar, approveEdit, backToMainPage2, backToMainPage,
+            toEditCarPageButton, backToAllCars, deleteCar, approveEdit, backFromCreateCarPage, backToMainPage,
             backFromSelectedCarPage, backFromAllCarsButton, selectDateButton,
             listingInputButton, backFromListingButton, agreeButton, cancelContractButton;
     private JFormattedTextField owner, model, fuelType;
@@ -360,7 +358,7 @@ public class CarRental extends JFrame {
 
         cancelContractButton.addActionListener(e -> switchPage(selectedCarPage));
 
-        backToMainPage2.addActionListener(e -> switchPage(mainPage));
+        backFromCreateCarPage.addActionListener(e -> switchPage(mainPage));
 
         backToMainPage.addActionListener(e -> switchPage(chooseDatePanel));
 
