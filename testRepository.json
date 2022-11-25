@@ -49,6 +49,16 @@
     "available" : true
   }
 }, {
+  "registrationNumber" : "P0043456",
+  "owner" : "John Doe",
+  "model" : "A2",
+  "listing" : {
+    "startDate" : "2022-12-01",
+    "endDate" : "2022-12-31",
+    "description" : "PLACEHOLDER DESCRIPTION",
+    "available" : true
+  }
+}, {
   "registrationNumber" : "BE240051",
   "owner" : "Ola Nordmann",
   "model" : "A1",
@@ -56,6 +66,26 @@
     "startDate" : "2022-02-07",
     "endDate" : "2022-12-23",
     "description" : "PLACEHOLDER DESCRIPTION",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "sdfsdf",
+  "owner" : "sdfsfd",
+  "model" : "sdfsf",
+  "listing" : {
+    "startDate" : "2022-11-25",
+    "endDate" : "2022-11-25",
+    "description" : "sdfsdfsdf",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "sdfs",
+  "owner" : "sdfs",
+  "model" : "dfghf",
+  "listing" : {
+    "startDate" : "2022-01-01",
+    "endDate" : "2022-12-31",
+    "description" : "",
     "available" : true
   }
 } ]

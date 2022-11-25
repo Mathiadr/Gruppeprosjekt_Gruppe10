@@ -5,8 +5,6 @@ import tools.DateHandler;
 
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -16,7 +14,7 @@ public class CarRental extends JFrame {
             editInputs, editCarPage, buttons, rentCarButtons, createCarInputs, selectedCarButtons,EditCarPage,
             calendarPage, chooseDatePanel, listingInputPage, contractPanel, editListingPanel;
     private JButton createCar, selectCar, rentOutCar, rentCar, rentCarButton, allCarsButton,
-            toEditCarPageButton, backToAllCars, deleteCar, approveEdit, backToMainPage2, backToMainPage,
+            toEditCarPageButton, backToAllCars, deleteCar, approveEdit, FromCreateCarPageToMain, backToMainPage,
             backFromSelectedCarPage, backFromAllCarsButton, selectDateButton,
             listingInputButton, backFromListingButton, agreeButton, cancelContractButton;
     private JFormattedTextField owner, model, fuelType;
@@ -288,9 +286,9 @@ public class CarRental extends JFrame {
 
         createCar.addActionListener(e -> {
             carRepository.readFromJSON();
-            boolean validInformation = !regNumberEdit.getText().isEmpty() &&
-                    !ownerEdit.getText().isEmpty() &&
-                    !modelEdit.getText().isEmpty();
+            boolean validInformation = !regNumber.getText().isEmpty() &&
+                    !owner.getText().isEmpty() &&
+                    !model.getText().isEmpty();
             if (validInformation){
                 try {
                     String registrationNumber = regNumber.getText();
@@ -305,6 +303,7 @@ public class CarRental extends JFrame {
                     regNumber.setText("");
                     owner.setText("");
                     model.setText("");
+
 
                 } catch (NullPointerException nullPointerException) {
                     System.out.println("You have not chosen anything");
@@ -332,7 +331,6 @@ public class CarRental extends JFrame {
             boolean validDate = DateHandler.dateIsValid(startDate, endDate);
             if (validDate) {
                 boolean isAvailable = availableYesRadioButton.isSelected();
-
                 try {
 
                     Car lastCarObject = carDefaultListModel.lastElement();
@@ -359,7 +357,14 @@ public class CarRental extends JFrame {
 
         cancelContractButton.addActionListener(e -> switchPage(selectedCarPage));
 
-        backToMainPage2.addActionListener(e -> switchPage(mainPage));
+        FromCreateCarPageToMain.addActionListener(e -> {
+            switchPage(mainPage);
+            //Clears input fields
+            regNumber.setText("");
+            owner.setText("");
+            model.setText("");
+
+        });
 
         backToMainPage.addActionListener(e -> switchPage(chooseDatePanel));
 
