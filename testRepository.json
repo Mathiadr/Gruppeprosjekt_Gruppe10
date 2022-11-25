@@ -69,19 +69,19 @@
     "available" : true
   }
 }, {
-  "registrationNumber" : "sdfsdf",
-  "owner" : "sdfsfd",
-  "model" : "sdfsf",
+  "registrationNumber" : "334",
+  "owner" : "dfsf",
+  "model" : "rtegb",
   "listing" : {
-    "startDate" : "2022-11-25",
-    "endDate" : "2022-11-25",
-    "description" : "sdfsdfsdf",
+    "startDate" : "2022-01-01",
+    "endDate" : "2022-12-31",
+    "description" : "",
     "available" : true
   }
 }, {
-  "registrationNumber" : "sdfs",
-  "owner" : "sdfs",
-  "model" : "dfghf",
+  "registrationNumber" : "sdfsd",
+  "owner" : "sfdsd",
+  "model" : "sdfsdf",
   "listing" : {
     "startDate" : "2022-01-01",
     "endDate" : "2022-12-31",
