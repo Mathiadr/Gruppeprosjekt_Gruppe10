@@ -83,6 +83,11 @@ public class CarRepository {
         }
     }
 
+    public void carFactory(){
+        String[] firstNames = {};
+        String[] lastNames = {};
+    }
+
     public void saveCarsToJSON(){
         carRepositoryFileHandler.writeArrayListToFile(getCarArrayList(), repositoryName);
     }

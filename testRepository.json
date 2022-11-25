@@ -68,4 +68,24 @@
     "description" : "PLACEHOLDER DESCRIPTION",
     "available" : true
   }
+}, {
+  "registrationNumber" : "sdfsdf",
+  "owner" : "sdfsfd",
+  "model" : "sdfsf",
+  "listing" : {
+    "startDate" : "2022-11-25",
+    "endDate" : "2022-11-25",
+    "description" : "sdfsdfsdf",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "sdfs",
+  "owner" : "sdfs",
+  "model" : "dfghf",
+  "listing" : {
+    "startDate" : "2022-01-01",
+    "endDate" : "2022-12-31",
+    "description" : "",
+    "available" : true
+  }
 } ]

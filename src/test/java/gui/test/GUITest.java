@@ -1,3 +1,5 @@
+package gui.test;
+
 import forms.CarRental;
 import org.junit.jupiter.api.*;
 
@@ -18,7 +20,7 @@ public class GUITest {
     */
 
 
-    /*
+
     static CarRental carRental = new CarRental("TestFrame");
 
     @BeforeAll
@@ -85,7 +87,7 @@ public class GUITest {
         carRental.dispose();
     }
 
-     */
+
 
 
 }
