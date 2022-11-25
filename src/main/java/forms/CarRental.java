@@ -78,6 +78,7 @@ public class CarRental extends JFrame {
         DefaultListModel<Car> carDefaultListModel = new DefaultListModel<>();
         carsAvailable.setModel(carDefaultListModel);
         allCarsList.setModel(carDefaultListModel);
+        allCarsList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 
         // Maps the name of the months to their numerical version
         Map<String ,Integer> monthsMap = DateHandler.generateMonthsMapper();
