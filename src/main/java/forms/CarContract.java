@@ -14,7 +14,8 @@ public class CarContract {
     }
 
     public static String getCarContract (String owner, String model, LocalDate startDate, LocalDate endDate) {
-            return ("\"PLACEHOLDER CONTRACT TEXT, GATHERED FROM https://templatelab.com/car-rental-agreement/#google_vignette\n\n" +
+            return ("\"PLACEHOLDER CONTRACT TEXT, GATHERED FROM https://templatelab.com/car-rental-agreement/#google_vignette" +
+                    "\n SHOULD NOT BE INTERPRETED AS A VALID CONTRACT BETWEEN ANY PARTIES\n\n" +
                     "This  Car  Rental  Agreement is  made  and  entered  into between\n" +
                     "you (Renter) and " + owner + ", (Owner). Owner and Renter may also be referred to " +
                     "as Party in the singular and 'Parties' in the plural. This Agreement is subject to the following " +
@@ -94,7 +95,8 @@ public class CarContract {
                     " required or permitted hereunder shall be given in writing to the other Party at the address stated " +
                     "above, or at such other address as shall be given by either Party to the other in writing. Any terms of" +
                     " this Agreement which by their nature extend beyond its termination remain in effect until fulfilled," +
-                    " and apply to respective successors and rightful assignees.\n");
+                    " and apply to respective successors and rightful assignees.\n" +
+                    "Ignore the fact that this says United States...");
         }
     }
 

@@ -73,11 +73,6 @@ public class CarRepositoryTest {
     }
 
     @Test
-    /*
-    *
-    *
-    *
-    */
     public void new_car_is_creatable(){
         Car car = new Car("DFG441563", "Dummy one", "Volvo");
         assertNotNull(car);

@@ -13,7 +13,6 @@ public class Car {
     private String brand;                   //TODO: IMPLEMENT
     //private String fuelType;              //TODO: IMPLEMENT
     //private String transmission;          //TODO: IMPLEMENT
-    //private Collection<String> features;  //TODO: IMPLEMENT
     private Listing listing;
 
     public static final String[] fuelTypesList = {"Electric", "Gasoline", "Diesel"};
@@ -34,6 +33,7 @@ public class Car {
         LocalDate endDatePlaceholder = LocalDate.of(2022, 12, 31);
         this.listing = new Listing(startDateplaceholder, endDatePlaceholder, true, "");
     }
+
     public Car(@NotNull String registrationNumber,@NotNull String owner,@NotNull String model, Listing listing) {
         this.registrationNumber = registrationNumber;
         this.owner = owner;

@@ -14,55 +14,38 @@ import java.util.*;
 public class CarRental extends JFrame {
     private JPanel main, cardLayout, mainPage, availableCarPage, rentOutCarPage, selectedCarPage,allCarsEditPage,
             editInputs, editCarPage, buttons, rentCarButtons, createCarInputs, selectedCarButtons,EditCarPage,
-            calendarPage, chooseDatePanel, listingInputPage, contractPanel;
-    public JButton createCar;
-    private JButton selectCar;
-    private JButton rentOutCar;
-    private JButton rentCar;
-    private JButton rentCarButton;
-    private JButton allCarsButton;
-    private JButton toEditCarPageButton;
-    private JButton backToAllCars;
-    private JButton deleteCar;
-    private JButton toEditDatePanel;
-    private JButton backToMainPage2;
-    private JButton backToMainPage;
-    private JButton backFromSelectedCarPage;
-    private JButton backFromAllCarsButton;
-    private JButton selectDateButton;
-    private JButton listingInputButton;
-    private JButton backFromListingButton;
-    private JButton agreeButton;
-    private JButton cancelContractButton;
+            calendarPage, chooseDatePanel, listingInputPage, contractPanel, editListingPanel;
+    private JButton createCar, selectCar, rentOutCar, rentCar, rentCarButton, allCarsButton,
+            toEditCarPageButton, backToAllCars, deleteCar, approveEdit, backToMainPage2, backToMainPage,
+            backFromSelectedCarPage, backFromAllCarsButton, selectDateButton,
+            listingInputButton, backFromListingButton, agreeButton, cancelContractButton;
     private JFormattedTextField owner, model, fuelType;
     private JTextField regNumber, regNumberEdit, ownerEdit, modelEdit;
-    private JCheckBox available, unavailable, availableEdit, unavailableEdit;
+    private JCheckBox availableEdit, unavailableEdit;
     private JTextArea showsSelectedCarInfo, contractArea;
     private JList<Car> carsAvailable,allCarsList;
-    private JComboBox<Integer> pickupDayComboBox, deliverDayComboBox, rentOutCarToDay, rentOutCarFromDay;
-    private JComboBox<String> rentOutCarToMonth, rentOutCarFromMonth, deliverMonthComboBox, pickupMonthComboBox;
+    private JComboBox<Integer> pickupDayComboBox, deliverDayComboBox, rentOutCarToDay, rentOutCarFromDay,
+            editToDay, editFromDay;
+    private JComboBox<String> rentOutCarToMonth, rentOutCarFromMonth, deliverMonthComboBox, pickupMonthComboBox,
+            editFromMonth, editToMonth;
     private JComboBox<String> fuelTypeBox, editCarFuelType;
     private JLabel logoLabel;
     private JButton backFromSelectDateButton;
-    private JPanel editListingPanel;
-    private JComboBox editToMonth;
-    private JComboBox editFromDay;
-    private JComboBox editToDay;
-    private JComboBox editFromMonth;
     private JButton applyChangesButton;
     private JButton backFromEditDatesPanel;
+    private JTextArea carDescriptionTextArea;
+    private JRadioButton availableYesRadioButton;
+    private JRadioButton availableNoRadioButton;
+    private JTextField PLACEHOLDERCURRENTLYNOTUSABLETextField;
+    private JTextArea editCarDescription;
+    private JPanel editRentPeriod;
+    private JRadioButton unavailableRadioButton;
+    private JRadioButton availableRadioButton;
     private JScrollPane scrollPane;
 
 
     CarRepository carRepository = new CarRepository("testRepository.JSON");
     private final DefaultListModel<Car> carDefaultListModel = new DefaultListModel<>();
-
-    private void show_all_Cars_List(ArrayList<Car> newCarArrayList) {
-        carDefaultListModel.clear();
-        for (Car i : newCarArrayList) {
-            carDefaultListModel.addElement(i);
-        }
-    }
 
     public CarRental(String title) {
         super(title);
@@ -70,6 +53,10 @@ public class CarRental extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(main);
         this.pack();
+
+        //Logo
+        ImageIcon logo = new ImageIcon("src/logo2.png");
+        logoLabel.setIcon(logo);
 
 
         // Initialisation of visual elements, Lists and ComboBoxes ----------------------
@@ -81,14 +68,12 @@ public class CarRental extends JFrame {
         allCarsList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 
         // Maps the name of the months to their numerical version
+        DefaultComboBoxModel<String> startMonthComboBoxModel = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<String> endMonthComboBoxModel = new DefaultComboBoxModel<>();
         Map<String ,Integer> monthsMap = DateHandler.generateMonthsMapper();
         for (Map.Entry<String, Integer> month : monthsMap.entrySet()){
-            pickupMonthComboBox.addItem(month.getKey());
-            deliverMonthComboBox.addItem(month.getKey());
-            rentOutCarFromMonth.addItem(month.getKey());
-            rentOutCarToMonth.addItem(month.getKey());
-            editFromMonth.addItem(month.getKey());
-            editToMonth.addItem(month.getKey());
+            startMonthComboBoxModel.addElement(month.getKey());
+            endMonthComboBoxModel.addElement(month.getKey());
         }
         // ComboBoxes
         DefaultComboBoxModel<Integer> startDaysInMonthComboBoxModel = new DefaultComboBoxModel<>();
@@ -97,254 +82,223 @@ public class CarRental extends JFrame {
         deliverDayComboBox.setModel(endDaysInMonthComboBoxModel);
         rentOutCarToDay.setModel(endDaysInMonthComboBoxModel);
         rentOutCarFromDay.setModel(startDaysInMonthComboBoxModel);
-        DateHandler.updateDaysInComboBox(pickupMonthComboBox.getSelectedItem(), startDaysInMonthComboBoxModel);
-        DateHandler.updateDaysInComboBox(deliverMonthComboBox.getSelectedItem(), endDaysInMonthComboBoxModel);
+        DateHandler.updateDaysInComboBox(startMonthComboBoxModel.getSelectedItem(), startDaysInMonthComboBoxModel);
+        DateHandler.updateDaysInComboBox(endMonthComboBoxModel.getSelectedItem(), endDaysInMonthComboBoxModel);
         editCarFuelType.setModel(new DefaultComboBoxModel<>(Car.fuelTypesList));
         fuelTypeBox.setModel(new DefaultComboBoxModel<>(Car.fuelTypesList));
         editFromDay.setModel(startDaysInMonthComboBoxModel);
         editToDay.setModel(endDaysInMonthComboBoxModel);
+        pickupMonthComboBox.setModel(startMonthComboBoxModel);
+        deliverMonthComboBox.setModel(endMonthComboBoxModel);
+        rentOutCarFromMonth.setModel(startMonthComboBoxModel);
+        rentOutCarToMonth.setModel(endMonthComboBoxModel);
+        editFromMonth.setModel(startMonthComboBoxModel);
+        editToMonth.setModel(endMonthComboBoxModel);
 
         // Set selected items to comboBox to current date by default
         LocalDate currentDate = LocalDate.now();
-        pickupMonthComboBox.setSelectedItem(pickupMonthComboBox.getItemAt(currentDate.getMonthValue()-1));
-        pickupDayComboBox.setSelectedItem(pickupDayComboBox.getItemAt(currentDate.getDayOfMonth()-1));
-        deliverMonthComboBox.setSelectedItem(deliverMonthComboBox.getItemAt(currentDate.getMonthValue()-1));
-        deliverDayComboBox.setSelectedItem(deliverDayComboBox.getItemAt(currentDate.getDayOfMonth()-1));
-        rentOutCarFromMonth.setSelectedItem(rentOutCarFromMonth.getItemAt(currentDate.getMonthValue()-1));
-        rentOutCarFromDay.setSelectedItem(rentOutCarFromDay.getItemAt(currentDate.getDayOfMonth()-1));
-        rentOutCarToMonth.setSelectedItem(rentOutCarToMonth.getItemAt(currentDate.getMonthValue()-1));
-        rentOutCarToDay.setSelectedItem(rentOutCarToDay.getItemAt(currentDate.getDayOfMonth()-1));
-
-        //Logo
-        ImageIcon logo = new ImageIcon("src/logo2.png");
-        logoLabel.setIcon(logo);
-
+        startMonthComboBoxModel.setSelectedItem(currentDate.getMonth().toString());
+        endMonthComboBoxModel.setSelectedItem(currentDate.getMonth().toString());
+        startDaysInMonthComboBoxModel.setSelectedItem(currentDate.getDayOfMonth());
+        endDaysInMonthComboBoxModel.setSelectedItem(currentDate.getDayOfMonth());
         // ------------------------------------------------------------------------------
 
 
 
+
         // Edit cars
-        allCarsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(allCarsEditPage);
+        allCarsButton.addActionListener(e -> {
+            switchPage(allCarsEditPage);
 
-                carRepository.readFromJSON();
-                updateCarList(carRepository.getCarArrayList(), carDefaultListModel);
-            }
+            carRepository.readFromJSON();
+            updateCarList(carRepository.getCarArrayList(), carDefaultListModel);
         });
 
-        toEditCarPageButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(editCarPage);
+        toEditCarPageButton.addActionListener(e -> {
+            switchPage(editCarPage);
 
-                Car selectedCar = allCarsList.getSelectedValue();
-                modelEdit.setText(selectedCar.getModel());
-                ownerEdit.setText(selectedCar.getOwner());
-                regNumberEdit.setText(selectedCar.getRegistrationNumber());
+            Car selectedCar = allCarsList.getSelectedValue();
+            Listing selectedCarListing = selectedCar.getListing();
+            modelEdit.setText(selectedCar.getModel());
+            ownerEdit.setText(selectedCar.getOwner());
+            regNumberEdit.setText(selectedCar.getRegistrationNumber());
+            editCarDescription.setText(selectedCarListing.getDescription());
+            if (selectedCarListing.isAvailable()){
+                availableRadioButton.setSelected(true);
+            } else unavailableRadioButton.setSelected(true);
+            startMonthComboBoxModel.setSelectedItem(selectedCarListing.getStartDate().getMonth().toString());
+            endMonthComboBoxModel.setSelectedItem(selectedCarListing.getEndDate().getMonth().toString());
+            startDaysInMonthComboBoxModel.setSelectedItem(selectedCarListing.getStartDate().getDayOfMonth());
+            endDaysInMonthComboBoxModel.setSelectedItem(selectedCarListing.getEndDate().getDayOfMonth());
 
-            }
         });
 
-        toEditDatePanel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Car selectedCar = allCarsList.getSelectedValue();
+        approveEdit.addActionListener(e -> {
+            Car selectedCar = allCarsList.getSelectedValue();
+            Listing selectedCarListing = selectedCar.getListing();
+            int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());
+            int dayForPickup = (int)startDaysInMonthComboBoxModel.getSelectedItem();
+
+            int monthForDelivery = monthsMap.get(endMonthComboBoxModel.getSelectedItem().toString());
+            int dayForDelivery = (int)endDaysInMonthComboBoxModel.getSelectedItem();
+
+            LocalDate startDate = LocalDate.of(2022, monthForPickup, dayForPickup);
+            LocalDate endDate = LocalDate.of(2022, monthForDelivery, dayForDelivery);
+
+            boolean validInformation = !regNumberEdit.getText().isEmpty() &&
+                    !ownerEdit.getText().isEmpty() &&
+                    !modelEdit.getText().isEmpty();
+            boolean validDate = DateHandler.dateIsValid(startDate, endDate);
+
+
+            if (validInformation && validDate){
 
                 String carModel = modelEdit.getText();
                 String ownerName = ownerEdit.getText();
                 String registrationNumber = regNumberEdit.getText();
 
-                if (regNumberEdit.getText().isEmpty()) {
-                    registrationNumber = selectedCar.getRegistrationNumber();
-                }
-                if (ownerEdit.getText().isEmpty()) {
-                    ownerName = selectedCar.getOwner();
-                }
-                if (modelEdit.getText().isEmpty()){
-                    carModel = selectedCar.getModel();
-                }
-
                 selectedCar.setRegistrationNumber(registrationNumber);
                 selectedCar.setOwner(ownerName);
                 selectedCar.setModel(carModel);
 
-                if (availableEdit.isSelected()) {
-                    selectedCar.getListing().setAvailable(true);
-                }
-                else if (unavailableEdit.isSelected()) {
-                    selectedCar.getListing().setAvailable(false);
-                }
 
-                switchPage(editListingPanel);
-
-            }
-        });
-
-        applyChangesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carRepository.readFromJSON();
-
-                int monthForPickup = monthsMap.get((String) editFromMonth.getSelectedItem());
-                int dayForPickup = (int)editFromDay.getSelectedItem();
-
-                int monthForDelivery = monthsMap.get((String) editToMonth.getSelectedItem());
-                int dayForDelivery = (int) editToDay.getSelectedItem();
-
-                LocalDate startDate = LocalDate.of(2022, monthForPickup, dayForPickup);
-                LocalDate endDate = LocalDate.of(2022, monthForDelivery, dayForDelivery);
+                Listing createdCarListing = new Listing(startDate, endDate,
+                        availableRadioButton.isSelected(), editCarDescription.getText());
 
 
-                Car editObject = carsAvailable.getSelectedValue();
-
-                Listing createdCarListing = new Listing(startDate, endDate, true, "");
-
-
-                carRepository.updateListing(editObject, createdCarListing);
+                carRepository.updateListing(selectedCar, createdCarListing);
                 carRepository.saveCarsToJSON();
 
                 JOptionPane.showMessageDialog(editCarPage, "Changes Approved");
                 switchPage(allCarsEditPage);
             }
+            else if (!validDate){
+                JOptionPane.showMessageDialog(editCarPage, "Invalid date");
+                startMonthComboBoxModel.setSelectedItem(selectedCarListing.getStartDate().getMonth());
+                endMonthComboBoxModel.setSelectedItem(selectedCarListing.getEndDate().getMonth());
+                startDaysInMonthComboBoxModel.setSelectedItem(selectedCarListing.getStartDate().getDayOfMonth());
+                endDaysInMonthComboBoxModel.setSelectedItem(selectedCarListing.getStartDate().getDayOfMonth());
+            }
+            else if (!validInformation){
+                JOptionPane.showMessageDialog(editCarPage, "None of the fields in " +
+                        "car information can be empty. Please fill out each field with information.");
+
+                if (regNumberEdit.getText().isEmpty()) {
+                    regNumberEdit.setText(selectedCar.getRegistrationNumber());
+                }
+                if (ownerEdit.getText().isEmpty()) {
+                    ownerEdit.setText(selectedCar.getOwner());
+                }
+                if (modelEdit.getText().isEmpty()){
+                    modelEdit.setText(selectedCar.getModel());
+                }
+            }
         });
 
-        deleteCar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Car selectedCar = allCarsList.getSelectedValue();
-                carRepository.removeExistingCar(selectedCar);
-                JOptionPane.showMessageDialog(editCarPage, "Car with Registration Number " + selectedCar.getRegistrationNumber() +
-                        " was removed");
-                updateCarList(carRepository.getCarArrayList(), carDefaultListModel);
-                carRepository.saveCarsToJSON();
-
-            }
+        deleteCar.addActionListener(e -> {
+            Car selectedCar = allCarsList.getSelectedValue();
+            carRepository.removeExistingCar(selectedCar);
+            JOptionPane.showMessageDialog(editCarPage, "Car with Registration Number " + selectedCar.getRegistrationNumber() +
+                    " was removed");
+            updateCarList(carRepository.getCarArrayList(), carDefaultListModel);
+            carRepository.saveCarsToJSON();
+            switchPage(mainPage);
         });
 
 
         //Rent car buttons
-        rentCar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(chooseDatePanel);
-            }
-        });
+        rentCar.addActionListener(e -> switchPage(chooseDatePanel));
 
-        selectDateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int monthForPickup = monthsMap.get((String) pickupMonthComboBox.getSelectedItem());
-                int dayForPickup = (int)pickupDayComboBox.getSelectedItem();
 
-                int monthForDelivery = monthsMap.get((String) deliverMonthComboBox.getSelectedItem());
-                int dayForDelivery = (int) deliverDayComboBox.getSelectedItem();
 
-                LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
-                LocalDate endOfRentPeriod = LocalDate.of(2022, monthForDelivery, dayForDelivery);
+        selectDateButton.addActionListener(e -> {
+            int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());
+            int dayForPickup = (int) startDaysInMonthComboBoxModel.getSelectedItem();
+
+            int monthForDelivery = monthsMap.get(endMonthComboBoxModel.getSelectedItem().toString());
+            int dayForDelivery = (int) endDaysInMonthComboBoxModel.getSelectedItem();
+
+            LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
+            LocalDate endOfRentPeriod = LocalDate.of(2022, monthForDelivery, dayForDelivery);
+
+            boolean validDate = DateHandler.dateIsValid(startOfRentPeriod, endOfRentPeriod);
+            if (validDate) {
                 carRepository.readFromJSON();
 
                 ArrayList<Car> carArrayList = carRepository.getAllAvailableCars(startOfRentPeriod, endOfRentPeriod);
                 updateCarList(carArrayList, carDefaultListModel);
 
-
                 switchPage(availableCarPage);
-
+            } else {
+                JOptionPane.showMessageDialog(chooseDatePanel, "Invalid date");
             }
+
         });
 
-        selectCar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(selectedCarPage);
-                Car selectedCar = carsAvailable.getSelectedValue();
-                int monthForPickup = monthsMap.get((String) pickupMonthComboBox.getSelectedItem());
-                int dayForPickup = (int)pickupDayComboBox.getSelectedItem();
-
-                int monthForDelivery = monthsMap.get((String) deliverMonthComboBox.getSelectedItem());
-                int dayForDelivery = (int) deliverDayComboBox.getSelectedItem();
-
-                LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
-                LocalDate endOfRentPeriod = LocalDate.of(2022, monthForDelivery, dayForDelivery);
-
-                showsSelectedCarInfo.selectAll();
-                showsSelectedCarInfo.replaceSelection("");
-
-                showsSelectedCarInfo.append(carsAvailable.getSelectedValue().toString());
-                }
+        selectCar.addActionListener(e -> {
+            switchPage(selectedCarPage);
+            showsSelectedCarInfo.append(carsAvailable.getSelectedValue().toString());
         });
 
-        rentCarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Car selectedCar = carsAvailable.getSelectedValue();
-                int monthForPickup = monthsMap.get((String) pickupMonthComboBox.getSelectedItem());
-                int dayForPickup = (int)pickupDayComboBox.getSelectedItem();
+        rentCarButton.addActionListener(e -> {
+            Car selectedCar = carsAvailable.getSelectedValue();
+            int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());
+            int dayForPickup = (int)startDaysInMonthComboBoxModel.getSelectedItem();
 
-                int monthForDelivery = monthsMap.get((String) deliverMonthComboBox.getSelectedItem());
-                int dayForDelivery = (int) deliverDayComboBox.getSelectedItem();
+            int monthForDelivery = monthsMap.get(endMonthComboBoxModel.getSelectedItem().toString());
+            int dayForDelivery = (int) endDaysInMonthComboBoxModel.getSelectedItem();
 
-                LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
-                LocalDate endOfRentPeriod = LocalDate.of(2022, monthForDelivery, dayForDelivery);
+            LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
+            LocalDate endOfRentPeriod = LocalDate.of(2022, monthForDelivery, dayForDelivery);
 
-                switchPage(contractPanel);
+            switchPage(contractPanel);
 
-                contractArea.setText(CarContract.getCarContract(selectedCar.getOwner(), selectedCar.getModel(),
-                        startOfRentPeriod, endOfRentPeriod));
-                contractArea.setCaretPosition(0);
+            contractArea.setText(CarContract.getCarContract(selectedCar.getOwner(), selectedCar.getModel(),
+                    startOfRentPeriod, endOfRentPeriod));
+            contractArea.setCaretPosition(0);
 
-            }
         });
 
-        agreeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Car selectedCar = carsAvailable.getSelectedValue();
-                int monthForPickup = monthsMap.get((String) pickupMonthComboBox.getSelectedItem());
-                int dayForPickup = (int)pickupDayComboBox.getSelectedItem();
+        agreeButton.addActionListener(e -> {
+            Car selectedCar = carsAvailable.getSelectedValue();
+            int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());
+            int dayForPickup = (int) startDaysInMonthComboBoxModel.getSelectedItem();
 
-                int monthForDelivery = monthsMap.get((String) deliverMonthComboBox.getSelectedItem());
-                int dayForDelivery = (int) deliverDayComboBox.getSelectedItem();
+            int monthForDelivery = monthsMap.get(endMonthComboBoxModel.getSelectedItem().toString());
+            int dayForDelivery = (int) endDaysInMonthComboBoxModel.getSelectedItem();
 
-                LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
-                LocalDate endOfRentPeriod = LocalDate.of(2022, monthForDelivery, dayForDelivery);
-                carRepository.initiateRentProcess(selectedCar, startOfRentPeriod, endOfRentPeriod);
-                carRepository.saveCarsToJSON();
-                carRepository.readFromJSON();
-                switchPage(mainPage);
+            LocalDate startOfRentPeriod = LocalDate.of(2022, monthForPickup, dayForPickup);
+            LocalDate endOfRentPeriod = LocalDate.of(2022, monthForDelivery, dayForDelivery);
+            carRepository.initiateRentProcess(selectedCar, startOfRentPeriod, endOfRentPeriod);
+            carRepository.saveCarsToJSON();
+            carRepository.readFromJSON();
+            switchPage(mainPage);
 
 
-                JOptionPane.showMessageDialog(contractPanel, "The car is now available, drive safe!");
-            }
+            JOptionPane.showMessageDialog(contractPanel, "The car is now available, drive safe!");
         });
 
         // Rent out car buttons
-        rentOutCar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(rentOutCarPage);
-            }
+        rentOutCar.addActionListener(e -> {
+            startMonthComboBoxModel.setSelectedItem(currentDate.getMonth().toString());
+            endMonthComboBoxModel.setSelectedItem(currentDate.getMonth().toString());
+            startDaysInMonthComboBoxModel.setSelectedItem(currentDate.getDayOfMonth());
+            endDaysInMonthComboBoxModel.setSelectedItem(currentDate.getDayOfMonth());
+            switchPage(rentOutCarPage);
         });
 
-        createCar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carRepository.readFromJSON();
+        createCar.addActionListener(e -> {
+            carRepository.readFromJSON();
+            boolean validInformation = !regNumberEdit.getText().isEmpty() &&
+                    !ownerEdit.getText().isEmpty() &&
+                    !modelEdit.getText().isEmpty();
+            if (validInformation){
                 try {
                     String registrationNumber = regNumber.getText();
                     String ownerName = owner.getText();
                     String carModel = model.getText();
 
                     Car createdCar = new Car(registrationNumber, ownerName, carModel);
-
-                    if (available.isSelected()) {
-                        createdCar.getListing().setAvailable(true);
-
-                    } else if (unavailable.isSelected()) {
-                        createdCar.getListing().setAvailable(false);
-                    }
-
                     carRepository.addNewCar(createdCar);
                     carRepository.saveCarsToJSON();
 
@@ -354,149 +308,89 @@ public class CarRental extends JFrame {
                     model.setText("");
 
                 } catch (NullPointerException nullPointerException) {
-                    System.out.println("Du har ikke valgt noe");
+                    System.out.println("You have not chosen anything");
                 }
-
                 switchPage(listingInputPage);
-            }
+            } else JOptionPane.showMessageDialog(chooseDatePanel, "Invalid fields. Please fill out the form.");
         });
 
 
-        listingInputButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carRepository.readFromJSON();
-                updateCarList(carRepository.getCarArrayList(), carDefaultListModel);
+        listingInputButton.addActionListener(e -> {
+            carRepository.readFromJSON();
+            updateCarList(carRepository.getCarArrayList(), carDefaultListModel);
 
-                int monthForPickup = monthsMap.get((String) rentOutCarFromMonth.getSelectedItem());
-                int dayForPickup = (int)rentOutCarFromDay.getSelectedItem();
+            String carDescription = carDescriptionTextArea.getText();
 
-                int monthForDelivery = monthsMap.get((String) rentOutCarToMonth.getSelectedItem());
-                int dayForDelivery = (int) rentOutCarToDay.getSelectedItem();
+            int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());
+            int dayForPickup = (int) startDaysInMonthComboBoxModel.getSelectedItem();
 
-                LocalDate startDate = LocalDate.of(2022, monthForPickup, dayForPickup);
-                LocalDate endDate = LocalDate.of(2022, monthForDelivery, dayForDelivery);
+            int monthForDelivery = monthsMap.get(endMonthComboBoxModel.getSelectedItem().toString());
+            int dayForDelivery = (int) endDaysInMonthComboBoxModel.getSelectedItem();
+
+            LocalDate startDate = LocalDate.of(2022, monthForPickup, dayForPickup);
+            LocalDate endDate = LocalDate.of(2022, monthForDelivery, dayForDelivery);
+
+            boolean validDate = DateHandler.dateIsValid(startDate, endDate);
+            if (validDate) {
+                boolean isAvailable = availableYesRadioButton.isSelected();
 
                 try {
 
                     Car lastCarObject = carDefaultListModel.lastElement();
 
-                    Listing createdCarListing = new Listing(startDate, endDate, true, "");
+                    Listing createdCarListing = new Listing(startDate, endDate, isAvailable, carDescription);
 
 
                     carRepository.updateListing(lastCarObject, createdCarListing);
                     carRepository.saveCarsToJSON();
 
-                    JOptionPane.showMessageDialog(selectedCarPage, "Your car is now available to rent!");
+                    JOptionPane.showMessageDialog(selectedCarPage, "Your listing is now published!");
 
                 }
                 catch (StringIndexOutOfBoundsException se){
                     System.out.println("Out of Bounds");
                 }
                 switchPage(mainPage);
-            }
+            } else JOptionPane.showMessageDialog(chooseDatePanel, "Invalid date");
+
         });
 
 
         // Back Buttons
 
-        cancelContractButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(selectedCarPage);
+        cancelContractButton.addActionListener(e -> switchPage(selectedCarPage));
 
-            }
-        });
+        backToMainPage2.addActionListener(e -> switchPage(mainPage));
 
-        backToMainPage2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(mainPage);
-            }
-        });
+        backToMainPage.addActionListener(e -> switchPage(chooseDatePanel));
 
-        backToMainPage.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(chooseDatePanel);
-            }
-        });
+        backFromSelectedCarPage.addActionListener(e -> switchPage(availableCarPage));
 
-        backFromSelectedCarPage.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(availableCarPage);
-            }
-        });
+        backToAllCars.addActionListener(e -> switchPage(allCarsEditPage));
 
-        backToAllCars.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(allCarsEditPage);
-            }
-        });
+        backFromAllCarsButton.addActionListener(e -> switchPage(mainPage));
 
-        backFromAllCarsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(mainPage);
-            }
-        });
+        backFromListingButton.addActionListener(e -> switchPage(rentOutCarPage));
 
-        backFromListingButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(rentOutCarPage);
-            }
-        });
-
-        backFromSelectDateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(mainPage);
-            }
-        });
-
-        backFromEditDatesPanel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPage(editCarPage);
-            }
-        });
+        backFromSelectDateButton.addActionListener(e -> switchPage(mainPage));
 
 
         // ComboBox ActionListeners --------------------------------------------------------------------------------------
 
         // Updates the amount of days in ComboBox appropriate to selected month when selecting pickup date
-        pickupMonthComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DateHandler.updateDaysInComboBox(pickupMonthComboBox.getSelectedItem(), startDaysInMonthComboBoxModel);
-            }
-        });
+        pickupMonthComboBox.addActionListener(e ->
+                DateHandler.updateDaysInComboBox(startMonthComboBoxModel.getSelectedItem(), startDaysInMonthComboBoxModel));
 
         // Updates the amount of days in ComboBox appropriate to selected month when selecting delivery date
-        deliverMonthComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DateHandler.updateDaysInComboBox(deliverMonthComboBox.getSelectedItem(), endDaysInMonthComboBoxModel);
-            }
-        });
+        deliverMonthComboBox.addActionListener(e ->
+                DateHandler.updateDaysInComboBox(endMonthComboBoxModel.getSelectedItem(), endDaysInMonthComboBoxModel));
 
         // Updates the amount of days in ComboBox appropriate to selected month when selecting end of rent period
-        rentOutCarToMonth.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DateHandler.updateDaysInComboBox(rentOutCarToMonth.getSelectedItem(), endDaysInMonthComboBoxModel);
-            }
-        });
+        rentOutCarToMonth.addActionListener(e ->
+                DateHandler.updateDaysInComboBox(endMonthComboBoxModel.getSelectedItem(), endDaysInMonthComboBoxModel));
         // Updates the amount of days in ComboBox appropriate to selected month when selecting start of rent period
-        rentOutCarFromMonth.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DateHandler.updateDaysInComboBox(rentOutCarFromMonth.getSelectedItem(), startDaysInMonthComboBoxModel);
-            }
-        });
+        rentOutCarFromMonth.addActionListener(e ->
+                DateHandler.updateDaysInComboBox(startMonthComboBoxModel.getSelectedItem(), startDaysInMonthComboBoxModel));
 
         // --------------------------------------------------------------------------------------------------------
     }
@@ -516,6 +410,4 @@ public class CarRental extends JFrame {
         cardLayout.revalidate();
         cardLayout.repaint();
     }
-
-
 }
