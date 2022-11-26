@@ -69,19 +69,9 @@
     "available" : true
   }
 }, {
-  "registrationNumber" : "334",
-  "owner" : "dfsf",
-  "model" : "rtegb",
-  "listing" : {
-    "startDate" : "2022-01-01",
-    "endDate" : "2022-12-31",
-    "description" : "",
-    "available" : true
-  }
-}, {
-  "registrationNumber" : "sdfsd",
-  "owner" : "sfdsd",
-  "model" : "sdfsdf",
+  "registrationNumber" : "DFG441563",
+  "owner" : "Dummy one",
+  "model" : "Volvo",
   "listing" : {
     "startDate" : "2022-01-01",
     "endDate" : "2022-12-31",

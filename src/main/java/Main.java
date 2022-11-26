@@ -68,8 +68,11 @@ public class Main {
         carRental.setSize((int)windowWidth, (int)windowHeight);
         carRental.setLocation((int) (windowWidth*0.5), (int)(windowHeight*0.5));
         carRental.setVisible(true);
+
         ImageIcon logo = new ImageIcon("src/windowLogo.png");
-        carRental.setIconImage(logo.getImage());
+        Image logoImage = logo.getImage();
+        Image scaledImage = logoImage.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+        carRental.setIconImage(scaledImage);
 
     }
 }
