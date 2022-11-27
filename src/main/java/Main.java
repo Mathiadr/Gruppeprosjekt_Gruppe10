@@ -1,17 +1,12 @@
-import modules.Car;
 import modules.CarRepository;
-
 import forms.CarRental;
-import modules.Listing;
-
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.time.LocalDate;
+
 
 public class Main {
     public static void main(String[] args){
-        CarRepository carRepository = new CarRepository("testRepository.json");
+        CarRepository carRepository = new CarRepository("CarRepository.json");
         carRepository.readFromJSON();
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

@@ -5,10 +5,8 @@ import tools.DateHandler;
 
 
 import javax.swing.*;
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.*;
-import javax.swing.DefaultListCellRenderer;
 
 
 public class CarRental extends JFrame {
@@ -109,7 +107,8 @@ public class CarRental extends JFrame {
         startDaysInMonthComboBoxModel.setSelectedItem(currentDate.getDayOfMonth());
         endDaysInMonthComboBoxModel.setSelectedItem(currentDate.getDayOfMonth());
         // -----------------------------------------------------------------------------
-        //carsAvailable.setFixedCellHeight(30);
+        carsAvailable.setFixedCellHeight(160);
+        allCarsList.setFixedCellHeight(160);
         int cellWidth = 1000;
         ListingCellRenderer listingCellRenderer = new ListingCellRenderer(cellWidth);
         carsAvailable.setCellRenderer(listingCellRenderer);
@@ -146,6 +145,7 @@ public class CarRental extends JFrame {
 
         });
 
+        // Apply changes to specified car in Edit page
         approveEdit.addActionListener(e -> {
             Car selectedCar = allCarsList.getSelectedValue();
             Listing selectedCarListing = selectedCar.getListing();
@@ -208,19 +208,20 @@ public class CarRental extends JFrame {
             }
         });
 
+        //Delete specified car in Edit page
         deleteCar.addActionListener(e -> {
             Car selectedCar = allCarsList.getSelectedValue();
-            carRepository.removeExistingCar(selectedCar);
-            JOptionPane.showMessageDialog(editCarPage, "Car with Registration Number " + selectedCar.getRegistrationNumber() +
-                    " was removed");
-            updateCarList(carRepository.getCarArrayList(), carDefaultListModel);
-            carRepository.saveCarsToJSON();
-            switchPage(mainPage);
+            if(carRepository.removeExistingCar(selectedCar) == 1){
+                JOptionPane.showMessageDialog(editCarPage, "Car with Registration Number " + selectedCar.getRegistrationNumber() +
+                        " was removed");
+                updateCarList(carRepository.getCarArrayList(), carDefaultListModel);
+                carRepository.saveCarsToJSON();
+                switchPage(mainPage);
+            } else JOptionPane.showMessageDialog(createCarInputs, "Error deleting specified car.");
         });
 
 
         //Rent car buttons
-
         selectDateButton.addActionListener(e -> {
             int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());
             int dayForPickup = (int) startDaysInMonthComboBoxModel.getSelectedItem();
@@ -245,6 +246,7 @@ public class CarRental extends JFrame {
 
         });
 
+        // Select specified car within all stored cars list
         selectCar.addActionListener(e -> {
             switchPage(selectedCarPage);
             showsSelectedCarInfo.append(carsAvailable.getSelectedValue().toString());
@@ -269,6 +271,7 @@ public class CarRental extends JFrame {
 
         });
 
+        // Agree to contract
         agreeButton.addActionListener(e -> {
             Car selectedCar = carsAvailable.getSelectedValue();
             int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());
@@ -288,7 +291,7 @@ public class CarRental extends JFrame {
             JOptionPane.showMessageDialog(contractPanel, "The car is now available, drive safe!");
         });
 
-        // Rent out car buttons
+        // Send user to "Create car" page
         rentOutCar.addActionListener(e -> {
             startMonthComboBoxModel.setSelectedItem(currentDate.getMonth().toString());
             endMonthComboBoxModel.setSelectedItem(currentDate.getMonth().toString());
@@ -297,6 +300,7 @@ public class CarRental extends JFrame {
             switchPage(rentOutCarPage);
         });
 
+        // Create car out of specified information provided by user in "Create car" Page. Send user to Listing input page.
         createCar.addActionListener(e -> {
             carRepository.readFromJSON();
             boolean validInformation = !regNumber.getText().isEmpty() &&
@@ -309,27 +313,22 @@ public class CarRental extends JFrame {
                     String carModel = model.getText();
 
                     Car createdCar = new Car(registrationNumber, ownerName, carModel);
-                    carRepository.addNewCar(createdCar);
-                    carRepository.saveCarsToJSON();
-
-                    //Clears input fields
-                    regNumber.setText("");
-                    owner.setText("");
-                    model.setText("");
-
-
+                    if(carRepository.addNewCar(createdCar) == 1){
+                        //Clears input fields
+                        regNumber.setText("");
+                        owner.setText("");
+                        model.setText("");
+                        switchPage(listingInputPage);
+                    } else JOptionPane.showMessageDialog(createCarInputs, "Registration number already exists.");
                 } catch (NullPointerException nullPointerException) {
                     System.out.println("You have not chosen anything");
                 }
-                switchPage(listingInputPage);
             } else JOptionPane.showMessageDialog(listingInputPage, "Invalid fields. Please fill out the form.");
         });
 
 
         listingInputButton.addActionListener(e -> {
-            carRepository.readFromJSON();
             updateCarList(carRepository.getCarArrayList(), carDefaultListModel);
-
             String carDescription = carDescriptionTextArea.getText();
 
             int monthForPickup = monthsMap.get(startMonthComboBoxModel.getSelectedItem().toString());

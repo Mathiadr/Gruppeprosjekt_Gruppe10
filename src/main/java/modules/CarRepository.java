@@ -1,15 +1,11 @@
 package modules;
 
-import org.apache.commons.lang3.RandomUtils;
+
 import tools.CarRepositoryFileHandler;
 import tools.DateHandler;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.random.RandomGenerator;
 
 public class CarRepository {
     private String repositoryName; // This holds the name of the repository being accessed.
@@ -87,6 +83,7 @@ public class CarRepository {
         }
     }
 
+    // Used to generate dummies/placeholder objects for the prototype.
     public void carFactory(int createAmount){
         String[] firstNames = {"Mathias", "Martin", "Susanne", "Jesper", "Oliver", "Justin", "Kasper", "Markus", "Mario",
         "Jonathan", "Johannes", "Marius", "Ole", "Dole", "Doffen", "Mike", "Christian", "Tom", "Morten", "Wenche",

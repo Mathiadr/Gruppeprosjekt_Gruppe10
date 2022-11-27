@@ -3,8 +3,6 @@ package modules;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class Car {
     private String registrationNumber;
@@ -29,8 +27,8 @@ public class Car {
         this.registrationNumber = registrationNumber;
         this.owner = owner;
         this.model = model;
-        LocalDate startDateplaceholder = LocalDate.of(2022, 1, 1);
-        LocalDate endDatePlaceholder = LocalDate.of(2022, 12, 31);
+        LocalDate startDateplaceholder = LocalDate.of(1900, 1, 1);
+        LocalDate endDatePlaceholder = LocalDate.of(1900, 1, 1);
         this.listing = new Listing(startDateplaceholder, endDatePlaceholder, true, "");
     }
 

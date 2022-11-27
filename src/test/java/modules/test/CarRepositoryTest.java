@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -86,6 +85,8 @@ public class CarRepositoryTest {
     /*
      *  Tester krav:
      *      900. En utleier skal kunne registrer informasjon om kjøretøy
+     *      901. En utleier skal kunne oppgi bilmerke
+     *      902. En utleier skal kunne oppgi bilens eier
      */
     public void car_is_added_to_repository(){
         Car car = new Car("DFG441563", "Dummy one", "Volvo");
@@ -94,8 +95,11 @@ public class CarRepositoryTest {
     }
 
 
-
     @Test
+    /*
+     *  Tester krav:
+     *      915. En utleier skal ikke kunne ha flere biler registrert samtidig med samme registreringsnummer
+     */
     public void car_duplicate_is_NOT_added_to_repository(){
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         carRepository.addNewCar(car1);
@@ -120,8 +124,8 @@ public class CarRepositoryTest {
         assertFalse(carRepository.getCarArrayList().contains(car2));
     }
 
-    /*
-     *  Tester krav:
+
+     /*  Tester krav:
      *      914. En utleier skal kunne slette registrert bil fra databasen, og tilhørende annonse
      */
     @Test
@@ -129,13 +133,19 @@ public class CarRepositoryTest {
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
         ArrayList<Car> carArrayList = carRepository.getCarArrayList();
         carRepository.addNewCar(car1);
+        carRepository.saveCarsToJSON();
         carRepository.removeExistingCar(car1);
         assertFalse(carArrayList.contains(car1), "Specified car was not removed");
+        carRepository.saveCarsToJSON();
+        carRepository.readFromJSON();
+        Approvals.verify(carRepository.getCarArrayList());
     }
 
-    /*
-     *  Tester krav:
-     *
+
+    /*  Tester krav:
+     *      1100. En utleier skal kunne opprette en annonse for utleie av kjøretøy
+     *      1104. En utleier kan ikke ha flere annonser knyttet til samme bil
+     *      1106. En utleier skal kunne endre innhold i annonsen
      */
     @Test
     public void new_listing_replaces_old_listing(){
@@ -150,21 +160,19 @@ public class CarRepositoryTest {
 
 
     @Test
-    /*
-     *  Tester krav:
+
+    /*  Tester krav:
      *      400. En leietaker skal kunne se en oversikt over tilgjengelige biler for utleie
-     *
      */
     public void list_of_available_cars_contains_all_available_cars(){
         carRepository.readFromJSON();
         Approvals.verify(carRepository.getAllAvailableCars());
     }
 
-    /*
-     *  Tester krav:
+    @Test
+    /*  Tester krav:
      *      400. En leietaker skal kunne se en oversikt over tilgjengelige biler for utleie
      */
-    @Test
     public void list_of_available_cars_does_not_contain_unavailable_cars(){
         carRepository.getCarArrayList().get(0).getListing().setAvailable(false);
         ArrayList<Car> availableCarList = carRepository.getAllAvailableCars();
@@ -173,18 +181,23 @@ public class CarRepositoryTest {
 
     }
 
-    /*
-        Krav til ny test:
-            402. En leietaker skal kunne se tilgjengelige biler basert på dato // TODO: this
+     /*  Tester krav:
+     *      402. En leietaker skal kunne se tilgjengelige biler basert på dato
      */
     @Test
     public void list_of_available_cars_within_specified_date_contains_all_available_cars_within_rentable_period(){
-
+        LocalDate startOfRentPeriod = LocalDate.of(2022, 2, 27);
+        LocalDate endOfRentPeriod = LocalDate.of(2022, 3, 1);
+        ArrayList<Car> availableCarList = carRepository.getAllAvailableCars(startOfRentPeriod, endOfRentPeriod);
+        assertFalse(availableCarList.contains(carRepository.getCarArrayList().get(0)));
+        Approvals.verify(carRepository.getAllAvailableCars());
     }
 
-    /*
-     *  Tester krav:
+
+     /*  Tester krav:
      *      600. En leietaker skal kunne leie bil
+     *      1105. En utleier skal kunne velge tidsperiode for når bilen er tilgjengelig for utleie
+     *      1200. En utleier skal kunne leie ut bil
      */
     @Test
     public void can_rent_car_if_within_rentable_period(){
@@ -202,6 +215,8 @@ public class CarRepositoryTest {
     /*
      *  Tester krav:
      *      600. En leietaker skal kunne leie bil
+     *      1105. En utleier skal kunne velge tidsperiode for når bilen er tilgjengelig for utleie
+     *      1200. En utleier skal kunne leie ut bil
      */
     @Test
     public void cannot_rent_car_if_outside_of_rentable_period(){
@@ -220,6 +235,8 @@ public class CarRepositoryTest {
     /*
      *  Tester krav:
      *      600. En leietaker skal kunne leie bil
+     *      1105. En utleier skal kunne velge tidsperiode for når bilen er tilgjengelig for utleie
+     *      1200. En utleier skal kunne leie ut bil
      */
     @Test
     public void cannot_rent_car_if_illogical_date(){

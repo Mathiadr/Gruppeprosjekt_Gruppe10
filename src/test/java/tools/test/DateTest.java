@@ -1,29 +1,21 @@
 package tools.test;
 
-import modules.Car;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 import tools.DateHandler;
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
-import java.time.YearMonth;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.approvaltests.Approvals;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 public class DateTest {
 
-    // Provides an array of dates to compare with
+    // Provides an array of two dates to compare with
     public static Stream<Arguments> dateSet(){
         return Stream.of(
                 Arguments.of((Object[]) new LocalDate[][]{{
@@ -50,6 +42,7 @@ public class DateTest {
         int startDate = 0;
         int endDate = 1;
         assertTrue(DateHandler.dateIsValid(localDates[startDate], localDates[endDate]));
+        //startDate first, endDate second
     }
 
     @ParameterizedTest
@@ -58,6 +51,7 @@ public class DateTest {
         int startDate = 0;
         int endDate = 1;
         assertFalse(DateHandler.dateIsValid(localDates[endDate], localDates[startDate]));
+        //endDate first and startDate second
     }
 
     @ParameterizedTest

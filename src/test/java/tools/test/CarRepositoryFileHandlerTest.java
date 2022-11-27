@@ -78,6 +78,14 @@ public class CarRepositoryFileHandlerTest {
     }
 
     @Test
+    /*
+     *  Tester krav:
+     *      500. Databasen skal oppbevare informasjon om registrerte biler
+     *      501. Databasen skal oppbevare bilmerke
+     *      502. Databasen skal oppbevare navn på bilens eier
+     *      600. Databasen skal oppbevare annonsen opprettet av utleier
+     *      604. Databasen skal oppbevare tidsperiode for når bilen er tilgjengelig for utleie
+     */
     public void repository_is_persistently_stored_in_file(){
         Car newCar = new Car("DFG441563", "Dummy one", "Volvo");
         carRepository.addNewCar(newCar);
@@ -106,6 +114,14 @@ public class CarRepositoryFileHandlerTest {
     }
 
     @Test
+    /*
+     *  Tester krav:
+     *      500. Databasen skal oppbevare informasjon om registrerte biler
+     *      501. Databasen skal oppbevare bilmerke
+     *      502. Databasen skal oppbevare navn på bilens eier
+     *      600. Databasen skal oppbevare annonsen opprettet av utleier
+     *      604. Databasen skal oppbevare tidsperiode for når bilen er tilgjengelig for utleie
+     */
     public void repository_reads_from_file(){
         carRepository.readFromJSON();
         Approvals.verify(carRepository.getCarArrayList());
