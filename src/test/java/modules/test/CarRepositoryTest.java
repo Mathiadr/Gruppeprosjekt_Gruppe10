@@ -189,8 +189,7 @@ public class CarRepositoryTest {
         LocalDate startOfRentPeriod = LocalDate.of(2022, 2, 27);
         LocalDate endOfRentPeriod = LocalDate.of(2022, 3, 1);
         ArrayList<Car> availableCarList = carRepository.getAllAvailableCars(startOfRentPeriod, endOfRentPeriod);
-        assertFalse(availableCarList.contains(carRepository.getCarArrayList().get(0)));
-        Approvals.verify(carRepository.getAllAvailableCars());
+        Approvals.verify(availableCarList);
     }
 
 

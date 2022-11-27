@@ -83,7 +83,37 @@ public class CarRepository {
         }
     }
 
+    public void saveCarsToJSON(){
+        carRepositoryFileHandler.writeArrayListToFile(getCarArrayList(), repositoryName);
+    }
+
+    // Reads all objects from JSON file and maps it to the Car object
+    public void readFromJSON(){
+        carArrayList = carRepositoryFileHandler.readFromFile(repositoryName);
+    }
+
+    public String getRepositoryName() {
+        return repositoryName;
+    }
+
+    public void setRepositoryName(String repositoryName) {
+        this.repositoryName = repositoryName;
+    }
+
+    public ArrayList<Car> getCarArrayList() {
+        return carArrayList;
+    }
+
+    public void setCarArrayList(ArrayList<Car> carArrayList) {
+        this.carArrayList = carArrayList;
+    }
+
+    public CarRepositoryFileHandler getCarRepositoryFileHandler() {
+        return carRepositoryFileHandler;
+    }
+
     // Used to generate dummies/placeholder objects for the prototype.
+    /*
     public void carFactory(int createAmount){
         String[] firstNames = {"Mathias", "Martin", "Susanne", "Jesper", "Oliver", "Justin", "Kasper", "Markus", "Mario",
         "Jonathan", "Johannes", "Marius", "Ole", "Dole", "Doffen", "Mike", "Christian", "Tom", "Morten", "Wenche",
@@ -139,33 +169,5 @@ public class CarRepository {
         saveCarsToJSON();
 
     }
-
-    public void saveCarsToJSON(){
-        carRepositoryFileHandler.writeArrayListToFile(getCarArrayList(), repositoryName);
-    }
-
-    // Reads all objects from JSON file and maps it to the Car object
-    public void readFromJSON(){
-        carArrayList = carRepositoryFileHandler.readFromFile(repositoryName);
-    }
-
-    public String getRepositoryName() {
-        return repositoryName;
-    }
-
-    public void setRepositoryName(String repositoryName) {
-        this.repositoryName = repositoryName;
-    }
-
-    public ArrayList<Car> getCarArrayList() {
-        return carArrayList;
-    }
-
-    public void setCarArrayList(ArrayList<Car> carArrayList) {
-        this.carArrayList = carArrayList;
-    }
-
-    public CarRepositoryFileHandler getCarRepositoryFileHandler() {
-        return carRepositoryFileHandler;
-    }
+    */
 }

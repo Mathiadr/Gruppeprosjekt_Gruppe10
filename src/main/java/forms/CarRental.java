@@ -43,7 +43,7 @@ public class CarRental extends JFrame {
     private JScrollPane scrollPane;
 
 
-    CarRepository carRepository = new CarRepository("testRepository.JSON");
+    CarRepository carRepository = new CarRepository("CarRepository.JSON");
 
     private final DefaultListModel<Car> carDefaultListModel = new DefaultListModel<>();
 

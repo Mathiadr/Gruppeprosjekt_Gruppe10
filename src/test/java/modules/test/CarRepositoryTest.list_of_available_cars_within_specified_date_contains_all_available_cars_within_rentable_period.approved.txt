@@ -1,0 +1,25 @@
+[
+
+registrationNumber: MXH10045,
+Owner: Mathias Dale Ratdal,
+Model: E2,
+Listing:    Start date: 2022-01-01,
+   End date: 2022-03-07,
+   isAvailable: true,
+   Description : PLACEHOLDER DESCRIPTION, 
+
+registrationNumber: EBX23365,
+Owner: Sokrat Starynkiewicz,
+Model: A4,
+Listing:    Start date: 2022-02-25,
+   End date: 2022-06-07,
+   isAvailable: true,
+   Description : PLACEHOLDER DESCRIPTION, 
+
+registrationNumber: BE240051,
+Owner: Ola Nordmann,
+Model: A1,
+Listing:    Start date: 2022-02-07,
+   End date: 2022-12-23,
+   isAvailable: true,
+   Description : PLACEHOLDER DESCRIPTION]
