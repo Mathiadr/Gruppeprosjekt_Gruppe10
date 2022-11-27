@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.*;
+import javax.swing.DefaultListCellRenderer;
 
 
 public class CarRental extends JFrame {
@@ -45,6 +46,7 @@ public class CarRental extends JFrame {
 
 
     CarRepository carRepository = new CarRepository("testRepository.JSON");
+
     private final DefaultListModel<Car> carDefaultListModel = new DefaultListModel<>();
 
     public CarRental(String title) {
@@ -68,6 +70,7 @@ public class CarRental extends JFrame {
 
         // Lists
         DefaultListModel<Car> carDefaultListModel = new DefaultListModel<>();
+
         carsAvailable.setModel(carDefaultListModel);
         allCarsList.setModel(carDefaultListModel);
 
