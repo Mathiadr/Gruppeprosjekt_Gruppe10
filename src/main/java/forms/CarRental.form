@@ -21,7 +21,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="8e53d" binding="mainPage" layout-manager="GridLayoutManager" row-count="5" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="8e53d" binding="mainPage" layout-manager="GridLayoutManager" row-count="5" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <card name="Card3"/>
@@ -34,7 +34,7 @@
             <children>
               <hspacer id="34092">
                 <constraints>
-                  <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
               </hspacer>
               <hspacer id="ca457">
@@ -42,37 +42,9 @@
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
               </hspacer>
-              <component id="b5cdb" class="javax.swing.JButton" binding="selectDateButton">
-                <constraints>
-                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-891353"/>
-                  <borderPainted value="false"/>
-                  <font name="Tahoma" size="16" style="1"/>
-                  <foreground color="-1"/>
-                  <text value="See available cars"/>
-                </properties>
-              </component>
-              <component id="48952" class="javax.swing.JButton" binding="rentOutCar">
-                <constraints>
-                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-891353"/>
-                  <borderPainted value="false"/>
-                  <enabled value="true"/>
-                  <font name="Tahoma" size="16" style="1"/>
-                  <foreground color="-1"/>
-                  <hideActionText value="false"/>
-                  <horizontalAlignment value="0"/>
-                  <horizontalTextPosition value="4"/>
-                  <text value="Rent out a car"/>
-                </properties>
-              </component>
               <component id="78f47" class="javax.swing.JButton" binding="allCarsButton">
                 <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <background color="-891353"/>
@@ -97,10 +69,10 @@
                   <text value="."/>
                 </properties>
               </component>
-              <grid id="3510d" binding="dateBoxMainPage" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="3510d" binding="dateBoxMainPage" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="13" left="13" bottom="13" right="13"/>
                 <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="1" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <background color="-891353"/>
@@ -185,11 +157,45 @@
                       <text value="Select a time period:"/>
                     </properties>
                   </component>
+                  <component id="b5cdb" class="javax.swing.JButton" binding="selectDateButton">
+                    <constraints>
+                      <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-3454929"/>
+                      <borderPainted value="true"/>
+                      <font name="Tahoma" size="16" style="1"/>
+                      <foreground color="-1"/>
+                      <opaque value="true"/>
+                      <text value="See available cars"/>
+                    </properties>
+                  </component>
                 </children>
               </grid>
-              <vspacer id="5e03d">
+              <component id="48952" class="javax.swing.JButton" binding="rentOutCar">
                 <constraints>
-                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-891353"/>
+                  <borderPainted value="false"/>
+                  <enabled value="true"/>
+                  <font name="Tahoma" size="16" style="1"/>
+                  <foreground color="-1"/>
+                  <hideActionText value="false"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="4"/>
+                  <text value="Rent out a car"/>
+                </properties>
+              </component>
+              <vspacer id="dfac">
+                <constraints>
+                  <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <vspacer id="f4f89">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
             </children>
@@ -218,7 +224,8 @@
                     <constraints/>
                     <properties>
                       <background color="-11175016"/>
-                      <layoutOrientation value="1"/>
+                      <layoutOrientation value="0"/>
+                      <selectionMode value="0"/>
                     </properties>
                   </component>
                 </children>
@@ -447,7 +454,7 @@
                     <properties>
                       <background color="-11175016"/>
                       <foreground color="-15987956"/>
-                      <layoutOrientation value="2"/>
+                      <layoutOrientation value="0"/>
                       <opaque value="true"/>
                     </properties>
                   </component>
@@ -825,13 +832,13 @@
               </scrollpane>
             </children>
           </grid>
-          <grid id="3e432" binding="listingInputPage" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="3e432" binding="listingInputPage" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <card name="Card8"/>
             </constraints>
             <properties>
-              <background color="-12828863"/>
+              <background color="-13476487"/>
             </properties>
             <border type="none"/>
             <children>
@@ -846,15 +853,15 @@
                   <text value="Create listing for your car"/>
                 </properties>
               </component>
-              <grid id="a5246" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="0" left="0" bottom="0" right="0"/>
+              <grid id="a5246" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="10" left="10" bottom="10" right="10"/>
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true">
                     <preferred-size width="836" height="415"/>
                   </grid>
                 </constraints>
                 <properties>
-                  <background color="-12828863"/>
+                  <background color="-891353"/>
                   <foreground color="-16777216"/>
                 </properties>
                 <border type="none"/>
@@ -862,10 +869,10 @@
                   <grid id="1f4c3" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="true"/>
+                      <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
                     </constraints>
                     <properties>
-                      <background color="-12828863"/>
+                      <background color="-891353"/>
                       <enabled value="false"/>
                       <foreground color="-16777216"/>
                     </properties>
@@ -916,10 +923,10 @@
                   <grid id="1c051" layout-manager="GridLayoutManager" row-count="5" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="true"/>
+                      <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
                     </constraints>
                     <properties>
-                      <background color="-12828863"/>
+                      <background color="-891353"/>
                       <foreground color="-16777216"/>
                     </properties>
                     <border type="none">
@@ -1006,10 +1013,10 @@
                   <grid id="e90b9" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="true"/>
+                      <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
                     </constraints>
                     <properties>
-                      <background color="-12828863"/>
+                      <background color="-891353"/>
                       <foreground color="-16777216"/>
                     </properties>
                     <border type="none"/>
@@ -1029,6 +1036,9 @@
                           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <background color="-891353"/>
+                          <font name="Tahoma" size="14" style="1"/>
+                          <foreground color="-1"/>
                           <hideActionText value="false"/>
                           <selected value="true"/>
                           <text value="Yes"/>
@@ -1039,6 +1049,9 @@
                           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <background color="-891353"/>
+                          <font name="Tahoma" size="14" style="1"/>
+                          <foreground color="-1"/>
                           <text value="No"/>
                         </properties>
                       </component>
@@ -1047,10 +1060,10 @@
                   <grid id="ab2f1" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
+                      <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
                     </constraints>
                     <properties>
-                      <background color="-12828863"/>
+                      <background color="-891353"/>
                       <foreground color="-16777216"/>
                     </properties>
                     <border type="none"/>
@@ -1075,18 +1088,18 @@
                       </component>
                     </children>
                   </grid>
-                  <hspacer id="64b29">
-                    <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </hspacer>
-                  <hspacer id="62223">
-                    <constraints>
-                      <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </hspacer>
                 </children>
               </grid>
+              <hspacer id="eb923">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="d8b2d">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
             </children>
           </grid>
           <grid id="5ddbe" binding="contractPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -1155,6 +1168,10 @@
   </grid>
   <buttonGroups>
     <group name="isAvailableRadioGroup">
+      <member id="b227a"/>
+      <member id="174a0"/>
+    </group>
+    <group name="editAvailableGroup">
       <member id="5c605"/>
       <member id="b7896"/>
     </group>

@@ -1,91 +1,1001 @@
 [ {
-  "registrationNumber" : "MXH10045",
-  "owner" : "Mathias Dale Ratdal",
-  "model" : "E2",
+  "registrationNumber" : "KGU68700",
+  "owner" : "Martin Jansen",
+  "model" : "Mercedes-Benz",
   "listing" : {
-    "startDate" : "2022-01-01",
-    "endDate" : "2022-03-07",
-    "description" : "PLACEHOLDER DESCRIPTION",
+    "startDate" : "2022-01-09",
+    "endDate" : "2022-07-25",
+    "description" : "Hello! My name is Martin Jansen and I have a nice Mercedes-Benz which is available for rent! Please contact me if you're interested in renting it. :)",
     "available" : true
   }
 }, {
-  "registrationNumber" : "EBX23365",
-  "owner" : "Sokrat Starynkiewicz",
-  "model" : "A4",
+  "registrationNumber" : "GPZ84842",
+  "owner" : "Jasmin Solberg",
+  "model" : "Mercedes-Benz",
   "listing" : {
-    "startDate" : "2022-02-25",
-    "endDate" : "2022-06-07",
-    "description" : "PLACEHOLDER DESCRIPTION",
+    "startDate" : "2022-01-20",
+    "endDate" : "2022-06-03",
+    "description" : "Hello! My name is Jasmin Solberg and I have a nice Mercedes-Benz which is available for rent! Please contact me if you're interested in renting it. :)",
     "available" : true
   }
 }, {
-  "registrationNumber" : "E0B10045",
-  "owner" : "Joe Mama",
-  "model" : "C2",
+  "registrationNumber" : "ZCS86006",
+  "owner" : "Morten Dale",
+  "model" : "Kia",
   "listing" : {
-    "startDate" : "2022-02-01",
-    "endDate" : "2022-02-10",
-    "description" : "PLACEHOLDER DESCRIPTION",
+    "startDate" : "2022-03-31",
+    "endDate" : "2022-09-29",
+    "description" : "Hello! My name is Morten Dale and I have a nice Kia which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "UNZ28409",
+  "owner" : "Martin Solberg",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-03-09",
+    "endDate" : "2022-07-04",
+    "description" : "Hello! My name is Martin Solberg and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "XYB15554",
+  "owner" : "Jesper Jansen",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-05-31",
+    "endDate" : "2022-08-24",
+    "description" : "Hello! My name is Jesper Jansen and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
     "available" : true
   }
 }, {
-  "registrationNumber" : "ADHD0O11",
-  "owner" : "Sander Kristiansen",
-  "model" : "C6",
+  "registrationNumber" : "VEO79354",
+  "owner" : "Oliver Ratdal",
+  "model" : "Volkswagen",
   "listing" : {
-    "startDate" : "2022-07-15",
-    "endDate" : "2022-08-15",
-    "description" : "PLACEHOLDER DESCRIPTION",
+    "startDate" : "2022-10-04",
+    "endDate" : "2022-11-19",
+    "description" : "Hello! My name is Oliver Ratdal and I have a nice Volkswagen which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "TJU30345",
+  "owner" : "Jasmin Holm",
+  "model" : "Volkswagen",
+  "listing" : {
+    "startDate" : "2022-03-09",
+    "endDate" : "2022-09-14",
+    "description" : "Hello! My name is Jasmin Holm and I have a nice Volkswagen which is available for rent! Please contact me if you're interested in renting it. :)",
     "available" : true
   }
 }, {
-  "registrationNumber" : "D1CK9864",
-  "owner" : "Djikstra Van Houven",
-  "model" : "BA1",
+  "registrationNumber" : "LLC13100",
+  "owner" : "Mario Sandersen",
+  "model" : "Volvo",
   "listing" : {
-    "startDate" : "2022-10-14",
-    "endDate" : "2022-11-04",
-    "description" : "PLACEHOLDER DESCRIPTION",
+    "startDate" : "2022-12-11",
+    "endDate" : "2022-12-19",
+    "description" : "Hello! My name is Mario Sandersen and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
     "available" : true
   }
 }, {
-  "registrationNumber" : "P0043456",
-  "owner" : "John Doe",
-  "model" : "A2",
+  "registrationNumber" : "NSM42178",
+  "owner" : "Jesper Smith",
+  "model" : "Ford",
   "listing" : {
-    "startDate" : "2022-12-01",
-    "endDate" : "2022-12-31",
-    "description" : "PLACEHOLDER DESCRIPTION",
+    "startDate" : "2022-08-13",
+    "endDate" : "2022-11-18",
+    "description" : "Hello! My name is Jesper Smith and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
     "available" : true
   }
 }, {
-  "registrationNumber" : "BE240051",
-  "owner" : "Ola Nordmann",
-  "model" : "A1",
+  "registrationNumber" : "PDF96112",
+  "owner" : "Jonathan Kimmell",
+  "model" : "Renault",
+  "listing" : {
+    "startDate" : "2022-07-02",
+    "endDate" : "2022-09-20",
+    "description" : "Hello! My name is Jonathan Kimmell and I have a nice Renault which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "SWG95063",
+  "owner" : "Mathias Knutsen",
+  "model" : "Kia",
+  "listing" : {
+    "startDate" : "2022-02-11",
+    "endDate" : "2022-09-20",
+    "description" : "Hello! My name is Mathias Knutsen and I have a nice Kia which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "UPM21389",
+  "owner" : "Oliver Ratdal",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-07-28",
+    "endDate" : "2022-10-25",
+    "description" : "Hello! My name is Oliver Ratdal and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "PPB25035",
+  "owner" : "Dole Ali",
+  "model" : "Renault",
+  "listing" : {
+    "startDate" : "2022-03-08",
+    "endDate" : "2022-05-15",
+    "description" : "Hello! My name is Dole Ali and I have a nice Renault which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "KDJ40727",
+  "owner" : "Susanne Berg",
+  "model" : "Mercedes-Benz",
+  "listing" : {
+    "startDate" : "2022-07-06",
+    "endDate" : "2022-10-19",
+    "description" : "Hello! My name is Susanne Berg and I have a nice Mercedes-Benz which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "DQB70266",
+  "owner" : "Christian Knutsen",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-04-25",
+    "endDate" : "2022-08-16",
+    "description" : "Hello! My name is Christian Knutsen and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "KHL61860",
+  "owner" : "Kasper Nordmann",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-08-01",
+    "endDate" : "2022-08-17",
+    "description" : "Hello! My name is Kasper Nordmann and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "OLV31964",
+  "owner" : "Morten Kimmell",
+  "model" : "Kia",
+  "listing" : {
+    "startDate" : "2022-10-06",
+    "endDate" : "2022-11-07",
+    "description" : "Hello! My name is Morten Kimmell and I have a nice Kia which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "ESG37643",
+  "owner" : "Jonathan Strand",
+  "model" : "Volkswagen",
+  "listing" : {
+    "startDate" : "2022-02-20",
+    "endDate" : "2022-12-30",
+    "description" : "Hello! My name is Jonathan Strand and I have a nice Volkswagen which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "PMU82219",
+  "owner" : "Dole Ali",
+  "model" : "BMW",
+  "listing" : {
+    "startDate" : "2022-05-07",
+    "endDate" : "2022-05-25",
+    "description" : "Hello! My name is Dole Ali and I have a nice BMW which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "WUN34851",
+  "owner" : "Justin Dale",
+  "model" : "Mercedes-Benz",
+  "listing" : {
+    "startDate" : "2022-02-08",
+    "endDate" : "2022-05-10",
+    "description" : "Hello! My name is Justin Dale and I have a nice Mercedes-Benz which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "XQL24086",
+  "owner" : "Anne Hansen",
+  "model" : "Kia",
+  "listing" : {
+    "startDate" : "2022-06-12",
+    "endDate" : "2022-06-26",
+    "description" : "Hello! My name is Anne Hansen and I have a nice Kia which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "BQT14753",
+  "owner" : "Ole Berg",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-01-31",
+    "endDate" : "2022-04-08",
+    "description" : "Hello! My name is Ole Berg and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "IMG39002",
+  "owner" : "Marius Hansen",
+  "model" : "Volkswagen",
+  "listing" : {
+    "startDate" : "2022-05-21",
+    "endDate" : "2022-06-03",
+    "description" : "Hello! My name is Marius Hansen and I have a nice Volkswagen which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "HPC68431",
+  "owner" : "Anne Ali",
+  "model" : "Audi",
+  "listing" : {
+    "startDate" : "2022-02-04",
+    "endDate" : "2022-05-17",
+    "description" : "Hello! My name is Anne Ali and I have a nice Audi which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "NLS58849",
+  "owner" : "Jonathan Demuth",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-02-23",
+    "endDate" : "2022-05-07",
+    "description" : "Hello! My name is Jonathan Demuth and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "IED98127",
+  "owner" : "Mike Kristiansen",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-01-07",
+    "endDate" : "2022-12-27",
+    "description" : "Hello! My name is Mike Kristiansen and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "BVX95294",
+  "owner" : "Martin Dale",
+  "model" : "Mercedes-Benz",
+  "listing" : {
+    "startDate" : "2022-07-03",
+    "endDate" : "2022-12-19",
+    "description" : "Hello! My name is Martin Dale and I have a nice Mercedes-Benz which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "VRL10879",
+  "owner" : "Martin Dale",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-10-29",
+    "endDate" : "2022-12-29",
+    "description" : "Hello! My name is Martin Dale and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "OJN18061",
+  "owner" : "Martin Thorvaldsen",
+  "model" : "Kia",
+  "listing" : {
+    "startDate" : "2022-04-01",
+    "endDate" : "2022-06-17",
+    "description" : "Hello! My name is Martin Thorvaldsen and I have a nice Kia which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "BJB88032",
+  "owner" : "Christian Thorvaldsen",
+  "model" : "Volkswagen",
+  "listing" : {
+    "startDate" : "2022-08-28",
+    "endDate" : "2022-11-27",
+    "description" : "Hello! My name is Christian Thorvaldsen and I have a nice Volkswagen which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "FWA50784",
+  "owner" : "Mario Strand",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-05-28",
+    "endDate" : "2022-07-12",
+    "description" : "Hello! My name is Mario Strand and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "SZZ78740",
+  "owner" : "Wenche Heide",
+  "model" : "Volkswagen",
+  "listing" : {
+    "startDate" : "2022-03-14",
+    "endDate" : "2022-12-24",
+    "description" : "Hello! My name is Wenche Heide and I have a nice Volkswagen which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "RTD20132",
+  "owner" : "Mathias Knutsen",
+  "model" : "Mercedes-Benz",
+  "listing" : {
+    "startDate" : "2022-06-20",
+    "endDate" : "2022-08-01",
+    "description" : "Hello! My name is Mathias Knutsen and I have a nice Mercedes-Benz which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "KNV26127",
+  "owner" : "Julie Smith",
+  "model" : "Renault",
+  "listing" : {
+    "startDate" : "2022-01-11",
+    "endDate" : "2022-08-21",
+    "description" : "Hello! My name is Julie Smith and I have a nice Renault which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "BLB33839",
+  "owner" : "Kasper Ratdal",
+  "model" : "Kia",
+  "listing" : {
+    "startDate" : "2022-01-25",
+    "endDate" : "2022-08-08",
+    "description" : "Hello! My name is Kasper Ratdal and I have a nice Kia which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "WLE11547",
+  "owner" : "Christian Nordmann",
+  "model" : "BMW",
+  "listing" : {
+    "startDate" : "2022-01-25",
+    "endDate" : "2022-08-11",
+    "description" : "Hello! My name is Christian Nordmann and I have a nice BMW which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "CVC26774",
+  "owner" : "Mike Dale",
+  "model" : "BMW",
+  "listing" : {
+    "startDate" : "2022-01-22",
+    "endDate" : "2022-12-06",
+    "description" : "Hello! My name is Mike Dale and I have a nice BMW which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "MNL62058",
+  "owner" : "Wenche Berg",
+  "model" : "Kia",
+  "listing" : {
+    "startDate" : "2022-03-12",
+    "endDate" : "2022-07-30",
+    "description" : "Hello! My name is Wenche Berg and I have a nice Kia which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "NSI31530",
+  "owner" : "Mike Thorvaldsen",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-03-10",
+    "endDate" : "2022-06-30",
+    "description" : "Hello! My name is Mike Thorvaldsen and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "KJD94861",
+  "owner" : "Tomine Kristiansen",
+  "model" : "Toyota",
+  "listing" : {
+    "startDate" : "2022-06-24",
+    "endDate" : "2022-10-13",
+    "description" : "Hello! My name is Tomine Kristiansen and I have a nice Toyota which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "KGM46329",
+  "owner" : "Tom Nordmann",
+  "model" : "Audi",
+  "listing" : {
+    "startDate" : "2022-06-09",
+    "endDate" : "2022-09-04",
+    "description" : "Hello! My name is Tom Nordmann and I have a nice Audi which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "YMW56317",
+  "owner" : "Marius Smith",
+  "model" : "BMW",
+  "listing" : {
+    "startDate" : "2022-02-10",
+    "endDate" : "2022-07-21",
+    "description" : "Hello! My name is Marius Smith and I have a nice BMW which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "JAF23322",
+  "owner" : "Marius Smith",
+  "model" : "Toyota",
+  "listing" : {
+    "startDate" : "2022-08-31",
+    "endDate" : "2022-09-17",
+    "description" : "Hello! My name is Marius Smith and I have a nice Toyota which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "LYJ16358",
+  "owner" : "Tom Karlsen",
+  "model" : "Toyota",
+  "listing" : {
+    "startDate" : "2022-05-06",
+    "endDate" : "2022-07-22",
+    "description" : "Hello! My name is Tom Karlsen and I have a nice Toyota which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "NQB84236",
+  "owner" : "Tomine Heide",
+  "model" : "Volkswagen",
+  "listing" : {
+    "startDate" : "2022-03-14",
+    "endDate" : "2022-09-29",
+    "description" : "Hello! My name is Tomine Heide and I have a nice Volkswagen which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "GWA81763",
+  "owner" : "Wenche Strand",
+  "model" : "Renault",
+  "listing" : {
+    "startDate" : "2022-09-13",
+    "endDate" : "2022-10-31",
+    "description" : "Hello! My name is Wenche Strand and I have a nice Renault which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "JOB70853",
+  "owner" : "Tomine Thorvaldsen",
+  "model" : "Kia",
+  "listing" : {
+    "startDate" : "2022-01-09",
+    "endDate" : "2022-07-01",
+    "description" : "Hello! My name is Tomine Thorvaldsen and I have a nice Kia which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "YGK43704",
+  "owner" : "Johannes Jansen",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-01-19",
+    "endDate" : "2022-02-08",
+    "description" : "Hello! My name is Johannes Jansen and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "YKK25561",
+  "owner" : "Julie Berg",
+  "model" : "BMW",
+  "listing" : {
+    "startDate" : "2022-04-11",
+    "endDate" : "2022-09-01",
+    "description" : "Hello! My name is Julie Berg and I have a nice BMW which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "VEW38626",
+  "owner" : "Morten Knutsen",
+  "model" : "Renault",
+  "listing" : {
+    "startDate" : "2022-07-18",
+    "endDate" : "2022-10-04",
+    "description" : "Hello! My name is Morten Knutsen and I have a nice Renault which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "MDT63031",
+  "owner" : "Anne Nordmann",
+  "model" : "Volkswagen",
+  "listing" : {
+    "startDate" : "2022-08-18",
+    "endDate" : "2022-09-02",
+    "description" : "Hello! My name is Anne Nordmann and I have a nice Volkswagen which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "JNU17896",
+  "owner" : "Oliver Strand",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-11-06",
+    "endDate" : "2022-12-11",
+    "description" : "Hello! My name is Oliver Strand and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "XHP39852",
+  "owner" : "Jasmin Demuth",
+  "model" : "BMW",
+  "listing" : {
+    "startDate" : "2022-01-25",
+    "endDate" : "2022-06-20",
+    "description" : "Hello! My name is Jasmin Demuth and I have a nice BMW which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "BSW97357",
+  "owner" : "Marius Hansen",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-11-10",
+    "endDate" : "2022-11-25",
+    "description" : "Hello! My name is Marius Hansen and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "PTX96331",
+  "owner" : "Martin Demuth",
+  "model" : "Toyota",
+  "listing" : {
+    "startDate" : "2022-02-05",
+    "endDate" : "2022-11-18",
+    "description" : "Hello! My name is Martin Demuth and I have a nice Toyota which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "CUQ16478",
+  "owner" : "Morten Ali",
+  "model" : "Toyota",
+  "listing" : {
+    "startDate" : "2022-05-30",
+    "endDate" : "2022-07-19",
+    "description" : "Hello! My name is Morten Ali and I have a nice Toyota which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "BTV51645",
+  "owner" : "Markus Demuth",
+  "model" : "Volkswagen",
+  "listing" : {
+    "startDate" : "2022-05-31",
+    "endDate" : "2022-09-19",
+    "description" : "Hello! My name is Markus Demuth and I have a nice Volkswagen which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "VHX80130",
+  "owner" : "Susanne Kimmell",
+  "model" : "Toyota",
+  "listing" : {
+    "startDate" : "2022-02-21",
+    "endDate" : "2022-09-28",
+    "description" : "Hello! My name is Susanne Kimmell and I have a nice Toyota which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "HQJ62538",
+  "owner" : "Jonathan Dale",
+  "model" : "Kia",
+  "listing" : {
+    "startDate" : "2022-09-07",
+    "endDate" : "2022-11-06",
+    "description" : "Hello! My name is Jonathan Dale and I have a nice Kia which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "RQW27422",
+  "owner" : "Anne Ali",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-04-30",
+    "endDate" : "2022-10-28",
+    "description" : "Hello! My name is Anne Ali and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "WNB13109",
+  "owner" : "Oliver Ali",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-08-25",
+    "endDate" : "2022-10-14",
+    "description" : "Hello! My name is Oliver Ali and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "BOY30102",
+  "owner" : "Tom Hansen",
+  "model" : "BMW",
+  "listing" : {
+    "startDate" : "2022-02-10",
+    "endDate" : "2022-06-16",
+    "description" : "Hello! My name is Tom Hansen and I have a nice BMW which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "HLX38961",
+  "owner" : "Julie Dale",
+  "model" : "Mercedes-Benz",
+  "listing" : {
+    "startDate" : "2022-01-26",
+    "endDate" : "2022-07-27",
+    "description" : "Hello! My name is Julie Dale and I have a nice Mercedes-Benz which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "THI32241",
+  "owner" : "Susanne Dale",
+  "model" : "Kia",
+  "listing" : {
+    "startDate" : "2022-01-27",
+    "endDate" : "2022-02-14",
+    "description" : "Hello! My name is Susanne Dale and I have a nice Kia which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "GVL83162",
+  "owner" : "Christian Karlsen",
+  "model" : "Volkswagen",
+  "listing" : {
+    "startDate" : "2022-05-21",
+    "endDate" : "2022-11-10",
+    "description" : "Hello! My name is Christian Karlsen and I have a nice Volkswagen which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "BFH96708",
+  "owner" : "Marius Strand",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-10-13",
+    "endDate" : "2022-10-18",
+    "description" : "Hello! My name is Marius Strand and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "WOU21606",
+  "owner" : "Mike Dale",
+  "model" : "BMW",
+  "listing" : {
+    "startDate" : "2022-08-12",
+    "endDate" : "2022-11-02",
+    "description" : "Hello! My name is Mike Dale and I have a nice BMW which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "DEH36826",
+  "owner" : "Kasper Ratdal",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-04-24",
+    "endDate" : "2022-04-26",
+    "description" : "Hello! My name is Kasper Ratdal and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "XOL18225",
+  "owner" : "Tomine Dale",
+  "model" : "BMW",
+  "listing" : {
+    "startDate" : "2022-06-11",
+    "endDate" : "2022-09-12",
+    "description" : "Hello! My name is Tomine Dale and I have a nice BMW which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "DYG74531",
+  "owner" : "Tomine Olsen",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-04-10",
+    "endDate" : "2022-08-09",
+    "description" : "Hello! My name is Tomine Olsen and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "HEA29689",
+  "owner" : "Tom Olsen",
+  "model" : "Audi",
+  "listing" : {
+    "startDate" : "2022-07-03",
+    "endDate" : "2022-07-23",
+    "description" : "Hello! My name is Tom Olsen and I have a nice Audi which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "KTG75269",
+  "owner" : "Martin Kristiansen",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-05-06",
+    "endDate" : "2022-05-13",
+    "description" : "Hello! My name is Martin Kristiansen and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "OZM30924",
+  "owner" : "Tom Ratdal",
+  "model" : "Mercedes-Benz",
+  "listing" : {
+    "startDate" : "2022-05-16",
+    "endDate" : "2022-07-11",
+    "description" : "Hello! My name is Tom Ratdal and I have a nice Mercedes-Benz which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "LEG68525",
+  "owner" : "Anne Ali",
+  "model" : "Kia",
+  "listing" : {
+    "startDate" : "2022-07-05",
+    "endDate" : "2022-11-29",
+    "description" : "Hello! My name is Anne Ali and I have a nice Kia which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "FTP68419",
+  "owner" : "Dole Berg",
+  "model" : "Volkswagen",
+  "listing" : {
+    "startDate" : "2022-04-28",
+    "endDate" : "2022-07-07",
+    "description" : "Hello! My name is Dole Berg and I have a nice Volkswagen which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "EVE24288",
+  "owner" : "Anne Berg",
+  "model" : "Renault",
+  "listing" : {
+    "startDate" : "2022-01-27",
+    "endDate" : "2022-10-14",
+    "description" : "Hello! My name is Anne Berg and I have a nice Renault which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "XXC69820",
+  "owner" : "Dole Grenberg",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-08-30",
+    "endDate" : "2022-11-23",
+    "description" : "Hello! My name is Dole Grenberg and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "WUZ79617",
+  "owner" : "Tom Sandersen",
+  "model" : "Audi",
   "listing" : {
     "startDate" : "2022-02-07",
-    "endDate" : "2022-12-23",
-    "description" : "PLACEHOLDER DESCRIPTION",
+    "endDate" : "2022-11-16",
+    "description" : "Hello! My name is Tom Sandersen and I have a nice Audi which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "TSD59909",
+  "owner" : "Susanne Holm",
+  "model" : "Kia",
+  "listing" : {
+    "startDate" : "2022-07-08",
+    "endDate" : "2022-09-17",
+    "description" : "Hello! My name is Susanne Holm and I have a nice Kia which is available for rent! Please contact me if you're interested in renting it. :)",
     "available" : true
   }
 }, {
-  "registrationNumber" : "334",
-  "owner" : "dfsf",
-  "model" : "rtegb",
+  "registrationNumber" : "FJW34244",
+  "owner" : "Johannes Ratdal",
+  "model" : "BMW",
   "listing" : {
-    "startDate" : "2022-01-01",
-    "endDate" : "2022-12-31",
-    "description" : "",
+    "startDate" : "2022-03-15",
+    "endDate" : "2022-07-09",
+    "description" : "Hello! My name is Johannes Ratdal and I have a nice BMW which is available for rent! Please contact me if you're interested in renting it. :)",
     "available" : true
   }
 }, {
-  "registrationNumber" : "sdfsd",
-  "owner" : "sfdsd",
-  "model" : "sdfsdf",
+  "registrationNumber" : "IFB71478",
+  "owner" : "Markus Heine",
+  "model" : "Mercedes-Benz",
   "listing" : {
-    "startDate" : "2022-01-01",
+    "startDate" : "2022-03-10",
+    "endDate" : "2022-04-09",
+    "description" : "Hello! My name is Markus Heine and I have a nice Mercedes-Benz which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "SFG76462",
+  "owner" : "Jesper Heide",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-02-24",
+    "endDate" : "2022-08-06",
+    "description" : "Hello! My name is Jesper Heide and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "DWN66174",
+  "owner" : "Dole Dahl",
+  "model" : "Renault",
+  "listing" : {
+    "startDate" : "2022-04-25",
+    "endDate" : "2022-12-30",
+    "description" : "Hello! My name is Dole Dahl and I have a nice Renault which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "OGU78135",
+  "owner" : "Jesper Sandersen",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-01-06",
+    "endDate" : "2022-09-21",
+    "description" : "Hello! My name is Jesper Sandersen and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "CJP61686",
+  "owner" : "Johannes Thorvaldsen",
+  "model" : "Ford",
+  "listing" : {
+    "startDate" : "2022-03-25",
+    "endDate" : "2022-03-25",
+    "description" : "Hello! My name is Johannes Thorvaldsen and I have a nice Ford which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "ADR30977",
+  "owner" : "Oliver Smith",
+  "model" : "Mercedes-Benz",
+  "listing" : {
+    "startDate" : "2022-09-03",
+    "endDate" : "2022-11-19",
+    "description" : "Hello! My name is Oliver Smith and I have a nice Mercedes-Benz which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "ZQP50585",
+  "owner" : "Jasmin Nordmann",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-03-28",
+    "endDate" : "2022-05-08",
+    "description" : "Hello! My name is Jasmin Nordmann and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "YQV68255",
+  "owner" : "Jonathan Olsen",
+  "model" : "Mercedes-Benz",
+  "listing" : {
+    "startDate" : "2022-07-22",
+    "endDate" : "2022-10-30",
+    "description" : "Hello! My name is Jonathan Olsen and I have a nice Mercedes-Benz which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "XLB45131",
+  "owner" : "Morten Jansen",
+  "model" : "Renault",
+  "listing" : {
+    "startDate" : "2022-09-05",
+    "endDate" : "2022-09-26",
+    "description" : "Hello! My name is Morten Jansen and I have a nice Renault which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "SBK99066",
+  "owner" : "Julie Dale",
+  "model" : "Renault",
+  "listing" : {
+    "startDate" : "2022-02-05",
+    "endDate" : "2022-02-26",
+    "description" : "Hello! My name is Julie Dale and I have a nice Renault which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "PIL42873",
+  "owner" : "Wenche Hansen",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-07-08",
+    "endDate" : "2022-08-28",
+    "description" : "Hello! My name is Wenche Hansen and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "POF49071",
+  "owner" : "Ole Kimmell",
+  "model" : "BMW",
+  "listing" : {
+    "startDate" : "2022-12-19",
     "endDate" : "2022-12-31",
-    "description" : "",
+    "description" : "Hello! My name is Ole Kimmell and I have a nice BMW which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "VWG93619",
+  "owner" : "Ole Hansen",
+  "model" : "BMW",
+  "listing" : {
+    "startDate" : "2022-03-03",
+    "endDate" : "2022-12-02",
+    "description" : "Hello! My name is Ole Hansen and I have a nice BMW which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "PHW31978",
+  "owner" : "Marius Dahl",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-01-16",
+    "endDate" : "2022-07-28",
+    "description" : "Hello! My name is Marius Dahl and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "VYD22964",
+  "owner" : "Morten Kristiansen",
+  "model" : "Kia",
+  "listing" : {
+    "startDate" : "2022-01-09",
+    "endDate" : "2022-10-20",
+    "description" : "Hello! My name is Morten Kristiansen and I have a nice Kia which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "GGQ91879",
+  "owner" : "Martin Nordmann",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-09-24",
+    "endDate" : "2022-10-11",
+    "description" : "Hello! My name is Martin Nordmann and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : true
+  }
+}, {
+  "registrationNumber" : "ADB81850",
+  "owner" : "Oliver Jansen",
+  "model" : "Volvo",
+  "listing" : {
+    "startDate" : "2022-03-22",
+    "endDate" : "2022-04-28",
+    "description" : "Hello! My name is Oliver Jansen and I have a nice Volvo which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "EDS57310",
+  "owner" : "Morten Grenberg",
+  "model" : "Mercedes-Benz",
+  "listing" : {
+    "startDate" : "2022-05-06",
+    "endDate" : "2022-06-14",
+    "description" : "Hello! My name is Morten Grenberg and I have a nice Mercedes-Benz which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "MNQ53883",
+  "owner" : "Jasmin Olsen",
+  "model" : "Audi",
+  "listing" : {
+    "startDate" : "2022-02-09",
+    "endDate" : "2022-12-04",
+    "description" : "Hello! My name is Jasmin Olsen and I have a nice Audi which is available for rent! Please contact me if you're interested in renting it. :)",
+    "available" : false
+  }
+}, {
+  "registrationNumber" : "FQQ44010",
+  "owner" : "Susanne Solberg",
+  "model" : "Mercedes-Benz",
+  "listing" : {
+    "startDate" : "2022-04-05",
+    "endDate" : "2022-06-18",
+    "description" : "Hello! My name is Susanne Solberg and I have a nice Mercedes-Benz which is available for rent! Please contact me if you're interested in renting it. :)",
     "available" : true
   }
 } ]

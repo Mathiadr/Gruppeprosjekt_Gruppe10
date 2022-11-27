@@ -1,11 +1,15 @@
 package modules;
 
+import org.apache.commons.lang3.RandomUtils;
 import tools.CarRepositoryFileHandler;
 import tools.DateHandler;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.random.RandomGenerator;
 
 public class CarRepository {
     private String repositoryName; // This holds the name of the repository being accessed.
@@ -83,9 +87,60 @@ public class CarRepository {
         }
     }
 
-    public void carFactory(){
-        String[] firstNames = {};
-        String[] lastNames = {};
+    public void carFactory(int createAmount){
+        String[] firstNames = {"Mathias", "Martin", "Susanne", "Jesper", "Oliver", "Justin", "Kasper", "Markus", "Mario",
+        "Jonathan", "Johannes", "Marius", "Ole", "Dole", "Doffen", "Mike", "Christian", "Tom", "Morten", "Wenche",
+        "Julie", "Jasmin", "Anne", "Tomine"};
+        String[] lastNames = {"Ratdal", "Dale", "Demuth", "Thorvaldsen", "Kimmell", "Jansen", "Smith", "Sandersen", "Berg",
+        "Kristiansen", "Heine", "Heide", "Grenberg", "Olsen", "Hansen", "Nordmann", "Dahl", "Solberg", "Karlsen",
+        "Strand", "Ali", "Holm", "Knutsen"};
+        String[] regLetters = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+                "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+        String[] model = {"Toyota", "Volvo", "Volkswagen", "Ford", "Mercedes-Benz", "BMW", "Audi", "Kia", "Renault"};
+        for (int i = 0; i < createAmount; i++){
+            int randomFirstNameInt = ThreadLocalRandom.current().nextInt(0, firstNames.length);
+            int randomLastNameInt = ThreadLocalRandom.current().nextInt(0, lastNames.length);
+            int randomReg1LetterInt = ThreadLocalRandom.current().nextInt(0, regLetters.length);
+            int randomReg2LetterInt = ThreadLocalRandom.current().nextInt(0, regLetters.length);
+            int randomReg3LetterInt = ThreadLocalRandom.current().nextInt(0, regLetters.length);
+            long randomRegNumber = ThreadLocalRandom.current().nextInt(10000, 99999);
+            int randomModelNumber = ThreadLocalRandom.current().nextInt(0, model.length);
+
+            int year = 2022;
+            int randomFirstDateMonth = ThreadLocalRandom.current().nextInt(1, 12+1);
+            int randomFirstDateDays = ThreadLocalRandom.current().nextInt(1, DateHandler.getDaysOfMonth(randomFirstDateMonth)+1);
+            int randomSecondDateMonth = ThreadLocalRandom.current().nextInt(1, 12+1);
+            int randomSecondDateDays = ThreadLocalRandom.current().nextInt(1, DateHandler.getDaysOfMonth(randomSecondDateMonth)+1);
+
+            LocalDate firstDate = LocalDate.of(year, randomFirstDateMonth, randomFirstDateDays);
+            LocalDate secondDate = LocalDate.of(year, randomSecondDateMonth, randomSecondDateDays);
+
+            Listing listing = new Listing();
+
+            if(DateHandler.dateIsValid(firstDate, secondDate)){
+                listing.setStartDate(firstDate);
+                listing.setEndDate(secondDate);
+            } else if (DateHandler.dateIsValid(secondDate, firstDate)){
+                listing.setStartDate(secondDate);
+                listing.setEndDate(firstDate);
+            }
+            listing.setAvailable(ThreadLocalRandom.current().nextBoolean());
+
+            String name = firstNames[randomFirstNameInt] + " " + lastNames[randomLastNameInt];
+            System.out.println(name);
+            String licensePlate = regLetters[randomReg1LetterInt] + regLetters[randomReg2LetterInt] +
+                    regLetters[randomReg3LetterInt] + randomRegNumber;
+
+
+            Car car = new Car(licensePlate, name, model[randomModelNumber]);
+            String description = "Hello! My name is " + car.getOwner() + " and I have a nice " + car.getModel() +
+                    " which is available for rent! Please contact me if you're interested in renting it. :)";
+            listing.setDescription(description);
+            car.setListing(listing);
+            addNewCar(car);
+        }
+        saveCarsToJSON();
+
     }
 
     public void saveCarsToJSON(){

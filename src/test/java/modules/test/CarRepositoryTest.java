@@ -74,19 +74,26 @@ public class CarRepositoryTest {
         carRepository.readFromJSON();
     }
 
+
     @Test
-    public void new_car_is_creatable(){
+    public void new_car_is_created(){
         Car car = new Car("DFG441563", "Dummy one", "Volvo");
         assertNotNull(car);
     }
 
 
     @Test
+    /*
+     *  Tester krav:
+     *      900. En utleier skal kunne registrer informasjon om kjøretøy
+     */
     public void car_is_added_to_repository(){
         Car car = new Car("DFG441563", "Dummy one", "Volvo");
         carRepository.addNewCar(car);
         assertTrue(carRepository.getCarArrayList().contains(car));
     }
+
+
 
     @Test
     public void car_duplicate_is_NOT_added_to_repository(){
@@ -100,6 +107,10 @@ public class CarRepositoryTest {
         assertEquals(1, count);
     }
 
+    /*
+     *  Tester krav:
+     *      915. En utleier skal ikke kunne ha flere biler registrert samtidig med samme registreringsnummer
+     */
     @Test
     public void car_with_existing_registration_number_is_NOT_added_to_repository(){
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
@@ -109,6 +120,10 @@ public class CarRepositoryTest {
         assertFalse(carRepository.getCarArrayList().contains(car2));
     }
 
+    /*
+     *  Tester krav:
+     *      914. En utleier skal kunne slette registrert bil fra databasen, og tilhørende annonse
+     */
     @Test
     public void car_is_removed_from_repository(){ // TODO: save, Re-read and check
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo");
@@ -118,6 +133,10 @@ public class CarRepositoryTest {
         assertFalse(carArrayList.contains(car1), "Specified car was not removed");
     }
 
+    /*
+     *  Tester krav:
+     *
+     */
     @Test
     public void new_listing_replaces_old_listing(){
         Car car1 = new Car("DFG441563", "Dummy one", "Volvo",
@@ -132,13 +151,19 @@ public class CarRepositoryTest {
 
     @Test
     /*
-    *
+     *  Tester krav:
+     *      400. En leietaker skal kunne se en oversikt over tilgjengelige biler for utleie
+     *
      */
     public void list_of_available_cars_contains_all_available_cars(){
         carRepository.readFromJSON();
         Approvals.verify(carRepository.getAllAvailableCars());
     }
 
+    /*
+     *  Tester krav:
+     *      400. En leietaker skal kunne se en oversikt over tilgjengelige biler for utleie
+     */
     @Test
     public void list_of_available_cars_does_not_contain_unavailable_cars(){
         carRepository.getCarArrayList().get(0).getListing().setAvailable(false);
@@ -148,6 +173,19 @@ public class CarRepositoryTest {
 
     }
 
+    /*
+        Krav til ny test:
+            402. En leietaker skal kunne se tilgjengelige biler basert på dato // TODO: this
+     */
+    @Test
+    public void list_of_available_cars_within_specified_date_contains_all_available_cars_within_rentable_period(){
+
+    }
+
+    /*
+     *  Tester krav:
+     *      600. En leietaker skal kunne leie bil
+     */
     @Test
     public void can_rent_car_if_within_rentable_period(){
         LocalDate listingStartDate = LocalDate.of(2022, 1, 1);
@@ -161,6 +199,10 @@ public class CarRepositoryTest {
         assertEquals(1 , carRepository.initiateRentProcess(car1, startOfRentPeriod, endOfRentPeriod));
     }
 
+    /*
+     *  Tester krav:
+     *      600. En leietaker skal kunne leie bil
+     */
     @Test
     public void cannot_rent_car_if_outside_of_rentable_period(){
         LocalDate listingStartDate = LocalDate.of(2022, 1, 1);
@@ -174,6 +216,11 @@ public class CarRepositoryTest {
         assertEquals(-1 , carRepository.initiateRentProcess(car1, startOfRentPeriod, endOfRentPeriod));
     }
 
+
+    /*
+     *  Tester krav:
+     *      600. En leietaker skal kunne leie bil
+     */
     @Test
     public void cannot_rent_car_if_illogical_date(){
         LocalDate listingStartDate = LocalDate.of(2022, 1, 1);
@@ -187,6 +234,10 @@ public class CarRepositoryTest {
         assertEquals(-1 , carRepository.initiateRentProcess(car1, startOfRentPeriod, endOfRentPeriod));
     }
 
+    /*
+     *  Tester krav:
+     *      600. En leietaker skal kunne leie bil
+     */
     @Test
     public void car_is_not_available_after_renting(){
         LocalDate listingStartDate = LocalDate.of(2022, 1, 1);

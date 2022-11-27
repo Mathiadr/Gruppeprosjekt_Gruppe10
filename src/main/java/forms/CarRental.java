@@ -105,7 +105,13 @@ public class CarRental extends JFrame {
         endMonthComboBoxModel.setSelectedItem(currentDate.getMonth().toString());
         startDaysInMonthComboBoxModel.setSelectedItem(currentDate.getDayOfMonth());
         endDaysInMonthComboBoxModel.setSelectedItem(currentDate.getDayOfMonth());
-        // ------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------
+        //carsAvailable.setFixedCellHeight(30);
+        int cellWidth = 1000;
+        ListingCellRenderer listingCellRenderer = new ListingCellRenderer(cellWidth);
+        carsAvailable.setCellRenderer(listingCellRenderer);
+        allCarsList.setCellRenderer(listingCellRenderer);
+
 
 
 
