@@ -23,5 +23,5 @@ Kjøring av tester: For å kjøre testene må man også gå inn i “src” mapp
 Man kan også kjøre alle testene samtidig, ved å høyreklikke på selve java mappa under “test”, og trykke på “Run ‘Tests’ “.
     
 Ved kjøring av GUI testene oppstår det en error som sier:
-Duplicate method name "$$$getFont$$$" with signature "(Ljava.lang.String;IILjava.awt.Font;)Ljava.awt.Font;" in class file forms/CarRental
+> Duplicate method name "$$$getFont$$$" with signature "(Ljava.lang.String;IILjava.awt.Font;)Ljava.awt.Font;" in class file forms/CarRental
 Det er samme som med feilen i prototypen, og skjer på grunn av en feil mellom Gradle og java swing, som gjør at metodene for å kjøre en “frame” eller vindu, ikke kan foregå flere steder. Hvis denne feilen oppstår, så er det bare kjøre testene på nytt, så skal de kjøres riktig. 
