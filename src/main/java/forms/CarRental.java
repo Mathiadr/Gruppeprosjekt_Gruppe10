@@ -5,6 +5,7 @@ import tools.DateHandler;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -57,8 +58,13 @@ public class CarRental extends JFrame {
 
         //Logo and background
         ImageIcon logo = new ImageIcon("src/carlogoresized.png");
-        logoLabel.setIcon(logo);
-
+        Image logoImage = logo.getImage();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double windowHeight = screenSize.height*0.15;
+        double windowWidth = screenSize.width*0.12;
+        Image newImageLogo = logoImage.getScaledInstance((int)windowWidth, (int) windowHeight, Image.SCALE_SMOOTH);
+        ImageIcon newLogo = new ImageIcon(newImageLogo);
+        logoLabel.setIcon(newLogo);
 
 
 
